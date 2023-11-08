@@ -11,9 +11,9 @@ Trabalho da matéria de Desenvolvimento de Aplicações com Banco de Dados
 ### Requerimentos
 
 <pre>
-#body-parser	== ^1.20.2 - 
-#express		  == ^4.18.2 - 
-#mysql			  == ^2.18.1 - 
-#mysql2			  == ^3.6.3  - 
+#body-parser == ^1.20.2 - 
+#express == ^4.18.2 - 
+#mysql == ^2.18.1 - 
+#mysql2 == ^3.6.3  - 
 </pre>   
 
