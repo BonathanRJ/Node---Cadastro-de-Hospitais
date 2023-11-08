@@ -1,4 +1,4 @@
-# APS---157---DESENVOLVIMENTO-DE-APLICA--ES-COM-BANCO-DE-DADOS-20232
+# APS---157---DESENVOLVIMENTO-DE-APLICAÇÕES-COM-BANCO-DE-DADOS-2023.2
 
 Trabalho da matéria de Desenvolvimento de Aplicações com Banco de Dados
 - Objetivo: Criar um CRUD onde eu possa inserir, ler, excluir e alterar os dados de um banco de dados através de uma linguagem de programação.
