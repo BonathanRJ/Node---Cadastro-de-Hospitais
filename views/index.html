@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Inserir Cargo</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - UNICARIOCA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/sidebar.css"> 
 </head>
 <body>
-    <h1>Inserir Cargo</h1>
-    <form action="/inserir_cargo" method="post">
-        <label for="nrcgo">NRCGO:</label>
-        <input type="text" name="nrcgo" id="nrcgo" required><br><br>
-
-        <label for="dccgo">DCCGO:</label>
-        <input type="text" name="dccgo" id="dccgo" required><br><br>
-
-        <label for="auusuultalt">AUUSUULTALT:</label>
-        <input type="text" name="auusuultalt" id="auusuultalt" required><br><br>
-        <label for="audatultalt">AUDATULTALT:</label>
-        <input type="datetime" name="audatultalt" id="audatultalt" required><br>
-        <button type="submit">Inserir Cargo</button>
-    </form>
+    <div id="sidebar">
+        <a href="index.html" class="sidebar-link">
+            <i class="fa-solid fa-house"></i>
+            Página Inicial
+         </a>
+        <a href="hospital.html">
+            <i class="fa-solid fa-building"></i>
+            Hospitais
+        </a>
+        <a href="enfermaria.html">
+            <i class="fa-solid fa-house-medical"></i>
+            Enfermarias
+        </a>
+        <a href="funcionario.html">
+            <i class="fa-solid fa-user-doctor"></i>
+            Funcionários
+        </a>
+        <a href="cargo.html">
+            <i class="fa-solid fa-briefcase"></i>  
+            Cargos
+        </a>
+        <a href="paciente.html">
+            <i class="fa-solid fa-address-card"></i>
+            Pacientes
+        </a>
+    </div>
+    <div id="content">
+        <h1>Bem-vindo ao Hospital UNICARIOCA</h1>
+        <img src="https://www.sindeaprj.org.br/wp-content/uploads/2012/03/Logo-2-2.png" alt="Minha Figura">
+    </div>
 </body>
 </html>

@@ -1,0 +1,375 @@
+<!--paciente.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/sidebar.css"> 
+</head>
+<body>
+
+    <div id="sidebar">
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i> 
+            Página Inicial
+        </a>
+        <a href="hospital.html">
+            <i class="fa-solid fa-building"></i>
+            Hospitais
+        </a>
+        <a href="enfermaria.html">
+            <i class="fa-solid fa-house-medical"></i>
+            Enfermarias
+        </a>
+        <a href="funcionario.html">
+            <i class="fa-solid fa-user-doctor"></i>
+            Funcionários
+        </a>
+        <a href="cargo.html">
+            <i class="fa-solid fa-briefcase"></i>  
+            Cargos
+        </a>
+        <a href="paciente.html" class="sidebar-link">
+            <i class="fa-solid fa-address-card"></i>
+            Pacientes
+        </a>
+    </div>
+
+    <div id="content">
+        <table width="100%" margin=15px;>
+            <tr> 
+                <td class="secao">
+                    Paciente
+                </td>
+            </tr>
+        </table>
+
+        <div class="container-barra-inicial">
+            <div class="barra-inicial">
+                <button type="button" onclick="limparCampos()">
+                    <i class="fa-solid fa-folder-plus custom-icon" title="Novo" ></i>
+                </button>
+                <button type="button" >
+                    <i class="fa-regular fa-folder-open custom-icon" title="Abrir"></i>
+                </button>
+                <button type="button" >
+                    <i class="fa-solid fa-folder-minus custom-icon" title="Excluir"></i>
+                </button>
+                <button type="button" onclick="insertPacienteData()">
+                    <i class="fa-solid fa-folder custom-icon" title="Gravar"></i>
+                </button>
+                  
+
+                <button type="button" >
+                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                </button>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend style="color: #325D82;">Cadastro Paciente</legend>
+            <form id="pacienteForm">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="IDHOS"class="titulo">Identificador do Hospital</label>
+                            </td>
+                            <td>
+                                <label for="CDHOS"class="titulo">Código do Hospital</label>
+                            </td>
+                            <td>
+                                <label for="IDENF"class="titulo">Identificador da Enfermaria</label>
+                            </td>
+                            <td>
+                                <label for="CDENF"class="titulo">Código da Enfermaria</label>
+                            </td>
+                            <td>
+                                <label for="NRMATPAC"class="titulo">Número da Matrícula</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="IDHOS" name="IDHOS" required  maxlength="3" size="17" class="texto" title="Informe o Identificador do Hospital"><br>
+                                
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="10" size="12" class="texto" title="Informe o Código do Hospital"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="IDENF" name="IDENF" required  maxlength="3" size="17" class="texto" title="Informe o Identificador da Enfermaria"><br>
+                                
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="CDENF" name="CDENF" required maxlength="10" size="12" class="texto" title="Informe o Código da Enfermaria"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRMATPAC" name="NRMATPAC" required maxlength="10" size="14" class="texto" title="Informe o Número da Matrícula"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="NMPAC"class="titulo">Nome do Paciente</label>
+                            </td>
+                            <td>
+                                <label for="DTNSCPAC"class="titulo">Data de Nascimento</label>
+                            </td>
+                            <td>
+                                <label for="TPSEXPAC"class="titulo">Sexo</label>
+                            </td>
+                            <td>
+                                <label for="NRCPFPAC"class="titulo">CPF</label>
+                            </td>
+                            <td>
+                                <label for="DTISCPAC"class="titulo">Data de Inscrição</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="NMPAC" name="NMPAC" required maxlength="60" size="60" class="texto" title="Informe o Nome do Paciente"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="datetime-local" id="DTNSCPAC" name="DTNSCPAC" required maxlength="5" size="50" class="texto" title="Informe a Data de Nascimento"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="TPSEXPAC" name="TPSEXPAC" required maxlength="1" size="1" class="texto" title="Informe o Sexo"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRCPFPAC" name="NRCPFPAC" required maxlength="11" size="10" class="texto" title="Informe o CPF"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="datetime-local" id="DTISCPAC" name="DTISCPAC" required maxlength="5" size="55" class="texto" title="Informe a Data de Inscrição"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="NMPAI"class="titulo">Nome do Pai</label>
+                            </td>
+                            <td>
+                                <label for="NMMAE"class="titulo">Nome do Mãe</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="NMPAI" name="NMPAI" required  maxlength="60" size="60" class="texto" title="Informe o Nome do Pai"><br>
+                                
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NMMAE" name="NMMAE" required  maxlength="60" size="60" class="texto" title="Nome do Mãe"><br>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="DTFALPAC"class="titulo">Data de Falecimento</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="datetime-local" id="DTFALPAC" name="DTFALPAC" required  maxlength="5" size="55" class="texto" title="Informe a Data de Falecimento"><br>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="DCLOGPAC"class="titulo">Logradouro</label>
+                            </td>
+                            <td>
+                                <label for="NRLOGPAC"class="titulo">Número</label>
+                            </td>
+                            <td>
+                                <label for="DCBAIPAC"class="titulo">Bairro</label>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="DCLOGPAC" name="DCLOGPAC" required maxlength="60" size="60" class="texto" title="Informe o Logradouro"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRLOGPAC" name="NRLOGPAC" required maxlength="5" size="3" class="texto" title="Informe o Número"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCBAIPAC" name="DCBAIPAC" required maxlength="30" size="20" class="texto" title="Informe o Bairro"><br>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="CDPSIPAC"class="titulo">País</label>
+                            </td>
+                            <td>
+                                <label for="NRLOGPAC"class="titulo">CEP</label>
+                            </td>
+                            <td>
+                                <label for="DCBAIPAC"class="titulo">UF</label>
+                            </td>
+                            <td>
+                                <label for="DCCIDPAC"class="titulo">Cidade</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="CDPSIPAC" name="CDPSIPAC" required maxlength="2" size="2" class="texto" title="Informe o País"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRCEPPAC" name="NRCEPPAC" required maxlength="8" size="8" class="texto" title="Informe o CEP"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="SGUFSPAC" name="SGUFSPAC" required maxlength="2" size="2" class="texto" title="Informe a UF"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCCIDPAC" name="DCCIDPAC" required maxlength="40" size="20" class="texto" title="Informe o Cidade"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="NRTELRSDPAC"class="titulo">Telefone Paciente</label>
+                            </td>
+                            <td>
+                                <label for="NRTELCOMPAC"class="titulo">Telefone Acompanhante</label>
+                            </td>
+                            <td>
+                                <label for="DCEMLPAC"class="titulo">Email</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="NRTELRSDPAC" name="NRTELRSDPAC" required maxlength="15" size="15" class="texto" title="Informe o Telefone Paciente"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRTELCOMPAC" name="NRTELCOMPAC" required maxlength="15" size="15" class="texto" title="Informe o Telefone Acompanhante"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCEMLPAC" name="DCEMLPAC" required maxlength="45" size="40" class="texto" title="Informe o Email"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="AUUSUULTALT"class="titulo">Usuário</label>
+                            </td>
+                            <td>
+                                <label for="DCHOS"class="titulo">Data de Alteração</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required  maxlength="30" size="10" class="texto" title="Informe o Usuário"><br>
+                                
+                            </td>
+                            <td class="campo">
+                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5" size="50" class="texto" title="Informe a Data de Alteração"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </fieldset>
+
+    <script>
+        async function insertPacienteData() {
+            const IDHOS = document.getElementById('IDHOS').value;
+            const CDHOS = document.getElementById('CDHOS').value;
+            const IDENF = document.getElementById('IDENF').value;
+            const CDENF = document.getElementById('CDENF').value;
+            const NRMATPAC = document.getElementById('NRMATPAC').value;
+            const NMPAC = document.getElementById('NMPAC').value;
+            const DTNSCPAC = document.getElementById('DTNSCPAC').value;
+            const TPSEXPAC = document.getElementById('TPSEXPAC').value;
+            const NRCPFPAC = document.getElementById('NRCPFPAC').value;
+            const DTISCPAC = document.getElementById('DTISCPAC').value;
+            const NMPAI = document.getElementById('NMPAI').value;
+            const NMMAE = document.getElementById('NMMAE').value;
+            const DTFALPAC = document.getElementById('DTFALPAC').value;
+            const DCLOGPAC = document.getElementById('DCLOGPAC').value;
+            const NRLOGPAC = document.getElementById('NRLOGPAC').value;
+            const DCBAIPAC = document.getElementById('DCBAIPAC').value;
+            const DCCIDPAC = document.getElementById('DCCIDPAC').value;
+            const CDPSIPAC = document.getElementById('CDPSIPAC').value;
+            const NRCEPPAC = document.getElementById('NRCEPPAC').value;
+            const SGUFSPAC = document.getElementById('SGUFSPAC').value;
+            const NRTELRSDPAC = document.getElementById('NRTELRSDPAC').value;
+            const NRTELCOMPAC = document.getElementById('NRTELCOMPAC').value;
+            const DCEMLPAC = document.getElementById('DCEMLPAC').value;
+            const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
+            const AUDATULTALT = document.getElementById('AUDATULTALT').value;
+
+            const response = await fetch('/insert_paciente', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    IDHOS, CDHOS, IDENF, CDENF, NRMATPAC, NMPAC, DTNSCPAC, TPSEXPAC, NRCPFPAC, DTISCPAC, NMPAI, NMMAE,
+                    DTFALPAC, DCLOGPAC, NRLOGPAC, DCBAIPAC, DCCIDPAC, CDPSIPAC, NRCEPPAC, SGUFSPAC, NRTELRSDPAC,
+                    NRTELCOMPAC, DCEMLPAC, AUUSUULTALT, AUDATULTALT
+                })
+            });
+
+            const result = await response.json();
+            console.log(result);
+        }
+    </script>
+    <script>
+        function limparCampos() {
+            document.getElementById('IDHOS').value = '';
+            document.getElementById('CDHOS').value = '';
+            document.getElementById('IDENF').value = '';
+            document.getElementById('CDENF').value = '';
+            document.getElementById('NRMATPAC').value = '';
+            document.getElementById('NMPAC').value = '';
+            document.getElementById('DTNSCPAC').value = '';
+            document.getElementById('TPSEXPAC').value = '';
+            document.getElementById('NRCPFPAC').value = '';
+            document.getElementById('DTISCPAC').value = '';
+            document.getElementById('NMPAI').value = '';
+            document.getElementById('NMMAE').value = '';
+            document.getElementById('DTFALPAC').value = '';
+            document.getElementById('DCLOGPAC').value = '';
+            document.getElementById('NRLOGPAC').value = '';
+            document.getElementById('DCBAIPAC').value = '';
+            document.getElementById('DCCIDPAC').value = '';
+            document.getElementById('CDPSIPAC').value = '';
+            document.getElementById('NRCEPPAC').value = '';
+            document.getElementById('SGUFSPAC').value = '';
+            document.getElementById('NRTELRSDPAC').value = '';
+            document.getElementById('NRTELCOMPAC').value = '';
+            document.getElementById('DCEMLPAC').value = '';
+            document.getElementById('AUUSUULTALT').value = '';
+            document.getElementById('AUDATULTALT').value = '';
+        }
+    </script>
+</div>
+
+</body>
+</html>

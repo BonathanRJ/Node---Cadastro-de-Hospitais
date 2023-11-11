@@ -1,49 +1,165 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
+const path = require('path');
+const db = require('./db');
+const cargoController = require('./cargoController');
+const hospitalController = require('./hospitalController');
+const enfermariaController = require('./enfermariaController');
+const estadocivilController = require('./estadocivilController');
+const pacienteController = require('./pacienteController');
+const acompanhanteController = require('./acompanhanteController');
+const funcionarioController = require('./funcionarioController');
+
 const app = express();
+const PORT = 3000;
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 
-// Configurar a conexão com o banco de dados MySQL
-const db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: '123456',
-  database: 'database_hospital',
+
+app.get('/styles/sidebar.css', (req, res) => {
+  res.sendFile(path.join(__dirname, '/styles/sidebar.css'));
 });
 
-db.connect((err) => {
-    if (err) {
-        console.error('Erro ao conectar ao banco de dados: ' + err.message);
-        return;
-    }
-    console.log('Conexão com o banco de dados MySQL estabelecida');
+app.get('/views/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
-// Rota para exibir o formulário
-app.get('/inserir_cargo', (req, res) => {
-    res.sendFile(__dirname + '/insert_cargo.html');
+app.get('/views/cargo.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/cargo.html'));
 });
 
-// Rota para lidar com a inserção de dados
-app.post('/inserir_cargo', (req, res) => {
-    const { nrcgo, dccgo, auusuultalt } = req.body;
-    const sql = 'INSERT INTO FCO_CARGO (NRCGO, DCCGO, AUUSUULTALT, AUDATULTALT) VALUES (?, ?, ?, NOW())';
-    const values = [nrcgo, dccgo, auusuultalt];
-
-    db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error('Erro ao inserir dados: ' + err.message);
-            res.send('Erro ao inserir dados.');
-        } else {
-            console.log('Dados inseridos com sucesso.');
-            res.send('Dados inseridos com sucesso.');
-        }
-    });
+app.get('/views/hospital.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/hospital.html'));
 });
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Servidor Node.js em execução na porta ${port}`);
+app.get('/views/hospital_2.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/hospital_2.html'));
+});
+
+app.get('/views/enfermaria.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/enfermaria.html'));
+});
+
+app.get('/views/estadocivil.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/estadocivil.html'));
+});
+
+app.get('/views/paciente.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/paciente.html'));
+});
+
+app.get('/views/acompanhante.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/acompanhante.html'));
+});
+
+app.get('/views/funcionario.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/funcionario.html'));
+});
+
+
+// Altere o endpoint /views/hospital_2.html para incluir dados ao renderizar
+app.get('/views/hospital_2.html', async (req, res) => {
+  try {
+    // Obtenha todos os hospitais
+    const hospitals = await hospitalController.getAllHospitals();
+
+    // Envie os dados para a página hospital_2.html
+    res.render(path.join(__dirname, '/views/hospital_2.html'), { hospitals });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Adicione uma rota para obter hospitais como JSON
+app.get('/api/hospitals', hospitalController.getAllHospitalsJSON);
+
+// Adicione esta rota ao seu arquivo de servidor
+app.post('/api/update_hospital', async (req, res) => {
+  console.log('Rota /api/update_hospital foi acessada');
+  try {
+      const updatedHospitalData = req.body;
+      const result = await hospitalController.updateHOS_HOSPITAL(updatedHospitalData);
+      res.json({ success: true, result });
+  } catch (error) {
+      res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/insert_cargo', async (req, res) => {
+  try {
+    const cargoData = req.body;
+    const result = await cargoController.insertFCO_CARGO(cargoData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+app.get('/hospital.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/hospital.html'));
+});
+app.post('/insert_hospital', async (req, res) => {
+  console.log('Rota de Insert de Hospital Acessada!');
+  try {
+    const hospitalData = req.body;
+    const result = await hospitalController.insertHOS_HOSPITAL(hospitalData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
+app.post('/insert_enfermaria', async (req, res) => {
+  try {
+    const enfermariaData = req.body;
+    const result = await enfermariaController.insertHOS_ENFERMARIA(enfermariaData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
+app.post('/insert_estadocivil', async (req, res) => {
+  try {
+    const estadocivilData = req.body;
+    const result = await estadocivilController.insertPAC_ESTADO_CIVIL(estadocivilData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
+app.post('/insert_paciente', async (req, res) => {
+  try {
+    const pacienteData = req.body;
+    const result = await pacienteController.insertPAC_PACIENTE(pacienteData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
+app.post('/insert_acompanhante', async (req, res) => {
+  try {
+    const acompanhanteData = req.body;
+    const result = await acompanhanteController.insertPAC_ACOMPANHANTE(acompanhanteData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
+app.post('/insert_funcionario', async (req, res) => {
+  try {
+    const funcionarioData = req.body;
+    const result = await funcionarioController.insertFCO_FUNCIONARIO(funcionarioData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
+app.listen(PORT, '192.168.1.16', () => {
+  console.log(`Server is running on http://192.168.1.16:${PORT}/views/index.html`);
 });

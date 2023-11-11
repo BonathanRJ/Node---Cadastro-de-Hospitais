@@ -1,0 +1,267 @@
+<!--hospital.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospitais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+</head>
+
+<body>
+
+    <div id="sidebar">
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Página Inicial
+        </a>
+        <a href="hospital.html" class="sidebar-link">
+            <i class="fa-solid fa-building"></i>
+            Hospitais
+        </a>
+        <a href="enfermaria.html">
+            <i class="fa-solid fa-house-medical"></i>
+            Enfermarias
+        </a>
+        <a href="funcionario.html">
+            <i class="fa-solid fa-user-doctor"></i>
+            Funcionários
+        </a>
+        <a href="cargo.html">
+            <i class="fa-solid fa-briefcase"></i>
+            Cargos
+        </a>
+        <a href="paciente.html">
+            <i class="fa-solid fa-address-card"></i>
+            Pacientes
+        </a>
+    </div>
+
+    <div id="content">
+        <table width="100%" margin=15px;>
+            <tr>
+                <td class="secao">
+                    Hospital
+                </td>
+            </tr>
+        </table>
+
+        <div class="container-barra-inicial">
+            <div class="barra-inicial">
+                <button type="button" onclick="limparCampos()">
+                    <i class="fa-solid fa-folder-plus custom-icon" title="Novo"></i>
+                </button>
+                <button type="button" id="openButton">
+                    <i class="fa-regular fa-folder-open custom-icon" title="Abrir"></i>
+                </button>
+                
+                <button type="button" onclick="insertHospitalData()">
+                    <i class="fa-solid fa-folder custom-icon" title="Gravar"></i>
+                </button>
+
+
+                
+            </div>
+        </div>
+
+
+        <form id="hospitalForm">
+            <fieldset>
+                <legend style="color: #325D82;">Cadastro Hospital</legend>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="CDHOS" class="titulo">Código do Hospital</label>
+                                </td>
+                                <td>
+                                    <label for="DCHOS" class="titulo">Descrição</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="13"
+                                        class="texto" title="Informe o Código"><br>
+
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="DCHOS" name="DCHOS" required maxlength="60" size="60"
+                                        class="texto" title="Informe a Descrição"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRLOGHOS" class="titulo">Número</label>
+                                </td>
+                                <td>
+                                    <label for="DCLOGHOS" class="titulo">Logradouro</label>
+                                </td>
+                                <td>
+                                    <label for="NRCEPHOS" class="titulo">CEP</label>
+                                </td>
+                                <td>
+                                    <label for="DCBAIHOS" class="titulo">Bairro</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="NRLOGHOS" name="NRLOGHOS" required maxlength="5" size="3"
+                                        class="texto" title="Informe o Número"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="DCLOGHOS" name="DCLOGHOS" required maxlength="55" size="50"
+                                        class="texto" title="Informe o Logradouro"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="NRCEPHOS" name="NRCEPHOS" required maxlength="8" size="8"
+                                        class="texto" title="Informe a Descrição"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="DCBAIHOS" name="DCBAIHOS" required maxlength="30" size="20"
+                                        class="texto" title="Informe o Bairro"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="DCCIDHOS" class="titulo">Cidade</label>
+                                </td>
+                                <td>
+                                    <label for="SGUFSHOS" class="titulo">UF</label>
+                                </td>
+                                <td>
+                                    <label for="CDPSIHOS" class="titulo">País</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="DCCIDHOS" name="DCCIDHOS" required maxlength="40" size="20"
+                                        class="texto" title="Informe a Cidade"><br>
+
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="SGUFSHOS" name="SGUFSHOS" required maxlength="2" size="2"
+                                        class="texto" title="Informe a UF"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="CDPSIHOS" name="CDPSIHOS" required maxlength="2" size="2"
+                                        class="texto" title="Informe o País"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRTELHOS" class="titulo">Telefone</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="NRTELHOS" name="NRTELHOS" required maxlength="15" size="15"
+                                        class="texto" title="Informe o Telefone"><br>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="AUUSUULTALT" class="titulo">Usuário</label>
+                                </td>
+                                <td>
+                                    <label for="DCHOS" class="titulo">Data de Alteração</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30"
+                                        size="10" class="texto" title="Informe o Usuário"><br>
+
+                                </td>
+                                <td class="campo">
+                                    <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required
+                                        maxlength="5" size="50" class="texto" title="Informe a Data de Alteração"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </fieldset>
+        </form>
+
+
+        <script>
+            async function insertHospitalData() {
+                const CDHOS = document.getElementById('CDHOS').value;
+                const DCHOS = document.getElementById('DCHOS').value;
+                const NRLOGHOS = document.getElementById('NRLOGHOS').value;
+                const DCLOGHOS = document.getElementById('DCLOGHOS').value;
+                const NRCEPHOS = document.getElementById('NRCEPHOS').value;
+                const DCBAIHOS = document.getElementById('DCBAIHOS').value;
+                const DCCIDHOS = document.getElementById('DCCIDHOS').value;
+                const SGUFSHOS = document.getElementById('SGUFSHOS').value;
+                const CDPSIHOS = document.getElementById('CDPSIHOS').value;
+                const NRTELHOS = document.getElementById('NRTELHOS').value;
+                const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
+                const AUDATULTALT = document.getElementById('AUDATULTALT').value;
+
+                const response = await fetch('/insert_hospital', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        CDHOS, DCHOS, NRLOGHOS, DCLOGHOS, NRCEPHOS, DCBAIHOS, DCCIDHOS,
+                        SGUFSHOS, CDPSIHOS, NRTELHOS, AUUSUULTALT, AUDATULTALT
+                    })
+                });
+
+                const result = await response.json();
+                console.log(result);
+            }
+        </script>
+        <script>
+            function limparCampos() {
+                document.getElementById('CDHOS').value = '';
+                document.getElementById('DCHOS').value = '';
+                document.getElementById('NRLOGHOS').value = '';
+                document.getElementById('DCLOGHOS').value = '';
+                document.getElementById('NRCEPHOS').value = '';
+                document.getElementById('DCBAIHOS').value = '';
+                document.getElementById('DCCIDHOS').value = '';
+                document.getElementById('SGUFSHOS').value = '';
+                document.getElementById('CDPSIHOS').value = '';
+                document.getElementById('NRTELHOS').value = '';
+                document.getElementById('AUUSUULTALT').value = '';
+                document.getElementById('AUDATULTALT').value = '';
+            }
+        </script>
+        <script>
+            document.getElementById('openButton').addEventListener('click', function () {
+                window.location.href = '/views/hospital_2.html';
+            });
+        </script>
+
+    </div>
+
+</body>
+
+</html>
