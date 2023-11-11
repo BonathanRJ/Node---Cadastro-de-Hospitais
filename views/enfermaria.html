@@ -1,13 +1,15 @@
 <!--enfermaria.html-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enfermarias</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/styles/sidebar.css"> 
+    <link rel="stylesheet" href="/styles/sidebar.css">
 </head>
+
 <body>
     <div id="sidebar">
         <a href="index.html">
@@ -27,7 +29,7 @@
             Funcionários
         </a>
         <a href="cargo.html">
-            <i class="fa-solid fa-briefcase"></i>  
+            <i class="fa-solid fa-briefcase"></i>
             Cargos
         </a>
         <a href="paciente.html">
@@ -37,7 +39,7 @@
     </div>
     <div id="content">
         <table width="100%" margin=15px;>
-            <tr> 
+            <tr>
                 <td class="secao">
                     Enfermaria
                 </td>
@@ -46,22 +48,15 @@
 
         <div class="container-barra-inicial">
             <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()">
-                    <i class="fa-solid fa-folder-plus custom-icon" title="Novo" ></i>
+                <button type="button" onclick="limparCampos()" title="Novo">
+                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
                 </button>
-                <button type="button" >
-                    <i class="fa-regular fa-folder-open custom-icon" title="Abrir"></i>
+                <button type="button" id="openButton" title="Abrir">
+                    <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
                 </button>
-                <button type="button" >
-                    <i class="fa-solid fa-folder-minus custom-icon" title="Excluir"></i>
-                </button>
-                <button type="button" onclick="insertEnfermariaData()">
-                    <i class="fa-solid fa-folder custom-icon" title="Gravar"></i>
-                </button>
-                  
 
-                <button type="button" >
-                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                <button type="button" onclick="insertHospitalData()" title="Gravar">
+                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
                 </button>
             </div>
         </div>
@@ -73,71 +68,77 @@
                     <tbody>
                         <tr>
                             <td>
-                                <label for="CDENF"class="titulo">Código do Hospital</label>
+                                <label for="CDENF" class="titulo">Código do Hospital</label>
                             </td>
-                            
+
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="CDENF" name="CDENF" required  maxlength="3" size="13" class="texto" title="Informe o Código da Enfermaria"><br>
-                                
+                                <input type="text" id="CDENF" name="CDENF" required maxlength="3" size="13"
+                                    class="texto" title="Informe o Código da Enfermaria"><br>
+
                             </td>
                         </tr>
                     </tbody>
-                </table>	
+                </table>
                 <table>
                     <tbody>
                         <tr>
                             <td>
-                                <label for="IDHOS"class="titulo">Identificador do Hospital</label>
+                                <label for="IDHOS" class="titulo">Identificador do Hospital</label>
                             </td>
                             <td>
-                                <label for="CDHOS"class="titulo">Código do Hospital</label>
+                                <label for="CDHOS" class="titulo">Código do Hospital</label>
                             </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="IDHOS" name="IDHOS" required  maxlength="3" size="17" class="texto" title="Informe o Identificador"><br>
-                                
+                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="17"
+                                    class="texto" title="Informe o Identificador"><br>
+
                             </td>
                             <td class="campo">
-                                <input type="text" id="CDHOS" name="CDHOS" required  maxlength="10" size="12" class="texto" title="Informe o Código do Hospital"><br>
-                                
+                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="10" size="12"
+                                    class="texto" title="Informe o Código do Hospital"><br>
+
                             </td>
                         </tr>
                     </tbody>
-                </table>	
+                </table>
                 <table>
                     <tbody>
                         <tr>
                             <td>
-                                <label for="DCBLO"class="titulo">Bloco</label>
+                                <label for="DCBLO" class="titulo">Bloco</label>
                             </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="DCBLO" name="DCBLO" required  maxlength="3" size="1" class="texto" title="Informe o Bloco"><br>
+                                <input type="text" id="DCBLO" name="DCBLO" required maxlength="3" size="1" class="texto"
+                                    title="Informe o Bloco"><br>
                             </td>
                         </tr>
                     </tbody>
-                </table>	
+                </table>
                 <table>
                     <tbody>
                         <tr>
                             <td>
-                                <label for="AUUSUULTALT"class="titulo">Usuário</label>
+                                <label for="AUUSUULTALT" class="titulo">Usuário</label>
                             </td>
                             <td>
-                                <label for="DCHOS"class="titulo">Data de Alteração</label>
+                                <label for="DCHOS" class="titulo">Data de Alteração</label>
                             </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required  maxlength="30" size="10" class="texto" title="Informe o Usuário"><br>
-                                
+                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="10"
+                                    class="texto" title="Informe o Usuário"><br>
+
                             </td>
                             <td class="campo">
-                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5" size="50" class="texto" title="Informe a Data de Alteração"><br>
+                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
+                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
                             </td>
                         </tr>
                     </tbody>
@@ -177,4 +178,5 @@
         </script>
     </div>
 </body>
+
 </html>

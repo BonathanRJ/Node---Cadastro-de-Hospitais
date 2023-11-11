@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="/styles/sidebar.css">
 </head>
 <style>
-    
     #resultadoForm {
-      display: none;
+        display: none;
     }
-  </style>
+</style>
+
 <body>
 
     <div id="sidebar">
@@ -56,16 +56,17 @@
         <div class="container-barra-inicial">
             <div class="barra-inicial">
                 <button type="button" onclick="limparCampos()">
-                    <i class="fa-solid fa-folder-plus custom-icon" title="Novo"></i>
+                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
                 </button>
-                <button type="button">
-                    <i class="fa-solid fa-folder-minus custom-icon" title="Excluir"></i>
+                <button type="button" id="excluirButton" onclick="excluirHospital()">
+                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
                 </button>
+
                 <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
                     <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
                 </button>
-                <button type="button" onclick="updateHospitalData()">
-                    <i class="fa-solid fa-folder custom-icon" title="Gravar"></i>
+                <button type="button" onclick="updateHospitalData()" title="Gravar">
+                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
                 </button>
             </div>
         </div>
@@ -211,12 +212,11 @@
                             <tr>
                                 <td class="campo">
                                     <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30"
-                                        size="10" class="texto" title="Informe o Usuário"><br>
-
+                                        size="15" class="texto" title="Informe o Usuário" readonly><br>
                                 </td>
                                 <td class="campo">
                                     <input type="datetime" id="AUDATULTALT" name="AUDATULTALT" required class="texto"
-                                        title="Informe a Data de Alteração">
+                                        title="Informe a Data de Alteração" readonly>
                                 </td>
                             </tr>
                         </tbody>
@@ -241,51 +241,84 @@
                     document.getElementById('AUDATULTALT').value = '';
                 }
             </script>
-            
+
+            <script>
+                function excluirHospital() {
+                    const selectedHospitalCode = document.getElementById('CDHOS').value;
+
+                    if (!selectedHospitalCode) {
+                        alert('Por favor, selecione um hospital antes de excluir.');
+                        return;
+                    }
+
+                    const confirmation = confirm('Tem certeza que deseja excluir este hospital?');
+
+                    if (confirmation) {
+                        fetch(`/api/delete_hospital/${selectedHospitalCode}`, {
+                            method: 'DELETE',
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Erro na requisição: ' + response.statusText);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Hospital excluído com sucesso!');
+                                    limparCampos();
+                                } else {
+                                    alert('Erro ao excluir hospital. Por favor, tente novamente.');
+                                }
+                            })
+                            .catch(error => console.error('Erro na requisição:', error));
+                    }
+                }
+            </script>
+
 
             <script>
 
-async function populateHospitalSelect() {
-    const selectElement = document.getElementById('CDHOS');
+                async function populateHospitalSelect() {
+                    const selectElement = document.getElementById('CDHOS');
 
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.text = '<Selecione o Código do Hospital>';
-    selectElement.add(defaultOption);
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.text = '<Selecione o Código do Hospital>';
+                    selectElement.add(defaultOption);
 
-    const response = await fetch('/api/hospitals');
-    const { success, hospitals } = await response.json();
+                    const response = await fetch('/api/hospitals');
+                    const { success, hospitals } = await response.json();
 
-    if (success) {
-        hospitals.forEach(hospital => {
-            const option = document.createElement('option');
-            option.value = hospital.CDHOS;
-            option.text = `${hospital.CDHOS} - ${hospital.DCHOS}`;
-            selectElement.add(option);
-        });
+                    if (success) {
+                        hospitals.forEach(hospital => {
+                            const option = document.createElement('option');
+                            option.value = hospital.CDHOS;
+                            option.text = `${hospital.CDHOS} - ${hospital.DCHOS}`;
+                            selectElement.add(option);
+                        });
 
-        // Adicione o ouvinte de evento change quando o botão de pesquisa for clicado
-        document.getElementById('pesquisarButton').addEventListener('click', () => {
-            const selectedHospital = hospitals.find(hospital => hospital.CDHOS === selectElement.value);
+                        document.getElementById('pesquisarButton').addEventListener('click', () => {
+                            const selectedHospital = hospitals.find(hospital => hospital.CDHOS === selectElement.value);
 
-            document.getElementById('DCHOS').value = selectedHospital.DCHOS;
-            document.getElementById('NRLOGHOS').value = selectedHospital.NRLOGHOS || '';
-            document.getElementById('DCLOGHOS').value = selectedHospital.DCLOGHOS || '';
-            document.getElementById('NRCEPHOS').value = selectedHospital.NRCEPHOS;
-            document.getElementById('DCBAIHOS').value = selectedHospital.DCBAIHOS || '';
-            document.getElementById('DCCIDHOS').value = selectedHospital.DCCIDHOS;
-            document.getElementById('SGUFSHOS').value = selectedHospital.SGUFSHOS;
-            document.getElementById('CDPSIHOS').value = selectedHospital.CDPSIHOS || '';
-            document.getElementById('NRTELHOS').value = selectedHospital.NRTELHOS || '';
-            document.getElementById('AUUSUULTALT').value = selectedHospital.AUUSUULTALT;
+                            document.getElementById('DCHOS').value = selectedHospital.DCHOS;
+                            document.getElementById('NRLOGHOS').value = selectedHospital.NRLOGHOS || '';
+                            document.getElementById('DCLOGHOS').value = selectedHospital.DCLOGHOS || '';
+                            document.getElementById('NRCEPHOS').value = selectedHospital.NRCEPHOS;
+                            document.getElementById('DCBAIHOS').value = selectedHospital.DCBAIHOS || '';
+                            document.getElementById('DCCIDHOS').value = selectedHospital.DCCIDHOS;
+                            document.getElementById('SGUFSHOS').value = selectedHospital.SGUFSHOS;
+                            document.getElementById('CDPSIHOS').value = selectedHospital.CDPSIHOS || '';
+                            document.getElementById('NRTELHOS').value = selectedHospital.NRTELHOS || '';
+                            document.getElementById('AUUSUULTALT').value = selectedHospital.AUUSUULTALT;
 
-            const dataFormatada = formatarData(selectedHospital.AUDATULTALT);
-            document.getElementById('AUDATULTALT').value = dataFormatada;
-        });
-    } else {
-        console.error('Erro ao obter hospitais do servidor');
-    }
-}
+                            const dataFormatada = formatarData(selectedHospital.AUDATULTALT);
+                            document.getElementById('AUDATULTALT').value = dataFormatada;
+                        });
+                    } else {
+                        console.error('Erro ao obter hospitais do servidor');
+                    }
+                }
 
                 function formatarData(dataString) {
                     const data = new Date(dataString);
@@ -298,67 +331,71 @@ async function populateHospitalSelect() {
 
                 window.onload = populateHospitalSelect;
                 function mostrarFormulario() {
-    const hospitalForm = document.getElementById('hospitalForm');
-    const resultadoForm = document.getElementById('resultadoForm');
+                    const hospitalForm = document.getElementById('hospitalForm');
+                    const resultadoForm = document.getElementById('resultadoForm');
 
-    // Verifique se o formulário de hospital já está visível
-    if (hospitalForm.style.display !== 'none') {
+                    if (hospitalForm.style.display !== 'none') {
 
-      resultadoForm.style.display = 'block';
-    } 
-  }
-  function updateHospitalData() {
-    console.log('Função updateHospitalData chamada!');
-    const selectedHospitalCode = document.getElementById('CDHOS').value;
-    console.log('Código do Hospital Selecionado:', selectedHospitalCode);
+                        resultadoForm.style.display = 'block';
+                    }
+                }
+                function updateHospitalData() {
+                    console.log('Função updateHospitalData chamada!');
+                    const selectedHospitalCode = document.getElementById('CDHOS').value;
+                    console.log('Código do Hospital Selecionado:', selectedHospitalCode);
 
-    if (!selectedHospitalCode) {
-        alert('Por favor, selecione um hospital antes de gravar.');
-        return;
-    }
+                    if (!selectedHospitalCode) {
+                        alert('Por favor, selecione um hospital antes de gravar.');
+                        return;
+                    }
 
-    const updatedData = {
-        CDHOS: selectedHospitalCode,
-        DCHOS: document.getElementById('DCHOS').value,
-        NRLOGHOS: document.getElementById('NRLOGHOS').value,
-        DCLOGHOS: document.getElementById('DCLOGHOS').value,
-        NRCEPHOS: document.getElementById('NRCEPHOS').value,
-        DCBAIHOS: document.getElementById('DCBAIHOS').value,
-        DCCIDHOS: document.getElementById('DCCIDHOS').value,
-        SGUFSHOS: document.getElementById('SGUFSHOS').value,
-        CDPSIHOS: document.getElementById('CDPSIHOS').value,
-        NRTELHOS: document.getElementById('NRTELHOS').value,
-        AUUSUULTALT: document.getElementById('AUUSUULTALT').value,
-        AUDATULTALT: document.getElementById('AUDATULTALT').value,
-    };
-    console.log('Antes da chamada fetch');
-    fetch('/api/update_hospital', {  // Adicione 'api/' como prefixo
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(updatedData),
-})
-.then(response => {
-    console.log('Após a chamada fetch');
-    if (!response.ok) {
-        throw new Error('Erro na requisição: ' + response.statusText);
-    }
-    return response.json();
-})
-.then(data => {
-   
-    if (data.success) {
-        alert('Dados do hospital atualizados com sucesso!');
-    } else {
-        alert('Erro ao atualizar dados do hospital. Por favor, tente novamente.');
-    }
-})
-.catch(error => console.error('Erro na requisição:', error));
-}
-            
+                    const dataAtualizada = new Date(document.getElementById('AUDATULTALT').value);
+                    const dataFormatada = dataAtualizada.toISOString().slice(0, 19).replace("T", " ");
+
+                    const updatedData = {
+                        CDHOS: selectedHospitalCode,
+                        DCHOS: document.getElementById('DCHOS').value,
+                        NRLOGHOS: document.getElementById('NRLOGHOS').value,
+                        DCLOGHOS: document.getElementById('DCLOGHOS').value,
+                        NRCEPHOS: document.getElementById('NRCEPHOS').value,
+                        DCBAIHOS: document.getElementById('DCBAIHOS').value,
+                        DCCIDHOS: document.getElementById('DCCIDHOS').value,
+                        SGUFSHOS: document.getElementById('SGUFSHOS').value,
+                        CDPSIHOS: document.getElementById('CDPSIHOS').value,
+                        NRTELHOS: document.getElementById('NRTELHOS').value,
+                        AUUSUULTALT: document.getElementById('AUUSUULTALT').value,
+                        AUDATULTALT: dataFormatada,
+                    };
+                    alert('O registro foi salvo com sucesso!');
+
+                    console.log('Antes da chamada fetch');
+                    fetch('/api/update_hospital', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(updatedData),
+                    })
+                        .then(response => {
+                            console.log('Após a chamada fetch');
+                            if (!response.ok) {
+                                throw new Error('Erro na requisição: ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+
+                            if (data.success) {
+                                alert('Dados do hospital atualizados com sucesso!');
+                            } else {
+                                alert('Erro ao atualizar dados do hospital. Por favor, tente novamente.');
+                            }
+                        })
+                        .catch(error => console.error('Erro na requisição:', error));
+                }
+
             </script>
-            
+
         </form>
     </div>
 

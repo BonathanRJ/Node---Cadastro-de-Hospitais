@@ -50,19 +50,16 @@
 
         <div class="container-barra-inicial">
             <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()">
-                    <i class="fa-solid fa-folder-plus custom-icon" title="Novo"></i>
+                <button type="button" onclick="limparCampos()" title="Novo">
+                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
                 </button>
-                <button type="button" id="openButton">
-                    <i class="fa-regular fa-folder-open custom-icon" title="Abrir"></i>
-                </button>
-                
-                <button type="button" onclick="insertHospitalData()">
-                    <i class="fa-solid fa-folder custom-icon" title="Gravar"></i>
+                <button type="button" id="openButton" title="Abrir">
+                    <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
                 </button>
 
-
-                
+                <button type="button" onclick="insertHospitalData()" title="Gravar">
+                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                </button>
             </div>
         </div>
 
@@ -191,7 +188,7 @@
                             <tr>
                                 <td class="campo">
                                     <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30"
-                                        size="10" class="texto" title="Informe o Usuário"><br>
+                                        size="15" class="texto" title="Informe o Usuário"><br>
 
                                 </td>
                                 <td class="campo">
@@ -223,6 +220,12 @@
                 const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
                 const AUDATULTALT = document.getElementById('AUDATULTALT').value;
 
+                if (!CDHOS || !DCHOS || !NRLOGHOS || !DCLOGHOS || !NRCEPHOS || !DCBAIHOS ||
+                    !DCCIDHOS || !SGUFSHOS || !CDPSIHOS || !NRTELHOS || !AUUSUULTALT || !AUDATULTALT) {
+                    alert('Insira os dados necessários para o registro do hospital!');
+                    return;
+                }
+
                 const response = await fetch('/insert_hospital', {
                     method: 'POST',
                     headers: {
@@ -235,6 +238,11 @@
                 });
 
                 const result = await response.json();
+                if (result.success) {
+                    alert('O hospital cadastrado com sucesso!');
+                } else {
+                    alert('Erro ao inserir o registro. Por favor, tente novamente.');
+                }
                 console.log(result);
             }
         </script>

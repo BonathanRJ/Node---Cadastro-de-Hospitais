@@ -59,31 +59,36 @@ app.get('/views/funcionario.html', (req, res) => {
 });
 
 
-// Altere o endpoint /views/hospital_2.html para incluir dados ao renderizar
 app.get('/views/hospital_2.html', async (req, res) => {
   try {
-    // Obtenha todos os hospitais
     const hospitals = await hospitalController.getAllHospitals();
 
-    // Envie os dados para a página hospital_2.html
     res.render(path.join(__dirname, '/views/hospital_2.html'), { hospitals });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
 
-// Adicione uma rota para obter hospitais como JSON
+app.delete('/api/delete_hospital/:CDHOS', async (req, res) => {
+  try {
+    const hospitalCode = req.params.CDHOS;
+    const result = await hospitalController.deleteHOS_HOSPITAL(hospitalCode);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.get('/api/hospitals', hospitalController.getAllHospitalsJSON);
 
-// Adicione esta rota ao seu arquivo de servidor
 app.post('/api/update_hospital', async (req, res) => {
   console.log('Rota /api/update_hospital foi acessada');
   try {
-      const updatedHospitalData = req.body;
-      const result = await hospitalController.updateHOS_HOSPITAL(updatedHospitalData);
-      res.json({ success: true, result });
+    const updatedHospitalData = req.body;
+    const result = await hospitalController.updateHOS_HOSPITAL(updatedHospitalData);
+    res.json({ success: true, result });
   } catch (error) {
-      res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, error: error.message });
   }
 });
 

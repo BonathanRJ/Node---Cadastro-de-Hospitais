@@ -7,13 +7,11 @@ async function selectHOS_HOSPITAL() {
   return rows;
 }
 
-// Adicione esta função para obter todos os hospitais
 async function getAllHospitals() {
   const hospitals = await selectHOS_HOSPITAL();
   return hospitals;
 }
 
-// Adicione esta função para obter todos os hospitais como JSON
 async function getAllHospitalsJSON(req, res) {
   try {
     const hospitals = await getAllHospitals();
@@ -31,20 +29,35 @@ async function updateHOS_HOSPITAL(updatedHospitalData) {
       WHERE CDHOS = ?;
   `;
   const values = [
-      updatedHospitalData.DCHOS, updatedHospitalData.NRLOGHOS, updatedHospitalData.DCLOGHOS,
-      updatedHospitalData.NRCEPHOS, updatedHospitalData.DCBAIHOS, updatedHospitalData.DCCIDHOS,
-      updatedHospitalData.SGUFSHOS, updatedHospitalData.CDPSIHOS, updatedHospitalData.NRTELHOS,
-      updatedHospitalData.AUUSUULTALT, updatedHospitalData.AUDATULTALT, updatedHospitalData.CDHOS
+    updatedHospitalData.DCHOS, updatedHospitalData.NRLOGHOS, updatedHospitalData.DCLOGHOS,
+    updatedHospitalData.NRCEPHOS, updatedHospitalData.DCBAIHOS, updatedHospitalData.DCCIDHOS,
+    updatedHospitalData.SGUFSHOS, updatedHospitalData.CDPSIHOS, updatedHospitalData.NRTELHOS,
+    updatedHospitalData.AUUSUULTALT, updatedHospitalData.AUDATULTALT, updatedHospitalData.CDHOS
   ];
 
   try {
-      await conn.query(sql, values);
-      return { success: true, message: 'Dados do hospital atualizados com sucesso.' };
+    await conn.query(sql, values);
+    return { success: true, message: 'Dados do hospital atualizados com sucesso.' };
   } catch (error) {
-      console.error('Erro na atualização do hospital:', error);
-      throw new Error('Erro na atualização do hospital.');
+    console.error('Erro na atualização do hospital:', error);
+    throw new Error('Erro na atualização do hospital.');
   } finally {
-      conn.release();
+    conn.release();
+  }
+}
+
+async function deleteHOS_HOSPITAL(hospitalCode) {
+  const conn = await db.connect();
+  const sql = 'DELETE FROM HOS_HOSPITAL WHERE CDHOS = ?';
+
+  try {
+    const result = await conn.query(sql, [hospitalCode]);
+    return { success: true, message: 'Hospital excluído com sucesso.' };
+  } catch (error) {
+    console.error('Erro na exclusão do hospital:', error);
+    throw new Error('Erro na exclusão do hospital.');
+  } finally {
+    conn.release();
   }
 }
 
@@ -55,5 +68,5 @@ async function insertHOS_HOSPITAL(hospital) {
   return await conn.query(sql, values);
 }
 
-module.exports = { selectHOS_HOSPITAL, insertHOS_HOSPITAL, getAllHospitals, getAllHospitalsJSON,updateHOS_HOSPITAL };
+module.exports = { selectHOS_HOSPITAL, insertHOS_HOSPITAL, getAllHospitals, getAllHospitalsJSON, updateHOS_HOSPITAL, deleteHOS_HOSPITAL };
 
