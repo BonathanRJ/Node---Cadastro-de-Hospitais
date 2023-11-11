@@ -9,13 +9,6 @@ Trabalho da matéria de Desenvolvimento de Aplicações com Banco de Dados
 
 ### Requerimentos
 
-<pre>
-#body-parser == ^1.20.2 - 
-#express     == ^4.18.2 - 
-#mysql       == ^2.18.1 - 
-#mysql2      == ^3.6.3  - 
-</pre>   
-
 ### Apresentação
 
 https://github.com/BonathanRJ/APS---157---DESENVOLVIMENTO-DE-APLICA--ES-COM-BANCO-DE-DADOS-20232/assets/97456370/24541b34-7c3c-4cbf-95cd-d50341656f42
