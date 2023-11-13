@@ -53,7 +53,7 @@
                 </button>
                 <button type="button" id="openButton" title="Abrir">
                     <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
-                </button>
+                </button>   
 
                 <button type="button" onclick="insertHospitalData()" title="Gravar">
                     <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
@@ -68,7 +68,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <label for="CDENF" class="titulo">Código do Hospital</label>
+                                <label for="CDENF" class="titulo">Código da Enfermaria</label>
                             </td>
 
                         </tr>
@@ -175,6 +175,11 @@
                 document.getElementById('AUUSUULTALT').value = '';
                 document.getElementById('AUDATULTALT').value = '';
             }
+        </script>
+        <script>
+            document.getElementById('openButton').addEventListener('click', function () {
+                window.location.href = '/views/enfermaria_2.html';
+            });
         </script>
     </div>
 </body>

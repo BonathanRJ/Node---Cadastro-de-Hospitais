@@ -1,0 +1,337 @@
+<!--enfermaria.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfermarias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+</head>
+
+<body>
+    <div id="sidebar">
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Página Inicial
+        </a>
+        <a href="hospital.html">
+            <i class="fa-solid fa-building"></i>
+            Hospitais
+        </a>
+        <a href="enfermaria.html" class="sidebar-link">
+            <i class="fa-solid fa-house-medical"></i>
+            Enfermarias
+        </a>
+        <a href="funcionario.html">
+            <i class="fa-solid fa-user-doctor"></i>
+            Funcionários
+        </a>
+        <a href="cargo.html">
+            <i class="fa-solid fa-briefcase"></i>
+            Cargos
+        </a>
+        <a href="paciente.html">
+            <i class="fa-solid fa-address-card"></i>
+            Pacientes
+        </a>
+    </div>
+    <div id="content">
+        <table width="100%" margin=15px;>
+            <tr>
+                <td class="secao">
+                    Enfermaria
+                </td>
+            </tr>
+        </table>
+        <div class="container-barra-inicial">
+            <div class="barra-inicial">
+                <button type="button" onclick="limparCampos()">
+                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
+                </button>
+                <button type="button" id="excluirButton" onclick="excluirHospital()">
+                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
+                </button>
+
+                <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
+                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                </button>
+                <button type="button" onclick="updateHospitalData()" title="Gravar">
+                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                </button>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend style="color: #325D82;">Busca Enfermaria</legend>
+            <form id="enfermariaForm">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="CDENF" class="titulo">Código da Enfermaria</label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <select id="CDENF" name="CDENF" class="texto"
+                                    title="Selecione o Código da Enfermaria"></select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </fieldset>
+
+        <form id="resultadoForm">
+            <fieldset>
+                <legend style="color: #325D82;">Resultado</legend>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="IDHOS" class="titulo">Identificador do Hospital</label>
+                                </td>
+                                <td>
+                                    <label for="CDHOS" class="titulo">Código do Hospital</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="17"
+                                        class="texto" title="Informe o Identificador"><br>
+
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="CDHOS" name="CDHOS" required maxlength="10" size="12"
+                                        class="texto" title="Informe o Código do Hospital"><br>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="DCBLO" class="titulo">Bloco</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="DCBLO" name="DCBLO" required maxlength="3" size="1"
+                                        class="texto" title="Informe o Bloco"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="AUUSUULTALT" class="titulo">Usuário</label>
+                                </td>
+                                <td>
+                                    <label for="AUDATULTALT" class="titulo">Data de Alteração</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30"
+                                        size="15" class="texto" title="Usuário" readonly><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="datetime" id="AUDATULTALT" name="AUDATULTALT" required class="texto"
+                                        title="Data de Alteração" readonly>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </fieldset>
+            <script>
+                function limparCampos() {
+                    document.getElementById('CDENF').value = '';
+                    document.getElementById('IDHOS').value = '';
+                    document.getElementById('CDHOS').value = '';
+                    document.getElementById('DCBLO').value = '';
+                    document.getElementById('AUUSUULTALT').value = '';
+                    document.getElementById('AUDATULTALT').value = '';
+                }
+            </script>
+            <script>
+                function excluirEnfermaria() {
+                    const selectedEnfermariaCode = document.getElementById('CDENF').value;
+
+                    if (!selectedEnfermariaCode) {
+                        alert('Por favor, selecione uma enfermaria antes de excluir.');
+                        return;
+                    }
+
+                    const confirmation = confirm('Tem certeza que deseja excluir este enfermaria?');
+
+                    if (confirmation) {
+                        fetch(`/api/delete_enfermaria/${selectedEnfermariaCode}`, {
+                            method: 'DELETE',
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Erro na requisição: ' + response.statusText);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Enfermaria excluída com sucesso!');
+                                    limparCampos();
+                                } else {
+                                    alert('Erro ao excluir enfermaria. Por favor, tente novamente.');
+                                }
+                            })
+                            .catch(error => console.error('Erro na requisição:', error));
+                    }
+                }
+            </script>
+
+<script>
+    async function populateEnfermariaSelect() {
+        const selectElement = document.getElementById('CDENF');
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.text = '<Selecione o Código da Enfermaria>';
+        selectElement.add(defaultOption);
+
+        const response = await fetch('/api/enfermarias');
+        const { success, enfermarias } = await response.json();
+
+        if (success) {
+            enfermarias.forEach(enfermaria => {
+                const option = document.createElement('option');
+                option.value = enfermaria.CDENF;
+                option.text = `${enfermaria.CDENF}`;
+                selectElement.add(option);
+            });
+
+            document.getElementById('pesquisarButton').addEventListener('click', () => {
+                const selectedEnfermaria = enfermarias.find(enfermaria => enfermaria.CDENF === selectElement.value);
+
+                document.getElementById('IDENF').value = selectedEnfermaria.IDENF;
+                document.getElementById('CDENF').value = selectedEnfermaria.CDENF;
+                document.getElementById('IDHOS').value = selectedEnfermaria.IDHOS;
+                document.getElementById('CDHOS').value = selectedEnfermaria.CDHOS;
+                document.getElementById('DCBLO').value = selectedEnfermaria.DCBLO;
+                document.getElementById('AUUSUULTALT').value = selectedEnfermaria.AUUSUULTALT;
+
+                const dataFormatada = formatarData(selectedEnfermaria.AUDATULTALT);
+                document.getElementById('AUDATULTALT').value = dataFormatada;
+            });
+        } else {
+            console.error('Erro ao obter enfermarias do servidor');
+        }
+    }
+    function formatarData(dataString) {
+        const data = new Date(dataString);
+        const dia = ('0' + data.getDate()).slice(-2);
+        const mes = ('0' + (data.getMonth() + 1)).slice(-2);
+        const ano = data.getFullYear();
+
+        return `${dia}/${mes}/${ano}`;
+    }
+
+    window.onload = populateEnfermariaSelect;
+    function mostrarFormulario() {
+        const enfermariaForm = document.getElementById('enfermariaForm');
+        const resultadoForm = document.getElementById('resultadoForm');
+
+        if (enfermariaForm.style.display !== 'none') {
+
+            resultadoForm.style.display = 'block';
+        }
+    }function updateEnfermariaData() {
+        console.log('Função updateEnfermariaData chamada!');
+        const selectedEnfermariaCode = document.getElementById('CDHOS').value;
+        console.log('Código da Enfermaria Selecionado:', selectedEnfermariaCode);
+
+        if (!selectedEnfermariaCode) {
+            alert('Por favor, selecione uma enfermaria antes de gravar.');
+            return;
+        }
+
+        const dataAtualizada = new Date(document.getElementById('AUDATULTALT').value);
+        const dataFormatada = dataAtualizada.toISOString().slice(0, 19).replace("T", " ");
+
+        const updatedData = {
+            CDHOS: selectedEnfermariaCode,
+            DCHOS: document.getElementById('DCHOS').value,
+            NRLOGHOS: document.getElementById('NRLOGHOS').value,
+            DCLOGHOS: document.getElementById('DCLOGHOS').value,
+            NRCEPHOS: document.getElementById('NRCEPHOS').value,
+            DCBAIHOS: document.getElementById('DCBAIHOS').value,
+            DCCIDHOS: document.getElementById('DCCIDHOS').value,
+            SGUFSHOS: document.getElementById('SGUFSHOS').value,
+            CDPSIHOS: document.getElementById('CDPSIHOS').value,
+            NRTELHOS: document.getElementById('NRTELHOS').value,
+            AUUSUULTALT: document.getElementById('AUUSUULTALT').value,
+            AUDATULTALT: dataFormatada,
+        };
+        alert('O registro foi salvo com sucesso!');
+
+        console.log('Antes da chamada fetch');
+        fetch('/api/update_enfermaria', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+        })
+            .then(response => {
+                console.log('Após a chamada fetch');
+                if (!response.ok) {
+                    throw new Error('Erro na requisição: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                if (data.success) {
+                    alert('Dados da enfermaria atualizados com sucesso!');
+                } else {
+                    alert('Erro ao atualizar dados da enfermaria. Por favor, tente novamente.');
+                }
+            })
+            .catch(error => console.error('Erro na requisição:', error));
+    }
+</script>
+
+            <script>
+                async function insertEnfermariaData() {
+                    const CDENF = document.getElementById('CDENF').value;
+                    const IDHOS = document.getElementById('IDHOS').value;
+                    const CDHOS = document.getElementById('CDHOS').value;
+                    const DCBLO = document.getElementById('DCBLO').value;
+                    const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
+                    const AUDATULTALT = document.getElementById('AUDATULTALT').value;
+
+                    const response = await fetch('/insert_enfermaria', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ CDENF, IDHOS, CDHOS, DCBLO, AUUSUULTALT, AUDATULTALT })
+                    });
+
+                    const result = await response.json();
+                    console.log(result);
+                }
+            </script>
+            
+            
+    </div>
+</body>
+
+</html>

@@ -7,6 +7,58 @@ async function selectHOS_ENFERMARIA() {
     return rows;
 }
 
+async function getAllEnfermarias() {
+    const enfermarias = await selectHOS_ENFERMARIA();
+    return enfermarias;
+}
+
+async function getAllEnfermariasJSON(req, res) {
+    try {
+      const enfermarias = await getAllEnfermarias();
+      res.json({ success: true, enfermarias });
+    } catch (error) {
+      res.status(500).json({ success: false, error: error.message });
+    }
+}
+
+async function updateHOS_ENFERMARIA(updatedEnfermariaData) {
+    const conn = await db.connect();
+    const sql = `
+        UPDATE HOS_ENFERMARIA
+        SET IDHOS = ?, CDHOS = ?, DCBLO = ?, AUUSUULTALT = ?, AUDATULTALT = ?
+        WHERE CDENF = ?;
+    `;
+    const values = [
+        updatedEnfermariaData.DCHOS, updatedEnfermariaData.CDHOS, updatedEnfermariaData.DCBLO,
+        updatedEnfermariaData.AUUSUULTALT, updatedEnfermariaData.AUDATULTALT
+    ];
+  
+    try {
+      await conn.query(sql, values);
+      return { success: true, message: 'Dados da enfermaria atualizados com sucesso.' };
+    } catch (error) {
+      console.error('Erro na atualização da enfermaria:', error);
+      throw new Error('Erro na atualização da enfermaria.');
+    } finally {
+      conn.release();
+    }
+}
+
+async function deleteHOS_ENFERMARIA(enfermariaCode) {
+    const conn = await db.connect();
+    const sql = 'DELETE FROM HOS_ENFERMARIA WHERE CDENF = ?';
+  
+    try {
+      const result = await conn.query(sql, [enfermariaCode]);
+      return { success: true, message: 'Enfermaria excluída com sucesso.' };
+    } catch (error) {
+      console.error('Erro na exclusão do enfermaria:', error);
+      throw new Error('Erro na exclusão do enfermaria.');
+    } finally {
+      conn.release();
+    }
+}
+
 async function insertHOS_ENFERMARIA(enfermaria) {
     const conn = await db.connect();
     const sql = 'INSERT INTO HOS_ENFERMARIA (CDENF, IDHOS, CDHOS, DCBLO, AUUSUULTALT, AUDATULTALT) VALUES (?,?,?,?,?,?);';
@@ -14,4 +66,4 @@ async function insertHOS_ENFERMARIA(enfermaria) {
     return await conn.query(sql, values);
 }
 
-module.exports = { selectHOS_ENFERMARIA, insertHOS_ENFERMARIA };
+module.exports = { selectHOS_HOSPITAL, insertHOS_HOSPITAL, getAllEnfermarias, getAllEnfermariasJSON, updateHOS_ENFERMARIA, deleteHOS_ENFERMARIA };

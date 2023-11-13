@@ -42,6 +42,10 @@ app.get('/views/enfermaria.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/enfermaria.html'));
 });
 
+app.get('/views/enfermaria_2.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/enfermaria_2.html'));
+});
+
 app.get('/views/estadocivil.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/estadocivil.html'));
 });
@@ -69,6 +73,16 @@ app.get('/views/hospital_2.html', async (req, res) => {
   }
 });
 
+app.get('/views/enfermaria_2.html', async (req, res) => {
+  try {
+    const enfermarias = await enfermariaController.getAllEnfermarias();
+
+    res.render(path.join(__dirname, '/views/enfermaria_2.html'), { enfermarias });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.delete('/api/delete_hospital/:CDHOS', async (req, res) => {
   try {
     const hospitalCode = req.params.CDHOS;
@@ -79,13 +93,36 @@ app.delete('/api/delete_hospital/:CDHOS', async (req, res) => {
   }
 });
 
+app.delete('/api/delete_enfermaria/:CDENF', async (req, res) => {
+  try {
+    const enfermariaCode = req.params.CDENF;
+    const result = await enfermariaController.deleteHOS_ENFERMARIA(enfermariaCode);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.get('/api/hospitals', hospitalController.getAllHospitalsJSON);
+app.get('/api/enfermarias', enfermariaController.getAllEnfermariasJSON);
+
 
 app.post('/api/update_hospital', async (req, res) => {
   console.log('Rota /api/update_hospital foi acessada');
   try {
     const updatedHospitalData = req.body;
     const result = await hospitalController.updateHOS_HOSPITAL(updatedHospitalData);
+    res.json({ success: true, result });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/update_enfermaria', async (req, res) => {
+  console.log('Rota /api/update_enfermaria foi acessada');
+  try {
+    const updatedEnfermariaData = req.body;
+    const result = await enfermariaController.updateHOS_ENFERMARIA(updatedEnfermariaData);
     res.json({ success: true, result });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
