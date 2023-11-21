@@ -1,0 +1,389 @@
+<!--funcionario.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionários</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+</head>
+<style>
+    #resultadoForm {
+        display: none;
+    }
+</style>
+
+<body>
+
+    <div id="sidebar">
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Página Inicial
+        </a>
+        <a href="hospital.html">
+            <i class="fa-solid fa-building"></i>
+            Hospitais
+        </a>
+        <a href="enfermaria.html">
+            <i class="fa-solid fa-house-medical"></i>
+            Enfermarias
+        </a>
+        <a href="funcionario.html" class="sidebar-link">
+            <i class="fa-solid fa-user-doctor"></i>
+            Funcionários
+        </a>
+        <a href="cargo.html">
+            <i class="fa-solid fa-briefcase"></i>
+            Cargos
+        </a>
+        <a href="paciente.html">
+            <i class="fa-solid fa-address-card"></i>
+            Pacientes
+        </a>
+    </div>
+
+    <div id="content">
+        <table width="100%" margin=15px;>
+            <tr>
+                <td class="secao">
+                    Funcionário
+                </td>
+            </tr>
+        </table>
+        <div class="container-barra-inicial">
+            <div class="barra-inicial">
+                <button type="button" onclick="limparCampos()">
+                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
+                </button>
+                <button type="button" id="excluirButton" onclick="excluirFuncionario()">
+                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
+                </button>
+
+                <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
+                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                </button>
+                <button type="button" onclick="updateFuncionarioData()" title="Gravar">
+                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                </button>
+            </div>
+        </div>
+
+        <form id="funcionarioForm">
+            <fieldset>
+                <legend style="color: #325D82;">Busca Funcionário</legend>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRISC" class="titulo">Incrição do Funcionário</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <select id="NRISC" name="NRISC" class="texto"
+                                        title="Selecione a Incrição do Funcionário"></select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </form>
+
+
+
+        <fieldset>
+            <legend style="color: #325D82;">Busca Funcionário</legend>
+            <form id="funcionarioForm">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="IDHOS" class="titulo">Identificador do Hospital</label>
+                            </td>
+                            <td>
+                                <label for="CDHOS" class="titulo">Código do Hospital</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="17"
+                                    class="texto" title="Informe o Identificador"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="12"
+                                    class="texto" title="Informe o Código do Hospital"><br>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="NRISC" class="titulo">Número de Inscrição</label>
+                            </td>
+                            <td>
+                                <label for="NMFCO" class="titulo">Nome do Funcionário</label>
+                            </td>
+                            <td>
+                                <label for="DTNSCFCO" class="titulo">Data de Nascimento</label>
+                            </td>
+                            <td>
+                                <label for="TPSEXFCO" class="titulo">Sexo</label>
+                            </td>
+                            <td>
+                                <label for="NRCPFFCO" class="titulo">CPF</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="NRISC" name="NRISC" required maxlength="9" size="14"
+                                    class="texto" title="Informe a Inscrição"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NMFCO" name="NMFCO" required maxlength="60" size="60"
+                                    class="texto" title="Informe o Nome do Funcionário"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="datetime-local" id="DTNSCFCO" name="DTNSCFCO" required maxlength="5"
+                                    size="50" class="texto" title="Informe a Data de Nascimento"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="TPSEXFCO" name="TPSEXFCO" required maxlength="1" size="1"
+                                    class="texto" title="Informe o Sexo"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRCPFFCO" name="NRCPFFCO" required maxlength="11" size="10"
+                                    class="texto" title="Informe o CPF"><br>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="DTISCFCO" class="titulo">Data da Inscrição</label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="datetime-local" id="DTISCFCO" name="DTISCFCO" required maxlength="5"
+                                    size="50" class="texto" title="Informe a Data da Inscrição"><br>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="DCLOGFCO" class="titulo">Logradouro</label>
+                            </td>
+                            <td>
+                                <label for="NRLOGFCO" class="titulo">Número</label>
+                            </td>
+                            <td>
+                                <label for="DCBAIFCO" class="titulo">Bairro</label>
+                            </td>
+                            <td>
+                                <label for="DCCIDFCO" class="titulo">Cidade</label>
+                            </td>
+                            <td>
+                                <label for="CDPSIFCO" class="titulo">País</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="DCLOGFCO" name="DCLOGFCO" required maxlength="60" size="60"
+                                    class="texto" title="Informe o Logradouro"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRLOGFCO" name="NRLOGFCO" required maxlength="5" size="3"
+                                    class="texto" title="Informe o Número"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCBAIFCO" name="DCBAIFCO" required maxlength="30" size="20"
+                                    class="texto" title="Informe o Bairro"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCCIDFCO" name="DCCIDFCO" required maxlength="40" size="20"
+                                    class="texto" title="Informe a Cidade"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="CDPSIFCO" name="CDPSIFCO" required maxlength="2" size="2"
+                                    class="texto" title="Informe o País"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="NRCEPFCO" class="titulo">CEP</label>
+                            </td>
+                            <td>
+                                <label for="SGUFSFCO" class="titulo">UF</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="NRCEPFCO" name="NRCEPFCO" required maxlength="8" size="8"
+                                    class="texto" title="Informe o CEP"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="SGUFSFCO" name="SGUFSFCO" required maxlength="2" size="2"
+                                    class="texto" title="Informe a UF"><br>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="NRTELRSDFCO" class="titulo">Telefone</label>
+                            </td>
+                            <td>
+                                <label for="DCEMLFCO" class="titulo">Email</label>
+                            </td>
+                            <td>
+                                <label for="NRCGO" class="titulo">Número do Cargo</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="NRTELRSDFCO" name="NRTELRSDFCO" required maxlength="15" size="15"
+                                    class="texto" title="Informe o Telefone"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCEMLFCO" name="DCEMLFCO" required maxlength="45" size="40"
+                                    class="texto" title="Informe o Email"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRCGO" name="NRCGO" required maxlength="5" size="12"
+                                    class="texto" title="Informe o Número do Cargo"><br>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="AUUSUULTALT" class="titulo">Usuário</label>
+                            </td>
+                            <td>
+                                <label for="DCHOS" class="titulo">Data de Alteração</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="10"
+                                    class="texto" title="Informe o Usuário"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
+                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+        </fieldset>
+
+        <script>
+            async function insertFuncionarioData() {
+                const IDHOS = document.getElementById('IDHOS').value;
+                const CDHOS = document.getElementById('CDHOS').value;
+                const NRISC = document.getElementById('NRISC').value;
+                const NMFCO = document.getElementById('NMFCO').value;
+                const DTNSCFCO = document.getElementById('DTNSCFCO').value;
+                const TPSEXFCO = document.getElementById('TPSEXFCO').value;
+                const NRCPFFCO = document.getElementById('NRCPFFCO').value;
+                const DTISCFCO = document.getElementById('DTISCFCO').value;
+                const DCLOGFCO = document.getElementById('DCLOGFCO').value;
+                const NRLOGFCO = document.getElementById('NRLOGFCO').value;
+                const DCBAIFCO = document.getElementById('DCBAIFCO').value;
+                const DCCIDFCO = document.getElementById('DCCIDFCO').value;
+                const CDPSIFCO = document.getElementById('CDPSIFCO').value;
+                const NRCEPFCO = document.getElementById('NRCEPFCO').value;
+                const SGUFSFCO = document.getElementById('SGUFSFCO').value;
+                const NRTELRSDFCO = document.getElementById('NRTELRSDFCO').value;
+                const DCEMLFCO = document.getElementById('DCEMLFCO').value;
+                const NRCGO = document.getElementById('NRCGO').value;
+                const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
+                const AUDATULTALT = document.getElementById('AUDATULTALT').value;
+
+                const response = await fetch('/insert_funcionario', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        IDHOS, CDHOS, NRISC, NMFCO, DTNSCFCO, TPSEXFCO, NRCPFFCO, DTISCFCO, DCLOGFCO, NRLOGFCO, DCBAIFCO,
+                        DCCIDFCO, CDPSIFCO, NRCEPFCO, SGUFSFCO, NRTELRSDFCO, DCEMLFCO, NRCGO, AUUSUULTALT, AUDATULTALT
+                    })
+                });
+
+                const result = await response.json();
+                console.log(result);
+            }
+        </script>
+        <script>
+            function limparCampos() {
+                document.getElementById('IDHOS').value = '';
+                document.getElementById('CDHOS').value = '';
+                document.getElementById('NRISC').value = '';
+                document.getElementById('NMFCO').value = '';
+                document.getElementById('DTNSCFCO').value = '';
+                document.getElementById('TPSEXFCO').value = '';
+                document.getElementById('NRCPFFCO').value = '';
+                document.getElementById('DTISCFCO').value = '';
+                document.getElementById('DCLOGFCO').value = '';
+                document.getElementById('NRLOGFCO').value = '';
+                document.getElementById('DCBAIFCO').value = '';
+                document.getElementById('DCCIDFCO').value = '';
+                document.getElementById('CDPSIFCO').value = '';
+                document.getElementById('NRCEPFCO').value = '';
+                document.getElementById('SGUFSFCO').value = '';
+                document.getElementById('NRTELRSDFCO').value = '';
+                document.getElementById('DCEMLFCO').value = '';
+                document.getElementById('NRCGO').value = '';
+                document.getElementById('AUUSUULTALT').value = '';
+                document.getElementById('AUDATULTALT').value = '';
+            }
+        </script>
+    </div>
+
+</body>
+
+</html>
