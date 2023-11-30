@@ -65,7 +65,7 @@
                 <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
                     <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
                 </button>
-                <button type="button" onclick="updateHospitalData()" title="Gravar">
+                <button type="button" onclick="atualizarHospital()" title="Gravar">
                     <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
                 </button>
             </div>
@@ -339,20 +339,17 @@
                         resultadoForm.style.display = 'block';
                     }
                 }
-                function updateHospitalData() {
-                    console.log('Função updateHospitalData chamada!');
+            </script>
+            <script>
+                async function atualizarHospital() {
                     const selectedHospitalCode = document.getElementById('CDHOS').value;
                     console.log('Código do Hospital Selecionado:', selectedHospitalCode);
-
                     if (!selectedHospitalCode) {
-                        alert('Por favor, selecione um hospital antes de gravar.');
+                        alert('Por favor, selecione um hospital antes de atualizar.');
                         return;
                     }
 
-                    const dataAtualizada = new Date(document.getElementById('AUDATULTALT').value);
-                    const dataFormatada = dataAtualizada.toISOString().slice(0, 19).replace("T", " ");
-
-                    const updatedData = {
+                    const data = {
                         CDHOS: selectedHospitalCode,
                         DCHOS: document.getElementById('DCHOS').value,
                         NRLOGHOS: document.getElementById('NRLOGHOS').value,
@@ -364,38 +361,48 @@
                         CDPSIHOS: document.getElementById('CDPSIHOS').value,
                         NRTELHOS: document.getElementById('NRTELHOS').value,
                         AUUSUULTALT: document.getElementById('AUUSUULTALT').value,
-                        AUDATULTALT: dataFormatada,
+                        AUDATULTALT: formatarDataParaEnvio(document.getElementById('AUDATULTALT').value),
                     };
-                    alert('O registro foi salvo com sucesso!');
 
-                    console.log('Antes da chamada fetch');
-                    fetch('/api/update_hospital', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(updatedData),
-                    })
-                        .then(response => {
-                            console.log('Após a chamada fetch');
+                    const confirmation = confirm('Tem certeza que deseja atualizar este hospital?');
+
+                    function formatarDataParaEnvio(dataString) {
+                    const partes = dataString.split('/');
+                        if (partes.length === 3) {
+                            const [dia, mes, ano] = partes;
+                            return `${ano}-${mes}-${dia}`;
+                        }
+                        return dataString;
+                    }
+
+
+                    if (confirmation) {
+                        try {
+                            const response = await fetch('/api/update_hospital', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                            });
+
                             if (!response.ok) {
                                 throw new Error('Erro na requisição: ' + response.statusText);
                             }
-                            return response.json();
-                        })
-                        .then(data => {
 
-                            if (data.success) {
-                                alert('Dados do hospital atualizados com sucesso!');
+                            const result = await response.json();
+
+                            if (result.success) {
+                                alert('Hospital atualizado com sucesso!');
                             } else {
-                                alert('Erro ao atualizar dados do hospital. Por favor, tente novamente.');
+                                alert('Erro ao atualizar hospital. Por favor, tente novamente.');
                             }
-                        })
-                        .catch(error => console.error('Erro na requisição:', error));
+                        } catch (error) {
+                            console.error('Erro na requisição:', error);
+                        }
+                    }
                 }
-
             </script>
-
         </form>
     </div>
 

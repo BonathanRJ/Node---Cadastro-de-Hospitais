@@ -20,31 +20,50 @@ async function getAllHospitalsJSON(req, res) {
     res.status(500).json({ success: false, error: error.message });
   }
 }
+
 async function updateHOS_HOSPITAL(updatedHospitalData) {
   const conn = await db.connect();
   const sql = `
       UPDATE HOS_HOSPITAL
-      SET DCHOS = ?, NRLOGHOS = ?, DCLOGHOS = ?, NRCEPHOS = ?, DCBAIHOS = ?,
-          DCCIDHOS = ?, SGUFSHOS = ?, CDPSIHOS = ?, NRTELHOS = ?, AUUSUULTALT = ?, AUDATULTALT = ?
+      SET DCHOS = ?,
+          NRLOGHOS = ?,
+          DCLOGHOS = ?,
+          NRCEPHOS = ?,
+          DCBAIHOS = ?,
+          DCCIDHOS = ?,
+          SGUFSHOS = ?,
+          CDPSIHOS = ?,
+          NRTELHOS = ?,
+          AUUSUULTALT = ?,
+          AUDATULTALT = STR_TO_DATE(?, '%Y-%m-%d')
       WHERE CDHOS = ?;
   `;
   const values = [
-    updatedHospitalData.DCHOS, updatedHospitalData.NRLOGHOS, updatedHospitalData.DCLOGHOS,
-    updatedHospitalData.NRCEPHOS, updatedHospitalData.DCBAIHOS, updatedHospitalData.DCCIDHOS,
-    updatedHospitalData.SGUFSHOS, updatedHospitalData.CDPSIHOS, updatedHospitalData.NRTELHOS,
-    updatedHospitalData.AUUSUULTALT, updatedHospitalData.AUDATULTALT, updatedHospitalData.CDHOS
+      updatedHospitalData.DCHOS,
+      updatedHospitalData.NRLOGHOS,
+      updatedHospitalData.DCLOGHOS,
+      updatedHospitalData.NRCEPHOS,
+      updatedHospitalData.DCBAIHOS,
+      updatedHospitalData.DCCIDHOS,
+      updatedHospitalData.SGUFSHOS,
+      updatedHospitalData.CDPSIHOS,
+      updatedHospitalData.NRTELHOS,
+      updatedHospitalData.AUUSUULTALT,
+      updatedHospitalData.AUDATULTALT,
+      updatedHospitalData.CDHOS,
   ];
 
   try {
-    await conn.query(sql, values);
-    return { success: true, message: 'Dados do hospital atualizados com sucesso.' };
+      const result = await conn.query(sql, values);
+      return { success: true, message: 'Hospital atualizado com sucesso.' };
   } catch (error) {
-    console.error('Erro na atualização do hospital:', error);
-    throw new Error('Erro na atualização do hospital.');
+      console.error('Erro na atualização do hospital:', error);
+      throw new Error('Erro na atualização do hospital.');
   } finally {
-    conn.release();
+      conn.release();
   }
 }
+
 
 async function deleteHOS_HOSPITAL(hospitalCode) {
   const conn = await db.connect();
@@ -68,5 +87,5 @@ async function insertHOS_HOSPITAL(hospital) {
   return await conn.query(sql, values);
 }
 
-module.exports = { selectHOS_HOSPITAL, insertHOS_HOSPITAL, getAllHospitals, getAllHospitalsJSON, updateHOS_HOSPITAL, deleteHOS_HOSPITAL };
+module.exports = { selectHOS_HOSPITAL, insertHOS_HOSPITAL, getAllHospitals, getAllHospitalsJSON,  updateHOS_HOSPITAL, deleteHOS_HOSPITAL };
 

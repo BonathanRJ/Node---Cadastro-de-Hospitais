@@ -22,26 +22,34 @@ async function getAllEnfermariasJSON(req, res) {
 }
 
 async function updateHOS_ENFERMARIA(updatedEnfermariaData) {
-    const conn = await db.connect();
-    const sql = `
-        UPDATE HOS_ENFERMARIA
-        SET IDHOS = ?, CDHOS = ?, DCBLO = ?, AUUSUULTALT = ?, AUDATULTALT = ?
-        WHERE CDENF = ?;
-    `;
-    const values = [
-        updatedEnfermariaData.DCHOS, updatedEnfermariaData.CDHOS, updatedEnfermariaData.DCBLO,
-        updatedEnfermariaData.AUUSUULTALT, updatedEnfermariaData.AUDATULTALT
-    ];
-  
-    try {
-      await conn.query(sql, values);
-      return { success: true, message: 'Dados da enfermaria atualizados com sucesso.' };
-    } catch (error) {
-      console.error('Erro na atualização da enfermaria:', error);
-      throw new Error('Erro na atualização da enfermaria.');
-    } finally {
-      conn.release();
-    }
+  const conn = await db.connect();
+  const sql = `
+      UPDATE HOS_ENFERMARIA
+      SET IDHOS = ?,
+          CDHOS = ?,
+          DCBLO = ?,
+          AUUSUULTALT = ?,
+          AUDATULTALT = ?
+      WHERE CDENF = ?;
+  `;
+  const values = [
+      updatedEnfermariaData.IDHOS,
+      updatedEnfermariaData.CDHOS,
+      updatedEnfermariaData.DCBLO,
+      updatedEnfermariaData.AUUSUULTALT,
+      updatedEnfermariaData.AUDATULTALT,
+      updatedEnfermariaData.CDENF,
+  ];
+
+  try {
+    const result = await conn.query(sql, values);
+    return { success: true, message: 'Enfermaria atualizado com sucesso.' };
+} catch (error) {
+    console.error('Erro na atualização do enfermaria:', error);
+    throw new Error('Erro na atualização do enfermaria.');
+} finally {
+    conn.release();
+}
 }
 
 async function deleteHOS_ENFERMARIA(enfermariaCode) {
@@ -66,4 +74,4 @@ async function insertHOS_ENFERMARIA(enfermaria) {
     return await conn.query(sql, values);
 }
 
-module.exports = { selectHOS_HOSPITAL, insertHOS_HOSPITAL, getAllEnfermarias, getAllEnfermariasJSON, updateHOS_ENFERMARIA, deleteHOS_ENFERMARIA };
+module.exports = { selectHOS_ENFERMARIA, insertHOS_ENFERMARIA, getAllEnfermarias, getAllEnfermariasJSON, updateHOS_ENFERMARIA, deleteHOS_ENFERMARIA , insertHOS_ENFERMARIA};
