@@ -71,8 +71,7 @@ app.get('/views/paciente_2.html', (req, res) => {
 app.get('/api/hospitals', hospitalController.getAllHospitalsJSON);
 app.get('/api/enfermarias', enfermariaController.getAllEnfermariasJSON);
 app.get('/api/funcionarios', funcionarioController.getAllFuncionariosJSON);
-app.get('/api/cargos', cargoController.getAllCargosJSON);
-app.get('/api/pacientes', pacienteController.getAllPacientesJSON);
+
 
 
 
@@ -296,6 +295,6 @@ app.post('/insert_paciente', async (req, res) => {
 });
 
 
-app.listen(PORT, '192.100.100.66', () => {
-  console.log(`Server is running on http://192.100.100.66:${PORT}/views/index.html`);
+app.listen(PORT, '192.168.1.16', () => {
+  console.log(`Server is running on http://192.168.1.16:${PORT}/views/index.html`);
 });
