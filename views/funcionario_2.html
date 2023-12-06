@@ -96,7 +96,7 @@
 
 
         <fieldset>
-            <legend style="color: #325D82;">Busca Funcionário</legend>
+            <legend style="color: #325D82;">Resultado</legend>
             <form id="funcionarioForm">
                 <table>
                     <tbody>
@@ -320,70 +320,197 @@
             </form>
         </fieldset>
 
-        <script>
-            async function insertFuncionarioData() {
-                const IDHOS = document.getElementById('IDHOS').value;
-                const CDHOS = document.getElementById('CDHOS').value;
-                const NRISC = document.getElementById('NRISC').value;
-                const NMFCO = document.getElementById('NMFCO').value;
-                const DTNSCFCO = document.getElementById('DTNSCFCO').value;
-                const TPSEXFCO = document.getElementById('TPSEXFCO').value;
-                const NRCPFFCO = document.getElementById('NRCPFFCO').value;
-                const DTISCFCO = document.getElementById('DTISCFCO').value;
-                const DCLOGFCO = document.getElementById('DCLOGFCO').value;
-                const NRLOGFCO = document.getElementById('NRLOGFCO').value;
-                const DCBAIFCO = document.getElementById('DCBAIFCO').value;
-                const DCCIDFCO = document.getElementById('DCCIDFCO').value;
-                const CDPSIFCO = document.getElementById('CDPSIFCO').value;
-                const NRCEPFCO = document.getElementById('NRCEPFCO').value;
-                const SGUFSFCO = document.getElementById('SGUFSFCO').value;
-                const NRTELRSDFCO = document.getElementById('NRTELRSDFCO').value;
-                const DCEMLFCO = document.getElementById('DCEMLFCO').value;
-                const NRCGO = document.getElementById('NRCGO').value;
-                const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
-                const AUDATULTALT = document.getElementById('AUDATULTALT').value;
 
-                const response = await fetch('/insert_funcionario', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        IDHOS, CDHOS, NRISC, NMFCO, DTNSCFCO, TPSEXFCO, NRCPFFCO, DTISCFCO, DCLOGFCO, NRLOGFCO, DCBAIFCO,
-                        DCCIDFCO, CDPSIFCO, NRCEPFCO, SGUFSFCO, NRTELRSDFCO, DCEMLFCO, NRCGO, AUUSUULTALT, AUDATULTALT
-                    })
-                });
+            <script>
+                function limparCampos() {
+                    document.getElementById('CDENF').value = '';
+                    document.getElementById('IDHOS').value = '';
+                    document.getElementById('CDHOS').value = '';
+                    document.getElementById('DCBLO').value = '';
+                    document.getElementById('AUUSUULTALT').value = '';
+                    document.getElementById('AUDATULTALT').value = '';
+                }
+            </script>
 
-                const result = await response.json();
-                console.log(result);
-            }
-        </script>
-        <script>
-            function limparCampos() {
-                document.getElementById('IDHOS').value = '';
-                document.getElementById('CDHOS').value = '';
-                document.getElementById('NRISC').value = '';
-                document.getElementById('NMFCO').value = '';
-                document.getElementById('DTNSCFCO').value = '';
-                document.getElementById('TPSEXFCO').value = '';
-                document.getElementById('NRCPFFCO').value = '';
-                document.getElementById('DTISCFCO').value = '';
-                document.getElementById('DCLOGFCO').value = '';
-                document.getElementById('NRLOGFCO').value = '';
-                document.getElementById('DCBAIFCO').value = '';
-                document.getElementById('DCCIDFCO').value = '';
-                document.getElementById('CDPSIFCO').value = '';
-                document.getElementById('NRCEPFCO').value = '';
-                document.getElementById('SGUFSFCO').value = '';
-                document.getElementById('NRTELRSDFCO').value = '';
-                document.getElementById('DCEMLFCO').value = '';
-                document.getElementById('NRCGO').value = '';
-                document.getElementById('AUUSUULTALT').value = '';
-                document.getElementById('AUDATULTALT').value = '';
-            }
-        </script>
+            <script>
+                function excluirFuncionario() {
+                    const selectedFuncionarioCode = document.getElementById('NRISC').value;
+
+                    if (!selectedFuncionarioCode) {
+                        alert('Por favor, selecione um funcionario antes de excluir.');
+                        return;
+                    }
+
+                    const confirmation = confirm('Tem certeza que deseja excluir este funcionario?');
+
+                    if (confirmation) {
+                        fetch(`/api/delete_funcionario/${selectedFuncionarioCode}`, {
+                            method: 'DELETE',
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Erro na requisição: ' + response.statusText);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Funcionario excluído com sucesso!');
+                                    limparCampos();
+                                } else {
+                                    alert('Erro ao excluir funcionário . Por favor, tente novamente.');
+                                }
+                            })
+                            .catch(error => console.error('Erro na requisição:', error));
+                    }
+                }
+            </script>
+
+            <script>
+
+                async function populateFuncionarioSelect() {
+                    const selectElement = document.getElementById('NRISC');
+
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.text = '<Selecione a Inscrição do funcionário>';
+                    selectElement.add(defaultOption);
+
+                    const response = await fetch('/api/funcionarios');
+                    const { success, funcionarios } = await response.json();
+
+                    if (success) {
+                        funcionarios.forEach(funcionario => {
+                            const option = document.createElement('option');
+                            option.value = funcionario.NRISC;
+                            option.text = `${funcionario.NRISC}`;
+                            selectElement.add(option);
+                        });
+
+                        document.getElementById('pesquisarButton').addEventListener('click', () => {
+                            const selectedFuncionario = funcionarios.find(funcionario => funcionario.NRISC === selectElement.value);
+
+                            document.getElementById('IDHOS').value = selectedFuncionario.IDHOS || '';
+                            document.getElementById('CDHOS').value = selectedFuncionario.CDHOS || '';
+                            document.getElementById('NRISC').value = selectedFuncionario.NRISC || '';
+                            document.getElementById('NMFCO').value = selectedFuncionario.NMFCO || '';
+                            document.getElementById('DTNSCFCO').value = selectedFuncionario.DTNSCFCO || '';
+                            document.getElementById('TPSEXFCO').value = selectedFuncionario.TPSEXFCO || '';
+                            document.getElementById('NRCPFFCO ').value = selectedFuncionario.NRCPFFCO || '';
+                            document.getElementById('DTISCFCO').value = selectedFuncionario.DTISCFCO || '';
+                            document.getElementById('DCLOGFCO').value = selectedFuncionario.DCLOGFCO || '';
+                            document.getElementById('NRLOGFCO').value = selectedFuncionario.NRLOGFCO || '';
+                            document.getElementById('DCBAIFCO').value = selectedFuncionario.DCBAIFCO || '';
+                            document.getElementById('DCCIDFCO').value = selectedFuncionario.DCCIDFCO || '';
+                            document.getElementById('CDPSIFCO').value = selectedFuncionario.CDPSIFCO || '';
+                            document.getElementById('NRCEPFCO').value = selectedFuncionario.NRCEPFCO || '';
+                            document.getElementById('SGUFSFCO').value = selectedFuncionario.SGUFSFCO || '';
+                            document.getElementById('NRTELRSDFCO').value = selectedFuncionario.NRTELRSDFCO || '';
+                            document.getElementById('DCEMLFCO').value = selectedFuncionario.DCEMLFCO || '';
+                            document.getElementById('NRCGO').value = selectedFuncionario.NRCGO || '';
+                            document.getElementById('AUUSUULTALT').value = selectedFuncionario.AUUSUULTALT || '';
+
+                            const dataFormatada = formatarData(selectedEnfermaria.AUDATULTALT);
+                            document.getElementById('AUDATULTALT').value = dataFormatada;
+                        });
+                    } else {
+                        console.error('Erro ao obter funcionários do servidor');
+                    }
+                }
+                function formatarData(dataString) {
+                    const data = new Date(dataString);
+                    const dia = ('0' + data.getDate()).slice(-2);
+                    const mes = ('0' + (data.getMonth() + 1)).slice(-2);
+                    const ano = data.getFullYear();
+
+                    return `${dia}/${mes}/${ano}`;
+                }
+
+                window.onload = populateFuncionarioSelect;
+                function mostrarFormulario() {
+                    const funcionarioForm = document.getElementById('funcionarioForm');
+                    const resultadoForm = document.getElementById('resultadoForm');
+
+                    if (funcionarioForm.style.display !== 'none') {
+
+                        resultadoForm.style.display = 'block';
+                    }
+                }
+            </script>  
+
+            <script>
+                async function updateFuncionarioData() {
+                        
+                        const selectedFuncionarioCode = document.getElementById('NRISC').value;
+                        
+                        if (!selectedFuncionarioCode) {
+                            alert('Por favor, selecione um funcionário antes de gravar.');
+                            return;
+                        }
+
+                        const data = {
+                            NRISC: selectedFuncionarioCode,
+                            IDHOS: document.getElementById('IDHOS').value,
+                            CDHOS: document.getElementById('CDHOS').value,
+                            NRISC: document.getElementById('NRISC').value,
+                            NMFCO: document.getElementById('NMFCO').value,
+                            DTNSCFCO: document.getElementById('DTNSCFCO').value,
+                            TPSEXFCO: document.getElementById('TPSEXFCO').value,
+                            NRCPFFCO: document.getElementById('NRCPFFCO').value,
+                            DTISCFCO: document.getElementById('DTISCFCO').value,
+                            DCLOGFCO: document.getElementById('DCLOGFCO').value,
+                            NRLOGFCO: document.getElementById('NRLOGFCO').value,
+                            DCBAIFCO: document.getElementById('DCBAIFCO').value,
+                            DCCIDFCO: document.getElementById('DCCIDFCO').value,
+                            CDPSIFCO: document.getElementById('CDPSIFCO').value,
+                            NRCEPFCO: document.getElementById('NRCEPFCO').value,
+                            SGUFSFCO: document.getElementById('SGUFSFCO').value,
+                            NRTELRSDFCO: document.getElementById('NRTELRSDFCO').value,
+                            DCEMLFCO: document.getElementById('DCEMLFCO').value,
+                            AUUSUULTALT: document.getElementById('AUUSUULTALT').value,
+                            AUDATULTALT: formatarDataParaEnvio(document.getElementById('AUDATULTALT').value),
+                        };
+
+                        const confirmation = confirm('Tem certeza que deseja atualizar este funcionário?');
+
+                        function formatarDataParaEnvio(dataString) {
+                        const partes = dataString.split('/');
+                            if (partes.length === 3) {
+                                const [dia, mes, ano] = partes;
+                                return `${ano}-${mes}-${dia}`;
+                            }
+                            return dataString;
+                        }
+
+                        if (confirmation) {
+                        try {
+                            const response = await fetch('/api/update_funcionario', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                            });
+
+                            if (!response.ok) {
+                                throw new Error('Erro na requisição: ' + response.statusText);
+                            }
+
+                            const result = await response.json();
+
+                            if (result.success) {
+                                alert('Funcionário atualizado com sucesso!');
+                            } else {
+                                alert('Erro ao atualizar funcionário. Por favor, tente novamente.');
+                            }
+                        } catch (error) {
+                            console.error('Erro na requisição:', error);
+                        }
+                    }
+                }
+            </script>
+        </form>
     </div>
-
 </body>
 
 </html>
