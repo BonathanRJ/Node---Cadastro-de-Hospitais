@@ -8,6 +8,7 @@
     <title>Funcionários</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
+    
 </head>
 
 <body>
@@ -132,9 +133,8 @@
 
                             </td>
                             <td class="campo">
-                                <input type="text" id="NRCPFFCO" name="NRCPFFCO" required maxlength="11" size="10"
-                                    class="texto" title="Informe o CPF"><br>
-
+                                <input type="text" id="NRCPFFCO" name="NRCPFFCO" required maxlength="14" size="14" OnKeyPress="formatar('###.###.###-##',this)"
+                                    class="texto" title="Informe o CPF" ><br>
                             </td>
                         </tr>
                     </tbody>
@@ -173,9 +173,6 @@
                             <td>
                                 <label for="DCCIDFCO" class="titulo">Cidade</label>
                             </td>
-                            <td>
-                                <label for="CDPSIFCO" class="titulo">País</label>
-                            </td>
                         </tr>
                         <tr>
                             <td class="campo">
@@ -198,10 +195,6 @@
                                     class="texto" title="Informe a Cidade"><br>
 
                             </td>
-                            <td class="campo">
-                                <input type="text" id="CDPSIFCO" name="CDPSIFCO" required maxlength="2" size="2"
-                                    class="texto" title="Informe o País"><br>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -212,7 +205,7 @@
                                 <label for="NRCEPFCO" class="titulo">CEP</label>
                             </td>
                             <td>
-                                <label for="CDPSIHOS" class="titulo">País</label>
+                                <label for="CDPSIFCO" class="titulo">País</label>
                             </td>
                             <td>
                                 <label for="SGUFSFCO" class="titulo">UF</label>
@@ -225,7 +218,7 @@
 
                             </td>
                             <td class="campo">
-                                <select id="CDPSIHOS" name="CDPSIHOS" class="texto">
+                                <select id="CDPSIFCO" name="CDPSIFCO" class="texto">
                                     <option value="">[Selecione...]</option>
                                     <option value="AD">AD - Andorra</option>
                                     <option value="AE">AE - Emirados Árabes Unidos</option>
@@ -476,7 +469,7 @@
                                 </select>
                             </td>
                             <td class="campo">
-                                <select id="SGUFSHOS" name="SGUFSHOS" class="texto" title="Selecione a UF">
+                                <select id="SGUFSFCO" name="SGUFSFCO" class="texto" title="Selecione a UF">
                                     <option value="" selected="selected">[Selecione...]</option>
                                     <option value="AC">AC</option>
                                     <option value="AL">AL</option>
@@ -526,7 +519,7 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="NRTELRSDFCO" name="NRTELRSDFCO" required maxlength="15" size="15"
+                                <input type="text" id="NRTELRSDFCO" name="NRTELRSDFCO" required maxlength="15" size="15" OnKeyPress="formatar('(##) #####-####',this)"
                                     class="texto" title="Informe o Telefone"><br>
 
                             </td>
@@ -569,7 +562,18 @@
 
             </form>
         </fieldset>
-
+        <script>  
+            function formatar(mascara, documento) {
+              let i = documento.value.length;
+              let saida = '#';
+              let texto = mascara.substring(i);
+              while (texto.substring(0, 1) != saida && texto.length ) {
+                documento.value += texto.substring(0, 1);
+                i++;
+                texto = mascara.substring(i);
+              }
+            }
+          </script>
         <script>
             async function insertFuncionarioData() {
                 const IDHOS = document.getElementById('IDHOS').value;
@@ -593,6 +597,14 @@
                 const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
                 const AUDATULTALT = document.getElementById('AUDATULTALT').value;
 
+                if (!IDHOS  || !CDHOS || !NRISC || !NMFCO || !DTNSCFCO || 
+                    !TPSEXFCO || !NRCPFFCO || !DTISCFCO || !DCLOGFCO || !NRLOGFCO || 
+                    !DCBAIFCO || !DCCIDFCO || !CDPSIFCO || !NRCEPFCO || !SGUFSFCO || 
+                    !NRTELRSDFCO || !DCEMLFCO || !NRCGO || !AUUSUULTALT || !AUDATULTALT) {
+                    alert('Insira os dados necessários para o registro do funcionário!');
+                    return;
+                }
+
                 const response = await fetch('/insert_funcionario', {
                     method: 'POST',
                     headers: {
@@ -605,6 +617,11 @@
                 });
 
                 const result = await response.json();
+                if (result.success) {
+                    alert('O hospital foi cadastrado com sucesso!');
+                } else {
+                    alert('Erro ao inserir o registro. Por favor, tente novamente.');
+                }
                 console.log(result);
             }
         </script>
@@ -638,7 +655,18 @@
                 window.location.href = '/views/funcionario_2.html';
             });
         </script>
-
+        <script>  
+            function formatar(mascara, documento) {
+                let i = documento.value.length;
+                let saida = '#';
+                let texto = mascara.substring(i);
+                while (texto.substring(0, 1) != saida && texto.length ) {
+                documento.value += texto.substring(0, 1);
+                i++;
+                texto = mascara.substring(i);
+                }
+            }
+        </script>
     </div>
 
 </body>

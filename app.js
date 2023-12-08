@@ -256,6 +256,7 @@ app.post('/insert_hospital', async (req, res) => {
 });
 
 app.post('/insert_enfermaria', async (req, res) => {
+  console.log('Rota de Insert de Enfermaria Acessada!');
   try {
     const enfermariaData = req.body;
     const result = await enfermariaController.insertHOS_ENFERMARIA(enfermariaData);
@@ -266,6 +267,7 @@ app.post('/insert_enfermaria', async (req, res) => {
 });
 
 app.post('/insert_funcionario', async (req, res) => {
+  console.log('Rota de Insert de Funcionario Acessada!');
   try {
     const funcionarioData = req.body;
     const result = await funcionarioController.insertFCO_FUNCIONARIO(funcionarioData);

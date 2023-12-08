@@ -43,10 +43,10 @@ async function updateHOS_ENFERMARIA(updatedEnfermariaData) {
 
   try {
     const result = await conn.query(sql, values);
-    return { success: true, message: 'Enfermaria atualizado com sucesso.' };
+    return { success: true, message: 'Enfermaria atualizada com sucesso.' };
 } catch (error) {
-    console.error('Erro na atualização do enfermaria:', error);
-    throw new Error('Erro na atualização do enfermaria.');
+    console.error('Erro na atualização da enfermaria:', error);
+    throw new Error('Erro na atualização da enfermaria.');
 } finally {
     conn.release();
 }
@@ -60,8 +60,8 @@ async function deleteHOS_ENFERMARIA(enfermariaCode) {
       const result = await conn.query(sql, [enfermariaCode]);
       return { success: true, message: 'Enfermaria excluída com sucesso.' };
     } catch (error) {
-      console.error('Erro na exclusão do enfermaria:', error);
-      throw new Error('Erro na exclusão do enfermaria.');
+      console.error('Erro na exclusão da enfermaria:', error);
+      throw new Error('Erro na exclusão da enfermaria.');
     } finally {
       conn.release();
     }
@@ -74,4 +74,4 @@ async function insertHOS_ENFERMARIA(enfermaria) {
     return await conn.query(sql, values);
 }
 
-module.exports = { selectHOS_ENFERMARIA, insertHOS_ENFERMARIA, getAllEnfermarias, getAllEnfermariasJSON, updateHOS_ENFERMARIA, deleteHOS_ENFERMARIA , insertHOS_ENFERMARIA};
+module.exports = { selectHOS_ENFERMARIA, insertHOS_ENFERMARIA, getAllEnfermarias, getAllEnfermariasJSON, updateHOS_ENFERMARIA, deleteHOS_ENFERMARIA};

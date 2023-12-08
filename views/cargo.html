@@ -55,7 +55,7 @@
                     <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
                 </button>
 
-                <button type="button" onclick="insertHospitalData()" title="Gravar">
+                <button type="button" onclick="insertCargoData()" title="Gravar">
                     <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
                 </button>
             </div>
@@ -120,6 +120,11 @@
                 const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
                 const AUDATULTALT = document.getElementById('AUDATULTALT').value;
 
+                if (!NRCGO || !DCCGO || !AUUSUULTALT || !AUDATULTALT) {
+                    alert('Insira os dados necessários para o registro do cargo!');
+                    return;
+                }
+
                 const response = await fetch('/insert_cargo', {
                     method: 'POST',
                     headers: {
@@ -129,6 +134,11 @@
                 });
 
                 const result = await response.json();
+                if (result.success) {
+                    alert('A enfermaria foi cadastrada com sucesso!');
+                } else {
+                    alert('Erro ao inserir o registro. Por favor, tente novamente.');
+                }
                 console.log(result);
             }
         </script>
@@ -139,6 +149,11 @@
                 document.getElementById('AUUSUULTALT').value = '';
                 document.getElementById('AUDATULTALT').value = '';
             }
+        </script>
+        <script>
+            document.getElementById('openButton').addEventListener('click', function () {
+                window.location.href = '/views/cargo_2.html';
+            });
         </script>
     </div>
 </body>

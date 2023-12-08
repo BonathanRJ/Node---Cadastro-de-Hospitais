@@ -445,7 +445,7 @@
                             </tr>
                             <tr>
                                 <td class="campo">
-                                    <input type="text" id="NRTELHOS" name="NRTELHOS" required maxlength="15" size="15"
+                                    <input type="text" id="NRTELHOS" name="NRTELHOS" required maxlength="15" size="15" OnKeyPress="formatar('(##) #####-####',this)"
                                         class="texto" title="Informe o Telefone"><br>
 
                                 </td>
@@ -516,7 +516,7 @@
 
                 const result = await response.json();
                 if (result.success) {
-                    alert('O hospital cadastrado com sucesso!');
+                    alert('O hospital foi cadastrado com sucesso!');
                 } else {
                     alert('Erro ao inserir o registro. Por favor, tente novamente.');
                 }
@@ -544,7 +544,18 @@
                 window.location.href = '/views/hospital_2.html';
             });
         </script>
-
+        <script>  
+            function formatar(mascara, documento) {
+                let i = documento.value.length;
+                let saida = '#';
+                let texto = mascara.substring(i);
+                while (texto.substring(0, 1) != saida && texto.length ) {
+                documento.value += texto.substring(0, 1);
+                i++;
+                texto = mascara.substring(i);
+                }
+            }
+        </script>
     </div>
 
 </body>
