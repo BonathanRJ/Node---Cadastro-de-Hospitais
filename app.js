@@ -99,9 +99,9 @@ app.get('/views/enfermaria_2.html', async (req, res) => {
 
 app.get('/views/funcionario_2.html', async (req, res) => {
   try {
-    const enfermarias = await enfermariaController.getAllEnfermarias();
+    const funcionarios = await funcionarioController.getAllFuncionarios();
 
-    res.render(path.join(__dirname, '/views/funcionario_2.html'), { enfermarias });
+    res.render(path.join(__dirname, '/views/funcionario_2.html'), { funcionarios });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -109,7 +109,7 @@ app.get('/views/funcionario_2.html', async (req, res) => {
 
 app.get('/views/cargo_2.html', async (req, res) => {
   try {
-    const enfermarias = await enfermariaController.getAllEnfermarias();
+    const enfermarias = await enfermariaController.getAllCargos();
 
     res.render(path.join(__dirname, '/views/cargo_2.html'), { enfermarias });
   } catch (error) {
@@ -154,8 +154,9 @@ app.delete('/api/delete_enfermaria/:CDENF', async (req, res) => {
 app.delete('/api/delete_funcionario/:NRISC', async (req, res) => {
   console.log('Rota /api/delete_funcionario foi acessada');
   try {
-    const enfermariaCode = req.params.NRISC;
-    const result = await enfermariaController.deleteHOS_ENFERMARIA(enfermariaCode);
+    const funcionarioCode = req.params.NRISC;
+    
+    const result = await funcionarioController.deleteFCO_FUNCIONARIO(funcionarioCode);
     res.json({ success: true, result });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -295,6 +296,6 @@ app.post('/insert_paciente', async (req, res) => {
 });
 
 
-app.listen(PORT, '192.100.100.66', () => {
-  console.log(`Server is running on http://192.100.100.66:${PORT}/views/index.html`);
+app.listen(PORT, '192.168.1.16', () => {
+  console.log(`Server is running on http://192.168.1.16:${PORT}/views/index.html`);
 });

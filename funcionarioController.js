@@ -27,12 +27,11 @@ async function updateFCO_FUNCIONARIO(updatedFuncionarioData) {
         UPDATE FCO_FUNCIONARIO
         SET IDHOS = ?,
             CDHOS = ?,
-            NRISC = ?,
             NMFCO = ?,
-            DTNSCFCO = ?,
+            DTNSCFCO = STR_TO_DATE(?, '%Y-%m-%d'),
             TPSEXFCO = ?,
             NRCPFFCO = ?,
-            DTISCFCO = ?,
+            DTISCFCO = STR_TO_DATE(?, '%Y-%m-%d'), 
             DCLOGFCO = ?,
             NRLOGFCO = ?,
             DCBAIFCO = ?,
@@ -44,13 +43,12 @@ async function updateFCO_FUNCIONARIO(updatedFuncionarioData) {
             DCEMLFCO = ?,
             NRCGO = ?,
             AUUSUULTALT = ?,
-            AUDATULTALT = ?
-        WHERE IDFCO = ?;
+            AUDATULTALT = STR_TO_DATE(?, '%Y-%m-%d')
+        WHERE NRISC = ?;
     `;
     const values = [
         updatedFuncionarioData.IDHOS,
         updatedFuncionarioData.CDHOS,
-        updatedFuncionarioData.NRISC,
         updatedFuncionarioData.NMFCO,
         updatedFuncionarioData.DTNSCFCO,
         updatedFuncionarioData.TPSEXFCO,
@@ -68,7 +66,7 @@ async function updateFCO_FUNCIONARIO(updatedFuncionarioData) {
         updatedFuncionarioData.NRCGO,
         updatedFuncionarioData.AUUSUULTALT,
         updatedFuncionarioData.AUDATULTALT,
-        updatedFuncionarioData.IDFCO,
+        updatedFuncionarioData.NRISC,
     ];
   
     try {
@@ -83,16 +81,16 @@ async function updateFCO_FUNCIONARIO(updatedFuncionarioData) {
   }
  
 
-  async function deleteFCO_FUNCIONARIO(enfermariaCode) {
+  async function deleteFCO_FUNCIONARIO(funcionarioCode) {
     const conn = await db.connect();
-    const sql = 'DELETE FROM HOS_ENFERMARIA WHERE CDENF = ?';
-  
+    const sql = 'DELETE FROM FCO_FUNCIONARIO WHERE NRISC = ?';
+
     try {
-      const result = await conn.query(sql, [enfermariaCode]);
-      return { success: true, message: 'Enfermaria excluída com sucesso.' };
+      const result = await conn.query(sql, [funcionarioCode]);
+      return { success: true, message: 'Funcionário excluído com sucesso.' };
     } catch (error) {
-      console.error('Erro na exclusão do enfermaria:', error);
-      throw new Error('Erro na exclusão do enfermaria.');
+      console.error('Erro na exclusão do funcionário:', error);
+      throw new Error('Erro na exclusão do funcionário.');
     } finally {
       conn.release();
     }

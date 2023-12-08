@@ -78,13 +78,13 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <label for="NRISC" class="titulo">Incrição do Funcionário</label>
+                                    <label for="NRISC" class="titulo">Inscrição do Funcionário</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="campo">
                                     <select id="NRISC" name="NRISC" class="texto"
-                                        title="Selecione a Incrição do Funcionário"></select>
+                                        title="Selecione a Inscrição do Funcionário"></select>
                                 </td>
                             </tr>
                         </tbody>
@@ -95,246 +95,250 @@
 
 
 
-        <fieldset>
-            <legend style="color: #325D82;">Resultado</legend>
-            <form id="funcionarioForm">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="IDHOS" class="titulo">Identificador do Hospital</label>
-                            </td>
-                            <td>
-                                <label for="CDHOS" class="titulo">Código do Hospital</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="17"
-                                    class="texto" title="Informe o Identificador"><br>
+        <form id="resultadoForm">
+            <fieldset>
+                <legend style="color: #325D82;">Resultado</legend>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="IDHOS" class="titulo">Identificador do Hospital</label>
+                                </td>
+                                <td>
+                                    <label for="CDHOS" class="titulo">Código do Hospital</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="17"
+                                        class="texto" title="Informe o Identificador"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="12"
-                                    class="texto" title="Informe o Código do Hospital"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="12"
+                                        class="texto" title="Informe o Código do Hospital"><br>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="NRISC" class="titulo">Número de Inscrição</label>
-                            </td>
-                            <td>
-                                <label for="NMFCO" class="titulo">Nome do Funcionário</label>
-                            </td>
-                            <td>
-                                <label for="DTNSCFCO" class="titulo">Data de Nascimento</label>
-                            </td>
-                            <td>
-                                <label for="TPSEXFCO" class="titulo">Sexo</label>
-                            </td>
-                            <td>
-                                <label for="NRCPFFCO" class="titulo">CPF</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="NRISC" name="NRISC" required maxlength="9" size="14"
-                                    class="texto" title="Informe a Inscrição"><br>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NMFCO" class="titulo">Nome do Funcionário</label>
+                                </td>
+                                <td>
+                                    <label for="DTNSCFCO" class="titulo">Data de Nascimento</label>
+                                </td>
+                                <td>
+                                    <label for="TPSEXFCO" class="titulo">Sexo</label>
+                                </td>
+                                <td>
+                                    <label for="NRCPFFCO" class="titulo">CPF</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="NMFCO" name="NMFCO" required maxlength="60" size="60"
+                                        class="texto" title="Informe o Nome do Funcionário"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="NMFCO" name="NMFCO" required maxlength="60" size="60"
-                                    class="texto" title="Informe o Nome do Funcionário"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="datetime" id="DTNSCFCO" name="DTNSCFCO" required class="texto" 
+                                        title="Informe a Data de Nascimento"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="datetime-local" id="DTNSCFCO" name="DTNSCFCO" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Nascimento"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="TPSEXFCO" name="TPSEXFCO" required maxlength="1" size="1"
+                                        class="texto" title="Informe o Sexo"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="TPSEXFCO" name="TPSEXFCO" required maxlength="1" size="1"
-                                    class="texto" title="Informe o Sexo"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="NRCPFFCO" name="NRCPFFCO" required maxlength="11" size="10"
+                                        class="texto" title="Informe o CPF"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="NRCPFFCO" name="NRCPFFCO" required maxlength="11" size="10"
-                                    class="texto" title="Informe o CPF"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="DTISCFCO" class="titulo">Data da Inscrição</label>
+                                </td>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="DTISCFCO" class="titulo">Data da Inscrição</label>
-                            </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="datetime" id="DTISCFCO" name="DTISCFCO" required class="texto" 
+                                        title="Informe a Data da Inscrição"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="DCLOGFCO" class="titulo">Logradouro</label>
+                                </td>
+                                <td>
+                                    <label for="NRLOGFCO" class="titulo">Número</label>
+                                </td>
+                                <td>
+                                    <label for="DCBAIFCO" class="titulo">Bairro</label>
+                                </td>
+                                <td>
+                                    <label for="DCCIDFCO" class="titulo">Cidade</label>
+                                </td>
+                                <td>
+                                    <label for="CDPSIFCO" class="titulo">País</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="DCLOGFCO" name="DCLOGFCO" required maxlength="60" size="60"
+                                        class="texto" title="Informe o Logradouro"><br>
 
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="datetime-local" id="DTISCFCO" name="DTISCFCO" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data da Inscrição"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="NRLOGFCO" name="NRLOGFCO" required maxlength="5" size="3"
+                                        class="texto" title="Informe o Número"><br>
 
-                            </td>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="DCBAIFCO" name="DCBAIFCO" required maxlength="30" size="20"
+                                        class="texto" title="Informe o Bairro"><br>
 
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="DCLOGFCO" class="titulo">Logradouro</label>
-                            </td>
-                            <td>
-                                <label for="NRLOGFCO" class="titulo">Número</label>
-                            </td>
-                            <td>
-                                <label for="DCBAIFCO" class="titulo">Bairro</label>
-                            </td>
-                            <td>
-                                <label for="DCCIDFCO" class="titulo">Cidade</label>
-                            </td>
-                            <td>
-                                <label for="CDPSIFCO" class="titulo">País</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="DCLOGFCO" name="DCLOGFCO" required maxlength="60" size="60"
-                                    class="texto" title="Informe o Logradouro"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="DCCIDFCO" name="DCCIDFCO" required maxlength="40" size="20"
+                                        class="texto" title="Informe a Cidade"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="NRLOGFCO" name="NRLOGFCO" required maxlength="5" size="3"
-                                    class="texto" title="Informe o Número"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="CDPSIFCO" name="CDPSIFCO" required maxlength="2" size="2"
+                                        class="texto" title="Informe o País"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRCEPFCO" class="titulo">CEP</label>
+                                </td>
+                                <td>
+                                    <label for="SGUFSFCO" class="titulo">UF</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="NRCEPFCO" name="NRCEPFCO" required maxlength="8" size="8"
+                                        class="texto" title="Informe o CEP"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="DCBAIFCO" name="DCBAIFCO" required maxlength="30" size="20"
-                                    class="texto" title="Informe o Bairro"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="SGUFSFCO" name="SGUFSFCO" required maxlength="2" size="2"
+                                        class="texto" title="Informe a UF"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="DCCIDFCO" name="DCCIDFCO" required maxlength="40" size="20"
-                                    class="texto" title="Informe a Cidade"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRTELRSDFCO" class="titulo">Telefone</label>
+                                </td>
+                                <td>
+                                    <label for="DCEMLFCO" class="titulo">Email</label>
+                                </td>
+                                <td>
+                                    <label for="NRCGO" class="titulo">Número do Cargo</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="NRTELRSDFCO" name="NRTELRSDFCO" required maxlength="15" size="15"
+                                        class="texto" title="Informe o Telefone"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="CDPSIFCO" name="CDPSIFCO" required maxlength="2" size="2"
-                                    class="texto" title="Informe o País"><br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="NRCEPFCO" class="titulo">CEP</label>
-                            </td>
-                            <td>
-                                <label for="SGUFSFCO" class="titulo">UF</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="NRCEPFCO" name="NRCEPFCO" required maxlength="8" size="8"
-                                    class="texto" title="Informe o CEP"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="DCEMLFCO" name="DCEMLFCO" required maxlength="45" size="40"
+                                        class="texto" title="Informe o Email"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="SGUFSFCO" name="SGUFSFCO" required maxlength="2" size="2"
-                                    class="texto" title="Informe a UF"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="NRCGO" name="NRCGO" required maxlength="5" size="12"
+                                        class="texto" title="Informe o Número do Cargo"><br>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="NRTELRSDFCO" class="titulo">Telefone</label>
-                            </td>
-                            <td>
-                                <label for="DCEMLFCO" class="titulo">Email</label>
-                            </td>
-                            <td>
-                                <label for="NRCGO" class="titulo">Número do Cargo</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="NRTELRSDFCO" name="NRTELRSDFCO" required maxlength="15" size="15"
-                                    class="texto" title="Informe o Telefone"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="AUUSUULTALT" class="titulo">Usuário</label>
+                                </td>
+                                <td>
+                                    <label for="AUDATULTALT" class="titulo">Data de Alteração</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30"
+                                        size="15" class="texto" title="Informe o Usuário" readonly><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="datetime" id="AUDATULTALT" name="AUDATULTALT" required class="texto"
+                                        title="Informe a Data de Alteração" readonly>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+        </form>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="DCEMLFCO" name="DCEMLFCO" required maxlength="45" size="40"
-                                    class="texto" title="Informe o Email"><br>
-
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="NRCGO" name="NRCGO" required maxlength="5" size="12"
-                                    class="texto" title="Informe o Número do Cargo"><br>
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="AUUSUULTALT" class="titulo">Usuário</label>
-                            </td>
-                            <td>
-                                <label for="DCHOS" class="titulo">Data de Alteração</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="10"
-                                    class="texto" title="Informe o Usuário"><br>
-
-                            </td>
-                            <td class="campo">
-                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </form>
-        </fieldset>
-
-
-            <script>
-                function limparCampos() {
-                    document.getElementById('CDENF').value = '';
-                    document.getElementById('IDHOS').value = '';
-                    document.getElementById('CDHOS').value = '';
-                    document.getElementById('DCBLO').value = '';
-                    document.getElementById('AUUSUULTALT').value = '';
-                    document.getElementById('AUDATULTALT').value = '';
-                }
-            </script>
+        <script>
+            function limparCampos() {
+                document.getElementById('IDHOS').value = '';
+                document.getElementById('CDHOS').value = '';
+                document.getElementById('NRISC').value = '';
+                document.getElementById('NMFCO').value = '';
+                document.getElementById('DTNSCFCO').value = '';
+                document.getElementById('TPSEXFCO').value = '';
+                document.getElementById('NRCPFFCO').value = '';
+                document.getElementById('DTISCFCO').value = '';
+                document.getElementById('DCLOGFCO').value = '';
+                document.getElementById('NRLOGFCO').value = '';
+                document.getElementById('DCBAIFCO').value = '';
+                document.getElementById('DCCIDFCO').value = '';
+                document.getElementById('CDPSIFCO').value = '';
+                document.getElementById('NRCEPFCO').value = '';
+                document.getElementById('SGUFSFCO').value = '';
+                document.getElementById('NRTELRSDFCO').value = '';
+                document.getElementById('DCEMLFCO').value = '';
+                document.getElementById('NRCGO').value = '';
+                document.getElementById('AUUSUULTALT').value = '';
+                document.getElementById('AUDATULTALT').value = '';
+            }
+        </script>
+        
 
             <script>
                 function excluirFuncionario() {
                     const selectedFuncionarioCode = document.getElementById('NRISC').value;
+                    console.log('Selected Funcionario Code:', selectedFuncionarioCode);
+
 
                     if (!selectedFuncionarioCode) {
                         alert('Por favor, selecione um funcionario antes de excluir.');
@@ -358,7 +362,7 @@
                                     alert('Funcionario excluído com sucesso!');
                                     limparCampos();
                                 } else {
-                                    alert('Erro ao excluir funcionário . Por favor, tente novamente.');
+                                    alert('Erro ao excluir funcionário. Por favor, tente novamente.');
                                 }
                             })
                             .catch(error => console.error('Erro na requisição:', error));
@@ -373,7 +377,7 @@
 
                     const defaultOption = document.createElement('option');
                     defaultOption.value = '';
-                    defaultOption.text = '<Selecione a Inscrição do funcionário>';
+                    defaultOption.text = '<Selecione a Inscrição do Funcionário>';
                     selectElement.add(defaultOption);
 
                     const response = await fetch('/api/funcionarios');
@@ -394,10 +398,16 @@
                             document.getElementById('CDHOS').value = selectedFuncionario.CDHOS || '';
                             document.getElementById('NRISC').value = selectedFuncionario.NRISC || '';
                             document.getElementById('NMFCO').value = selectedFuncionario.NMFCO || '';
-                            document.getElementById('DTNSCFCO').value = selectedFuncionario.DTNSCFCO || '';
+
+                            const dataFormatada_DTNSCFCO = formatarData(selectedFuncionario.DTNSCFCO);
+                            document.getElementById('DTNSCFCO').value = dataFormatada_DTNSCFCO;
+                            
                             document.getElementById('TPSEXFCO').value = selectedFuncionario.TPSEXFCO || '';
-                            document.getElementById('NRCPFFCO ').value = selectedFuncionario.NRCPFFCO || '';
-                            document.getElementById('DTISCFCO').value = selectedFuncionario.DTISCFCO || '';
+                            document.getElementById('NRCPFFCO').value = selectedFuncionario.NRCPFFCO || '';
+
+                            const dataFormatada_DTISCFCO = formatarData(selectedFuncionario.DTISCFCO);
+                            document.getElementById('DTISCFCO').value = dataFormatada_DTISCFCO;
+
                             document.getElementById('DCLOGFCO').value = selectedFuncionario.DCLOGFCO || '';
                             document.getElementById('NRLOGFCO').value = selectedFuncionario.NRLOGFCO || '';
                             document.getElementById('DCBAIFCO').value = selectedFuncionario.DCBAIFCO || '';
@@ -408,10 +418,11 @@
                             document.getElementById('NRTELRSDFCO').value = selectedFuncionario.NRTELRSDFCO || '';
                             document.getElementById('DCEMLFCO').value = selectedFuncionario.DCEMLFCO || '';
                             document.getElementById('NRCGO').value = selectedFuncionario.NRCGO || '';
-                            document.getElementById('AUUSUULTALT').value = selectedFuncionario.AUUSUULTALT || '';
+                            document.getElementById('AUUSUULTALT').value = selectedFuncionario.AUUSUULTALT;
 
-                            const dataFormatada = formatarData(selectedEnfermaria.AUDATULTALT);
+                            const dataFormatada = formatarData(selectedFuncionario.AUDATULTALT);
                             document.getElementById('AUDATULTALT').value = dataFormatada;
+                            
                         });
                     } else {
                         console.error('Erro ao obter funcionários do servidor');
@@ -440,9 +451,11 @@
 
             <script>
                 async function updateFuncionarioData() {
-                        
+                    
+
                         const selectedFuncionarioCode = document.getElementById('NRISC').value;
-                        
+                        console.log('Selected Funcionario Code:', selectedFuncionarioCode);
+
                         if (!selectedFuncionarioCode) {
                             alert('Por favor, selecione um funcionário antes de gravar.');
                             return;
@@ -454,10 +467,11 @@
                             CDHOS: document.getElementById('CDHOS').value,
                             NRISC: document.getElementById('NRISC').value,
                             NMFCO: document.getElementById('NMFCO').value,
-                            DTNSCFCO: document.getElementById('DTNSCFCO').value,
+                            DTNSCFCO: formatarDataParaEnvio(document.getElementById('DTNSCFCO').value),
                             TPSEXFCO: document.getElementById('TPSEXFCO').value,
                             NRCPFFCO: document.getElementById('NRCPFFCO').value,
-                            DTISCFCO: document.getElementById('DTISCFCO').value,
+                            DTISCFCO: formatarDataParaEnvio(document.getElementById('DTISCFCO').value),
+
                             DCLOGFCO: document.getElementById('DCLOGFCO').value,
                             NRLOGFCO: document.getElementById('NRLOGFCO').value,
                             DCBAIFCO: document.getElementById('DCBAIFCO').value,
@@ -466,11 +480,13 @@
                             NRCEPFCO: document.getElementById('NRCEPFCO').value,
                             SGUFSFCO: document.getElementById('SGUFSFCO').value,
                             NRTELRSDFCO: document.getElementById('NRTELRSDFCO').value,
+                            NRCGO: document.getElementById('NRCGO').value,
                             DCEMLFCO: document.getElementById('DCEMLFCO').value,
                             AUUSUULTALT: document.getElementById('AUUSUULTALT').value,
                             AUDATULTALT: formatarDataParaEnvio(document.getElementById('AUDATULTALT').value),
                         };
 
+                        
                         const confirmation = confirm('Tem certeza que deseja atualizar este funcionário?');
 
                         function formatarDataParaEnvio(dataString) {
