@@ -48,22 +48,49 @@
 
         <div class="container-barra-inicial">
             <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()" title="Novo">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
+                <button type="button" onclick="limparCampos()">
+                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
                 </button>
-                <button type="button" id="openButton" title="Abrir">
-                    <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
+                <button type="button" id="excluirButton" onclick="excluirCargo()">
+                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
                 </button>
 
-                <button type="button" onclick="insertHospitalData()" title="Gravar">
+                <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
+                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                </button>
+                <button type="button" onclick="updateCargoData()" title="Gravar">
                     <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
                 </button>
             </div>
         </div>
 
-        <fieldset>
-            <legend style="color: #325D82;">Cadastro Cargo</legend>
-            <form id="cargoForm">
+        <form id="cargoForm">
+            <fieldset>
+                <legend style="color: #325D82;">Busca Cargo</legend>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRCGO" class="titulo">Número do Cargo</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <select id="NRCGO" name="NRCGO" class="texto"
+                                        title="Selecione o Cargo do Funcionário"></select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </form>
+
+
+        <form id="resultadoForm">
+            <fieldset>
+                <legend style="color: #325D82;">Resultado</legend>
                 <table>
                     <tbody>
                         <tr>
@@ -94,50 +121,181 @@
                                 <label for="AUUSUULTALT" class="titulo">Usuário</label>
                             </td>
                             <td>
-                                <label for="DCHOS" class="titulo">Data de Alteração</label>
+                                <label for="AUDATULTALT" class="titulo">Data de Alteração</label>
                             </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="10"
-                                    class="texto" title="Informe o Usuário"><br>
-
+                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30"
+                                    size="15" class="texto" title="Informe o Usuário" readonly><br>
                             </td>
                             <td class="campo">
-                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
+                                <input type="datetime" id="AUDATULTALT" name="AUDATULTALT" required class="texto"
+                                    title="Informe a Data de Alteração" readonly>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </form>
-        </fieldset>
-
-        <script>
-            async function insertCargoData() {
-                const NRCGO = document.getElementById('NRCGO').value;
-                const DCCGO = document.getElementById('DCCGO').value;
-                const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
-                const AUDATULTALT = document.getElementById('AUDATULTALT').value;
-
-                const response = await fetch('/insert_cargo', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ NRCGO, DCCGO, AUUSUULTALT, AUDATULTALT })
-                });
-
-                const result = await response.json();
-                console.log(result);
-            }
-        </script>
+            </fieldset>
+        </form>
         <script>
             function limparCampos() {
                 document.getElementById('NRCGO').value = '';
                 document.getElementById('DCCGO').value = '';
                 document.getElementById('AUUSUULTALT').value = '';
                 document.getElementById('AUDATULTALT').value = '';
+            }
+        </script>
+
+        <script>
+            function excluirCargo() {
+                const selectedCargoCode = document.getElementById('NRCGO').value;
+                console.log('Selected Cargo Code:', selectedCargoCode);
+
+
+                if (!selectedCargoCode) {
+                    alert('Por favor, selecione um cargo antes de excluir.');
+                    return;
+                }
+
+                const confirmation = confirm('Tem certeza que deseja excluir este cargo?');
+
+                if (confirmation) {
+                    fetch(`/api/delete_cargo/${selectedCargoCode}`, {
+                        method: 'DELETE',
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erro na requisição: ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                alert('Cargo excluído com sucesso!');
+                                limparCampos();
+                            } else {
+                                alert('Erro ao excluir cargo. Por favor, tente novamente.');
+                            }
+                        })
+                        .catch(error => console.error('Erro na requisição:', error));
+                }
+            }
+        </script>
+
+        <script>
+
+            async function populateCargoSelect() {
+                const selectElement = document.getElementById('NRCGO');
+
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.text = '<Selecione o Cargo do Funcionário>';
+                selectElement.add(defaultOption);
+
+                const response = await fetch('/api/cargos');
+                const { success, cargos } = await response.json();
+
+                if (success) {
+                    cargos.forEach(cargo => {
+                        const option = document.createElement('option');
+                        option.value = cargo.NRCGO;
+                        option.text = `${cargo.NRCGO} - ${cargo.DCCGO}`;
+                        selectElement.add(option);
+                    });
+
+                    document.getElementById('pesquisarButton').addEventListener('click', () => {
+                        const selectedCargo = cargos.find(cargo => cargo.NRCGO === selectElement.value);
+                        
+                        document.getElementById('DCCGO').value = selectedCargo.DCCGO || '';
+                        document.getElementById('AUUSUULTALT').value = selectedCargo.AUUSUULTALT || '';
+
+                        const dataFormatada = formatarData(selectedCargo.AUDATULTALT);
+                        document.getElementById('AUDATULTALT').value = dataFormatada;
+                        
+                    });
+                } else {
+                    console.error('Erro ao obter cargos do servidor');
+                }
+            }
+            function formatarData(dataString) {
+                const data = new Date(dataString);
+                const dia = ('0' + data.getDate()).slice(-2);
+                const mes = ('0' + (data.getMonth() + 1)).slice(-2);
+                const ano = data.getFullYear();
+
+                return `${dia}/${mes}/${ano}`;
+            }
+
+            window.onload = populateCargoSelect;
+            function mostrarFormulario() {
+                const cargoForm = document.getElementById('cargoForm');
+                const resultadoForm = document.getElementById('resultadoForm');
+
+                if (cargoForm.style.display !== 'none') {
+
+                    resultadoForm.style.display = 'block';
+                }
+            }
+        </script>  
+
+
+        <script>
+            async function updateCargoData() {
+                
+
+                    const selectedCargoCode = document.getElementById('NRCGO').value;
+                    console.log('Selected Cargo Code:', selectedCargoCode);
+
+                    if (!selectedCargoCode) {
+                        alert('Por favor, selecione um cargo antes de gravar.');
+                        return;
+                    }
+
+                    const data = {
+                        NRCGO: selectedCargoCode,
+                        DCCGO: document.getElementById('DCCGO').value,
+                        NMFCO: document.getElementById('AUUSUULTALT').value,
+                        AUDATULTALT: formatarDataParaEnvio(document.getElementById('AUDATULTALT').value),
+                    };
+
+                    
+                    const confirmation = confirm('Tem certeza que deseja atualizar este cargo?');
+
+                    function formatarDataParaEnvio(dataString) {
+                    const partes = dataString.split('/');
+                        if (partes.length === 3) {
+                            const [dia, mes, ano] = partes;
+                            return `${ano}-${mes}-${dia}`;
+                        }
+                        return dataString;
+                    }
+
+                    if (confirmation) {
+                    try {
+                        const response = await fetch('/api/update_cargo', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data),
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Erro na requisição: ' + response.statusText);
+                        }
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            alert('Cargo atualizado com sucesso!');
+                        } else {
+                            alert('Erro ao atualizar cargo. Por favor, tente novamente.');
+                        }
+                    } catch (error) {
+                        console.error('Erro na requisição:', error);
+                    }
+                }
             }
         </script>
     </div>

@@ -71,7 +71,7 @@ app.get('/views/paciente_2.html', (req, res) => {
 app.get('/api/hospitals', hospitalController.getAllHospitalsJSON);
 app.get('/api/enfermarias', enfermariaController.getAllEnfermariasJSON);
 app.get('/api/funcionarios', funcionarioController.getAllFuncionariosJSON);
-
+app.get('/api/cargos', cargoController.getAllCargosJSON);
 
 
 
@@ -109,9 +109,9 @@ app.get('/views/funcionario_2.html', async (req, res) => {
 
 app.get('/views/cargo_2.html', async (req, res) => {
   try {
-    const enfermarias = await enfermariaController.getAllCargos();
+    const cargos = await cargoController.getAllCargos();
 
-    res.render(path.join(__dirname, '/views/cargo_2.html'), { enfermarias });
+    res.render(path.join(__dirname, '/views/cargo_2.html'), { cargos });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -166,8 +166,8 @@ app.delete('/api/delete_funcionario/:NRISC', async (req, res) => {
 app.delete('/api/delete_cargo/:NRCGO', async (req, res) => {
   console.log('Rota /api/delete_cargo foi acessada');
   try {
-    const enfermariaCode = req.params.NRCGO;
-    const result = await enfermariaController.deleteHOS_ENFERMARIA(enfermariaCode);
+    const cargoCode = req.params.NRCGO;
+    const result = await cargoController.deleteFCO_CARGO(cargoCode);
     res.json({ success: true, result });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -278,6 +278,7 @@ app.post('/insert_funcionario', async (req, res) => {
 });
 
 app.post('/insert_cargo', async (req, res) => {
+  console.log('Rota de Insert de Cargo Acessada!');
   try {
     const cargoData = req.body;
     const result = await cargoController.insertFCO_CARGO(cargoData);

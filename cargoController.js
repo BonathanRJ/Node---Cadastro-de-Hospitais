@@ -25,19 +25,17 @@ async function updateFCO_CARGO(updatedCargoData) {
   const conn = await db.connect();
   const sql = `
       UPDATE FCO_CARGO
-      SET NRCGO= ?,
-          DCCGO= ?,
+      SET DCCGO= ?,
           AUUSUULTALT = ?,
-          AUDATULTALT = ?
-      WHERE IDCGO = ?;
+          AUDATULTALT = STR_TO_DATE(?, '%Y-%m-%d')
+      WHERE NRCGO = ?;
   `;
 
   const values = [
-      updatedEnfermariaData.NRCGO,
-      updatedEnfermariaData.DCCGO,
-      updatedEnfermariaData.AUUSUULTALT,
-      updatedEnfermariaData.AUDATULTALT,
-      updatedEnfermariaData.IDCGO,
+      updatedCargoData.DCCGO,
+      updatedCargoData.AUUSUULTALT,
+      updatedCargoData.AUDATULTALT,
+      updatedCargoData.NRCGO,
   ];
 
   try {
@@ -53,7 +51,7 @@ async function updateFCO_CARGO(updatedCargoData) {
 
 async function deleteFCO_CARGO(cargoCode) {
   const conn = await db.connect();
-  const sql = 'DELETE FROM FCO_CARGO WHERE IDCGO = ?';
+  const sql = 'DELETE FROM FCO_CARGO WHERE NRCGO = ?';
 
   try {
     const result = await conn.query(sql, [cargoCode]);
