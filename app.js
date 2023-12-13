@@ -72,7 +72,7 @@ app.get('/api/hospitals', hospitalController.getAllHospitalsJSON);
 app.get('/api/enfermarias', enfermariaController.getAllEnfermariasJSON);
 app.get('/api/funcionarios', funcionarioController.getAllFuncionariosJSON);
 app.get('/api/cargos', cargoController.getAllCargosJSON);
-
+app.get('/api/pacientes', pacienteController.getAllPacientesJSON);
 
 
 // *********** Selects *********** \\ 
@@ -119,9 +119,9 @@ app.get('/views/cargo_2.html', async (req, res) => {
 
 app.get('/views/paciente_2.html', async (req, res) => {
   try {
-    const enfermarias = await enfermariaController.getAllEnfermarias();
+    const pacientes = await pacienteController.getAllPaciente();
 
-    res.render(path.join(__dirname, '/views/paciente_2.html'), { enfermarias });
+    res.render(path.join(__dirname, '/views/paciente_2.html'), { pacientes });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -177,8 +177,8 @@ app.delete('/api/delete_cargo/:NRCGO', async (req, res) => {
 app.delete('/api/delete_paciente/:NRMATPAC', async (req, res) => {
   console.log('Rota /api/delete_paciente foi acessada');
   try {
-    const enfermariaCode = req.params.NRMATPAC;
-    const result = await enfermariaController.deleteHOS_ENFERMARIA(enfermariaCode);
+    const pacienteCode = req.params.NRMATPAC;
+    const result = await pacienteController.deleteHOS_ENFERMARIA(pacienteCode);
     res.json({ success: true, result });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });

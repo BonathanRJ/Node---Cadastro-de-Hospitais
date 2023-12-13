@@ -5,7 +5,21 @@ async function selectPAC_PACIENTE() {
     const conn = await db.connect();
     const [rows] = await conn.query('SELECT * FROM PAC_PACIENTE;');
     return rows;
-}
+  }
+  
+  async function getAllPacientes() {
+    const pacientes = await selectPAC_PACIENTE();
+    return pacientes;
+  }
+  
+  async function getAllPacientesJSON(req, res) {
+    try {
+      const pacientes = await getAllPacientes();
+      res.json({ success: true, pacientes });
+    } catch (error) {
+      res.status(500).json({ success: false, error: error.message });
+    }
+  }
 
 async function insertPAC_PACIENTE(paciente) {
     const conn = await db.connect();
