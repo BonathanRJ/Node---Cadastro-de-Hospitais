@@ -4,8 +4,10 @@ Trabalho da matéria de Desenvolvimento de Aplicações com Banco de Dados
 - Objetivo: Criar um CRUD onde eu possa inserir, ler, excluir e alterar os dados de um banco de dados através de uma linguagem de programação.
 
 ## Ferramentas utilizadas:
-- Node
-- MySQL
+- VSCode
+- Javascript
+- Node.js
+- MySQL Workbench
 
 ### Apresentação
 
