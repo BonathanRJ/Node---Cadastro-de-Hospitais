@@ -79,12 +79,12 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="17"
+                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="18"
                                     class="texto" title="Informe o Identificador"><br>
 
                             </td>
                             <td class="campo">
-                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="12"
+                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="13"
                                     class="texto" title="Informe o Código do Hospital"><br>
 
                             </td>
@@ -113,18 +113,18 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="NRISC" name="NRISC" required maxlength="9" size="14"
+                                <input type="text" id="NRISC" name="NRISC" required maxlength="9" size="15"
                                     class="texto" title="Informe a Inscrição"><br>
 
                             </td>
                             <td class="campo">
-                                <input type="text" id="NMFCO" name="NMFCO" required maxlength="60" size="60"
+                                <input type="text" id="NMFCO" name="NMFCO" required maxlength="75" size="60"
                                     class="texto" title="Informe o Nome do Funcionário"><br>
 
                             </td>
                             <td class="campo">
-                                <input type="datetime-local" id="DTNSCFCO" name="DTNSCFCO" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Nascimento"><br>
+                                <input type="datetime-local" id="DTNSCFCO" name="DTNSCFCO" required 
+                                class="texto" title="Informe a Data de Nascimento"><br>
 
                             </td>
                             <td class="campo">
@@ -133,8 +133,9 @@
 
                             </td>
                             <td class="campo">
-                                <input type="text" id="NRCPFFCO" name="NRCPFFCO" required maxlength="14" size="14" OnKeyPress="formatar('###.###.###-##',this)"
-                                    class="texto" title="Informe o CPF" ><br>
+                                <input type="text" id="NRCPFFCO" name="NRCPFFCO" required maxlength="14" size="14" 
+                                OnKeyPress="formatar('###.###.###-##',this)"
+                                class="texto" title="Informe o CPF" OnKeyPress="formatar('(##) ###.###.###-##',this)"><br>
                             </td>
                         </tr>
                     </tbody>
@@ -146,54 +147,54 @@
                             <td>
                                 <label for="DTISCFCO" class="titulo">Data da Inscrição</label>
                             </td>
-
+                            <td>
+                                <label for="NRCGO" class="titulo">Número do Cargo</label>
+                            </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="datetime-local" id="DTISCFCO" name="DTISCFCO" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data da Inscrição"><br>
-
+                                <input type="datetime-local" id="DTISCFCO" name="DTISCFCO" required 
+                                class="texto" title="Informe a Data da Inscrição"><br>
                             </td>
-
+                            <td class="campo">
+                                <input type="text" id="NRCGO" name="NRCGO" required maxlength="5" size="13"
+                                class="texto" title="Informe o Número do Cargo"><br>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <table>
                     <tbody>
                         <tr>
-                            <td>
-                                <label for="DCLOGFCO" class="titulo">Logradouro</label>
-                            </td>
                             <td>
                                 <label for="NRLOGFCO" class="titulo">Número</label>
                             </td>
                             <td>
-                                <label for="DCBAIFCO" class="titulo">Bairro</label>
+                                <label for="DCLOGFCO" class="titulo">Logradouro</label>
                             </td>
                             <td>
-                                <label for="DCCIDFCO" class="titulo">Cidade</label>
+                                <label for="NRCEPFCO" class="titulo">CEP</label>
+                            </td>
+                            <td>
+                                <label for="DCBAIFCO" class="titulo">Bairro</label>
                             </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="DCLOGFCO" name="DCLOGFCO" required maxlength="60" size="60"
-                                    class="texto" title="Informe o Logradouro"><br>
-
-                            </td>
-                            <td class="campo">
                                 <input type="text" id="NRLOGFCO" name="NRLOGFCO" required maxlength="5" size="3"
                                     class="texto" title="Informe o Número"><br>
-
                             </td>
                             <td class="campo">
-                                <input type="text" id="DCBAIFCO" name="DCBAIFCO" required maxlength="30" size="20"
+                                <input type="text" id="DCLOGFCO" name="DCLOGFCO" required maxlength="60" size="50"
+                                    class="texto" title="Informe o Logradouro"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRCEPFCO" name="NRCEPFCO" required maxlength="8" size="8"
+                                    class="texto" title="Informe o CEP"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCBAIFCO" name="DCBAIFCO" required maxlength="60" size="30"
                                     class="texto" title="Informe o Bairro"><br>
-
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="DCCIDFCO" name="DCCIDFCO" required maxlength="40" size="20"
-                                    class="texto" title="Informe a Cidade"><br>
-
                             </td>
                         </tr>
                     </tbody>
@@ -201,22 +202,17 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td>
-                                <label for="NRCEPFCO" class="titulo">CEP</label>
-                            </td>
                             <td>
                                 <label for="CDPSIFCO" class="titulo">País</label>
                             </td>
                             <td>
                                 <label for="SGUFSFCO" class="titulo">UF</label>
                             </td>
+                            <td>
+                                <label for="DCCIDFCO" class="titulo">Cidade</label>
+                            </td>
                         </tr>
                         <tr>
-                            <td class="campo">
-                                <input type="text" id="NRCEPFCO" name="NRCEPFCO" required maxlength="8" size="8"
-                                    class="texto" title="Informe o CEP"><br>
-
-                            </td>
                             <td class="campo">
                                 <select id="CDPSIFCO" name="CDPSIFCO" class="texto">
                                     <option value="">[Selecione...]</option>
@@ -501,6 +497,10 @@
                                     <option value="TO">TO</option>
                                 </select>
                             </td>
+                            <td class="campo">
+                                <input type="text" id="DCCIDFCO" name="DCCIDFCO" required maxlength="40" size="20"
+                                    class="texto" title="Informe a Cidade"><br>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -513,14 +513,13 @@
                             <td>
                                 <label for="DCEMLFCO" class="titulo">Email</label>
                             </td>
-                            <td>
-                                <label for="NRCGO" class="titulo">Número do Cargo</label>
-                            </td>
+                            
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="NRTELRSDFCO" name="NRTELRSDFCO" required maxlength="15" size="15" OnKeyPress="formatar('(##) #####-####',this)"
-                                    class="texto" title="Informe o Telefone"><br>
+                                <input type="text" id="NRTELRSDFCO" name="NRTELRSDFCO" required maxlength="15" size="15" 
+                                OnKeyPress="formatar('(##) #####-####',this)"
+                                class="texto" title="Informe o Telefone"><br>
 
                             </td>
                             <td class="campo">
@@ -528,11 +527,7 @@
                                     class="texto" title="Informe o Email"><br>
 
                             </td>
-                            <td class="campo">
-                                <input type="text" id="NRCGO" name="NRCGO" required maxlength="5" size="12"
-                                    class="texto" title="Informe o Número do Cargo"><br>
-
-                            </td>
+                            
                         </tr>
                     </tbody>
                 </table>
@@ -548,13 +543,13 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="10"
-                                    class="texto" title="Informe o Usuário"><br>
+                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="15"
+                                class="texto" title="Informe o Usuário"><br>
 
                             </td>
                             <td class="campo">
-                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
+                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required 
+                                class="texto" title="Informe a Data de Alteração"><br>
                             </td>
                         </tr>
                     </tbody>
@@ -573,7 +568,7 @@
                 texto = mascara.substring(i);
               }
             }
-          </script>
+        </script>
         <script>
             async function insertFuncionarioData() {
                 const IDHOS = document.getElementById('IDHOS').value;
@@ -654,18 +649,6 @@
             document.getElementById('openButton').addEventListener('click', function () {
                 window.location.href = '/views/funcionario_2.html';
             });
-        </script>
-        <script>  
-            function formatar(mascara, documento) {
-                let i = documento.value.length;
-                let saida = '#';
-                let texto = mascara.substring(i);
-                while (texto.substring(0, 1) != saida && texto.length ) {
-                documento.value += texto.substring(0, 1);
-                i++;
-                texto = mascara.substring(i);
-                }
-            }
         </script>
     </div>
 

@@ -50,22 +50,48 @@
 
         <div class="container-barra-inicial">
             <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()" title="Novo">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
+                <button type="button" onclick="limparCampos()">
+                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
                 </button>
-                <button type="button" id="openButton" title="Abrir">
-                    <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
+                <button type="button" id="excluirButton" onclick="excluirPaciente()">
+                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
                 </button>
 
-                <button type="button" onclick="insertPacienteData()" title="Gravar">
+                <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
+                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                </button>
+                <button type="button" onclick="updatePacienteData()" title="Gravar">
                     <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
                 </button>
             </div>
         </div>
 
-        <fieldset>
-            <legend style="color: #325D82;">Cadastro Paciente</legend>
-            <form id="pacienteForm">
+        <form id="pacienteForm">
+            <fieldset>
+                <legend style="color: #325D82;">Busca Paciente</legend>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRMATPAC" class="titulo">Número da Matrícula</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <select id="NRMATPAC" name="NRMATPAC" class="texto"
+                                    title="Selecione o Paciente do Funcionário"></select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </form>   
+
+        <form id="pacienteForm">
+            <fieldset>
+                <legend style="color: #325D82;">Resultado</legend>
                 <table>
                     <tbody>
                         <tr>
@@ -81,32 +107,44 @@
                             <td>
                                 <label for="CDENF" class="titulo">Código da Enfermaria</label>
                             </td>
+                        </tr>  
+                    </tbody>
+                </table> 
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="campo">
+                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="18"
+                                class="texto" title="Informe o Identificador do Hospital"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="13"
+                                class="texto" title="Informe o Código do Hospital"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="IDENF" name="IDENF" required maxlength="3" size="20"
+                                class="texto" title="Informe o Identificador da Enfermaria"><br>
+
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="CDENF" name="CDENF" required maxlength="3" size="16"
+                                class="texto" title="Informe o Código da Enfermaria"><br>
+                            </td>
+                        </tr> 
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
                             <td>
-                                <label for="NRMATPAC" class="titulo">Número da Matrícula</label>
+                                <label for="DTISCPAC" class="titulo">Data de Inscrição</label>
                             </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="17"
-                                    class="texto" title="Informe o Identificador do Hospital"><br>
-
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="10" size="12"
-                                    class="texto" title="Informe o Código do Hospital"><br>
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="IDENF" name="IDENF" required maxlength="3" size="17"
-                                    class="texto" title="Informe o Identificador da Enfermaria"><br>
-
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="CDENF" name="CDENF" required maxlength="10" size="12"
-                                    class="texto" title="Informe o Código da Enfermaria"><br>
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="NRMATPAC" name="NRMATPAC" required maxlength="10" size="14"
-                                    class="texto" title="Informe o Número da Matrícula"><br>
+                                <input type="datetime-local" id="DTISCPAC" name="DTISCPAC" required maxlength="5" size="55" 
+                                class="texto" title="Informe a Data de Inscrição"><br>
                             </td>
                         </tr>
                     </tbody>
@@ -126,30 +164,23 @@
                             <td>
                                 <label for="NRCPFPAC" class="titulo">CPF</label>
                             </td>
-                            <td>
-                                <label for="DTISCPAC" class="titulo">Data de Inscrição</label>
-                            </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="NMPAC" name="NMPAC" required maxlength="60" size="60"
+                                <input type="text" id="NMPAC" name="NMPAC" required maxlength="75" size="60"
                                     class="texto" title="Informe o Nome do Paciente"><br>
                             </td>
                             <td class="campo">
-                                <input type="datetime-local" id="DTNSCPAC" name="DTNSCPAC" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Nascimento"><br>
+                                <input type="datetime" id="DTNSCPAC" name="DTNSCPAC" required 
+                                class="texto" title="Informe a Data de Nascimento"><br>
                             </td>
                             <td class="campo">
                                 <input type="text" id="TPSEXPAC" name="TPSEXPAC" required maxlength="1" size="1"
                                     class="texto" title="Informe o Sexo"><br>
                             </td>
                             <td class="campo">
-                                <input type="text" id="NRCPFPAC" name="NRCPFPAC" required maxlength="11" size="10"
-                                    class="texto" title="Informe o CPF"><br>
-                            </td>
-                            <td class="campo">
-                                <input type="datetime-local" id="DTISCPAC" name="DTISCPAC" required maxlength="5"
-                                    size="55" class="texto" title="Informe a Data de Inscrição"><br>
+                                <input type="text" id="NRCPFPAC" name="NRCPFPAC" required maxlength="14" size="14"
+                                class="texto" title="Informe o CPF" OnKeyPress="formatar('###.###.###-##',this)"><br>
                             </td>
                         </tr>
                     </tbody>
@@ -166,12 +197,12 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="NMPAI" name="NMPAI" required maxlength="60" size="60"
+                                <input type="text" id="NMPAI" name="NMPAI" required maxlength="75" size="60"
                                     class="texto" title="Informe o Nome do Pai"><br>
 
                             </td>
                             <td class="campo">
-                                <input type="text" id="NMMAE" name="NMMAE" required maxlength="60" size="60"
+                                <input type="text" id="NMMAE" name="NMMAE" required maxlength="75" size="60"
                                     class="texto" title="Nome do Mãe"><br>
 
                             </td>
@@ -182,26 +213,13 @@
                     <tbody>
                         <tr>
                             <td>
-                                <label for="DTFALPAC" class="titulo">Data de Falecimento</label>
+                                <label for="NRLOGPAC" class="titulo">Número</label>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="datetime-local" id="DTFALPAC" name="DTFALPAC" required maxlength="5"
-                                    size="55" class="texto" title="Informe a Data de Falecimento"><br>
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
                             <td>
                                 <label for="DCLOGPAC" class="titulo">Logradouro</label>
                             </td>
                             <td>
-                                <label for="NRLOGPAC" class="titulo">Número</label>
+                                <label for="NRCEPPAC" class="titulo">CEP</label>
                             </td>
                             <td>
                                 <label for="DCBAIPAC" class="titulo">Bairro</label>
@@ -210,15 +228,19 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="DCLOGPAC" name="DCLOGPAC" required maxlength="60" size="60"
-                                    class="texto" title="Informe o Logradouro"><br>
-                            </td>
-                            <td class="campo">
                                 <input type="text" id="NRLOGPAC" name="NRLOGPAC" required maxlength="5" size="3"
                                     class="texto" title="Informe o Número"><br>
                             </td>
                             <td class="campo">
-                                <input type="text" id="DCBAIPAC" name="DCBAIPAC" required maxlength="30" size="20"
+                                <input type="text" id="DCLOGPAC" name="DCLOGPAC" required maxlength="60" size="35"
+                                    class="texto" title="Informe o Logradouro"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="NRCEPPAC" name="NRCEPPAC" required maxlength="8" size="8"
+                                    class="texto" title="Informe o CEP"><br>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="DCBAIPAC" name="DCBAIPAC" required maxlength="60" size="30"
                                     class="texto" title="Informe o Bairro"><br>
                             </td>
 
@@ -231,9 +253,7 @@
                             <td>
                                 <label for="CDPSIPAC" class="titulo">País</label>
                             </td>
-                            <td>
-                                <label for="NRLOGPAC" class="titulo">CEP</label>
-                            </td>
+                            
                             <td>
                                 <label for="DCBAIPAC" class="titulo">UF</label>
                             </td>
@@ -243,16 +263,288 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="CDPSIPAC" name="CDPSIPAC" required maxlength="2" size="2"
-                                    class="texto" title="Informe o País"><br>
+                                <select id="CDPSIPAC" name="CDPSIPAC" class="texto">
+                                    <option value="" selected="selected">[Selecione...]</option>
+                                    <option value="AD">AD - Andorra</option>
+                                    <option value="AE">AE - Emirados Árabes Unidos</option>
+                                    <option value="AF">AF - Afeganistão</option>
+                                    <option value="AG">AG - Antígua e Barbuda</option>
+                                    <option value="AI">AI - Anguilla</option>
+                                    <option value="AL">AL - Albânia</option>
+                                    <option value="AM">AM - Armênia</option>
+                                    <option value="AN">AN - Antilhas Holandesas</option>
+                                    <option value="AO">AO - Angola</option>
+                                    <option value="AQ">AQ - Antártida</option>
+                                    <option value="AR">AR - Argentina</option>
+                                    <option value="AS">AS - Samoa Americana</option>
+                                    <option value="AT">AT - Áustria</option>
+                                    <option value="AU">AU - Austrália</option>
+                                    <option value="AW">AW - Aruba</option>
+                                    <option value="AX">AX - Ilhas Aland</option>
+                                    <option value="AZ">AZ - Azerbaijão</option>
+                                    <option value="BA">BA - Bósnia-Herzegóvina</option>
+                                    <option value="BB">BB - Barbados</option>
+                                    <option value="BD">BD - Bangladesh</option>
+                                    <option value="BE">BE - Bélgica</option>
+                                    <option value="BF">BF - Burkina Fasso</option>
+                                    <option value="BG">BG - Bulgária</option>
+                                    <option value="BH">BH - Bahrein</option>
+                                    <option value="BI">BI - Burundi</option>
+                                    <option value="BJ">BJ - Benin</option>
+                                    <option value="BL">BL - São Bartolomeu</option>
+                                    <option value="BM">BM - Bermudas</option>
+                                    <option value="BN">BN - Brunei</option>
+                                    <option value="BO">BO - Bolívia</option>
+                                    <option value="BR">BR - Brasil</option>
+                                    <option value="BS">BS - Bahamas</option>
+                                    <option value="BT">BT - Butão</option>
+                                    <option value="BV">BV - Ilha Bouvet (Território da Noruega)</option>
+                                    <option value="BW">BW - Botsuana</option>
+                                    <option value="BY">BY - Belarus</option>
+                                    <option value="BZ">BZ - Belize</option>
+                                    <option value="CA">CA - Canadá</option>
+                                    <option value="CC">CC - Ilhas Cocos</option>
+                                    <option value="CD">CD - República Democrática do Congo (ex-Zaire)</option>
+                                    <option value="CF">CF - República Centro-Africana</option>
+                                    <option value="CG">CG - Congo</option>
+                                    <option value="CH">CH - Suíça</option>
+                                    <option value="CI">CI - Costa do Marfim</option>
+                                    <option value="CK">CK - Ilhas Cook</option>
+                                    <option value="CL">CL - Chile</option>
+                                    <option value="CM">CM - Camarões</option>
+                                    <option value="CN">CN - China</option>
+                                    <option value="CO">CO - Colômbia</option>
+                                    <option value="CR">CR - Costa Rica</option>
+                                    <option value="CU">CU - Cuba</option>
+                                    <option value="CV">CV - Cabo Verde</option>
+                                    <option value="CX">CX - Ilha Natal</option>
+                                    <option value="CY">CY - Chipre</option>
+                                    <option value="CZ">CZ - República Tcheca</option>
+                                    <option value="DE">DE - Alemanha</option>
+                                    <option value="DJ">DJ - Djibuti</option>
+                                    <option value="DK">DK - Dinamarca</option>
+                                    <option value="DM">DM - Dominica</option>
+                                    <option value="DO">DO - República Dominicana</option>
+                                    <option value="DZ">DZ - Argélia</option>
+                                    <option value="EC">EC - Equador</option>
+                                    <option value="EE">EE - Estônia</option>
+                                    <option value="EG">EG - Egito</option>
+                                    <option value="EH">EH - Saara Ocidental (Ex-Spanish Sahara)</option>
+                                    <option value="ER">ER - Eritréia</option>
+                                    <option value="ES">ES - Espanha</option>
+                                    <option value="ET">ET - Etiópia</option>
+                                    <option value="FI">FI - Finlândia</option>
+                                    <option value="FJ">FJ - Fiji</option>
+                                    <option value="FK">FK - Ilhas Falkland (Malvinas)</option>
+                                    <option value="FM">FM - Micronésia</option>
+                                    <option value="FO">FO - Ilhas Faroes</option>
+                                    <option value="FR">FR - França</option>
+                                    <option value="GA">GA - Gabão</option>
+                                    <option value="GB">GB - Grã-Bretanha (Reino Unido, UK)</option>
+                                    <option value="GD">GD - Granada</option>
+                                    <option value="GE">GE - Geórgia</option>
+                                    <option value="GF">GF - Guiana Francesa</option>
+                                    <option value="GG">GG - Guernsey</option>
+                                    <option value="GH">GH - Gana</option>
+                                    <option value="GI">GI - Gibraltar</option>
+                                    <option value="GL">GL - Groelândia</option>
+                                    <option value="GM">GM - Gâmbia</option>
+                                    <option value="GN">GN - Guiné</option>
+                                    <option value="GP">GP - Guadalupe</option>
+                                    <option value="GQ">GQ - Guiné Equatorial</option>
+                                    <option value="GR">GR - Grécia</option>
+                                    <option value="GS">GS - Ilhas Geórgia do Sul e Sandwich do Sul</option>
+                                    <option value="GT">GT - Guatemala</option>
+                                    <option value="GU">GU - Guam (Território dos Estados Unidos)</option>
+                                    <option value="GW">GW - Guiné-Bissau</option>
+                                    <option value="GY">GY - Guiana</option>
+                                    <option value="HK">HK - Hong Kong</option>
+                                    <option value="HM">HM - Ilhas Heard e McDonald (Território da Austrália)</option>
+                                    <option value="HN">HN - Honduras</option>
+                                    <option value="HR">HR - Croácia (Hrvatska)</option>
+                                    <option value="HT">HT - Haiti</option>
+                                    <option value="HU">HU - Hungria</option>
+                                    <option value="ID">ID - Indonésia</option>
+                                    <option value="IE">IE - Irlanda</option>
+                                    <option value="IL">IL - Israel</option>
+                                    <option value="IM">IM - Ilha do Homem</option>
+                                    <option value="IN">IN - Índia</option>
+                                    <option value="IO">IO - Território Britânico do Oceano índico</option>
+                                    <option value="IQ">IQ - Iraque</option>
+                                    <option value="IR">IR - Irã</option>
+                                    <option value="IS">IS - Islândia</option>
+                                    <option value="IT">IT - Itália</option>
+                                    <option value="JE">JE - Jersey</option>
+                                    <option value="JM">JM - Jamaica</option>
+                                    <option value="JO">JO - Jordânia</option>
+                                    <option value="JP">JP - Japão</option>
+                                    <option value="KE">KE - Kênia</option>
+                                    <option value="KG">KG - Kyrgyzstan</option>
+                                    <option value="KH">KH - Camboja</option>
+                                    <option value="KI">KI - Kiribati</option>
+                                    <option value="KM">KM - Ilhas Comores</option>
+                                    <option value="KN">KN - São Cristóvão e Névis</option>
+                                    <option value="KP">KP - Coréia do Norte</option>
+                                    <option value="KR">KR - Coréia do Sul</option>
+                                    <option value="KW">KW - Kuait</option>
+                                    <option value="KY">KY - Ilhas Cayman</option>
+                                    <option value="KZ">KZ - Cazaquistão</option>
+                                    <option value="LA">LA - Laos</option>
+                                    <option value="LB">LB - Líbano</option>
+                                    <option value="LC">LC - Santa Lúcia</option>
+                                    <option value="LI">LI - Liechtenstein</option>
+                                    <option value="LK">LK - Sri Lanka</option>
+                                    <option value="LR">LR - Libéria</option>
+                                    <option value="LS">LS - Lesoto</option>
+                                    <option value="LT">LT - Lituânia</option>
+                                    <option value="LU">LU - Luxemburgo</option>
+                                    <option value="LV">LV - Látvia</option>
+                                    <option value="LY">LY - Líbia</option>
+                                    <option value="MA">MA - Marrocos</option>
+                                    <option value="MC">MC - Mônaco</option>
+                                    <option value="MD">MD - Moldova</option>
+                                    <option value="ME">ME - Montenegro</option>
+                                    <option value="MF">MF - São Martim</option>
+                                    <option value="MG">MG - Madagascar</option>
+                                    <option value="MH">MH - Ilhas Marshall</option>
+                                    <option value="MK">MK - Macedônia (República Yugoslava)</option>
+                                    <option value="ML">ML - Mali</option>
+                                    <option value="MM">MM - Myanma (Ex-Burma)</option>
+                                    <option value="MN">MN - Mongólia</option>
+                                    <option value="MO">MO - Macau</option>
+                                    <option value="MP">MP - Ilhas Marianas do Norte</option>
+                                    <option value="MQ">MQ - Martinica</option>
+                                    <option value="MR">MR - Mauritânia</option>
+                                    <option value="MS">MS - Montserrat</option>
+                                    <option value="MT">MT - Malta</option>
+                                    <option value="MU">MU - Maurício</option>
+                                    <option value="MV">MV - Maldivas</option>
+                                    <option value="MW">MW - Malaui</option>
+                                    <option value="MX">MX - Mexico</option>
+                                    <option value="MY">MY - Malásia</option>
+                                    <option value="MZ">MZ - Moçambique</option>
+                                    <option value="NA">NA - Namíbia</option>
+                                    <option value="NC">NC - Nova Caledônia</option>
+                                    <option value="NE">NE - Níger</option>
+                                    <option value="NF">NF - Ilhas Norfolk</option>
+                                    <option value="NG">NG - Nigéria</option>
+                                    <option value="NI">NI - Nicarágua</option>
+                                    <option value="NL">NL - Holanda</option>
+                                    <option value="NO">NO - Noruega</option>
+                                    <option value="NP">NP - Nepal</option>
+                                    <option value="NR">NR - Nauru</option>
+                                    <option value="NU">NU - Niue</option>
+                                    <option value="NZ">NZ - Nova Zelândia</option>
+                                    <option value="OM">OM - Omã</option>
+                                    <option value="PA">PA - Panamá</option>
+                                    <option value="PE">PE - Peru</option>
+                                    <option value="PF">PF - Polinésia Francesa</option>
+                                    <option value="PG">PG - Papua-Nova Guiné</option>
+                                    <option value="PH">PH - Filipinas</option>
+                                    <option value="PK">PK - Paquistão</option>
+                                    <option value="PL">PL - Polônia</option>
+                                    <option value="PM">PM - St. Pierre and Miquelon</option>
+                                    <option value="PN">PN - Ilha Pitcairn</option>
+                                    <option value="PR">PR - Porto Rico</option>
+                                    <option value="PS">PS - Territórios Palestinos Ocupados</option>
+                                    <option value="PT">PT - Portugal</option>
+                                    <option value="PW">PW - Palau</option>
+                                    <option value="PY">PY - Paraguai</option>
+                                    <option value="QA">QA - Qatar</option>
+                                    <option value="RE">RE - Ilha Reunião</option>
+                                    <option value="RO">RO - Romênia</option>
+                                    <option value="RS">RS - Sérvia</option>
+                                    <option value="RU">RU - Federação Russa</option>
+                                    <option value="RW">RW - Ruanda</option>
+                                    <option value="SA">SA - Arábia Saudita</option>
+                                    <option value="SB">SB - Ilhas Solomão</option>
+                                    <option value="SC">SC - Ilhas Seychelles</option>
+                                    <option value="SD">SD - Sudão</option>
+                                    <option value="SE">SE - Suécia</option>
+                                    <option value="SG">SG - Cingapura</option>
+                                    <option value="SH">SH - Santa Helena</option>
+                                    <option value="SI">SI - Eslovênia</option>
+                                    <option value="SJ">SJ - Ilhas Svalbard e Jan Mayen</option>
+                                    <option value="SK">SK - Eslováquia</option>
+                                    <option value="SL">SL - Serra Leoa</option>
+                                    <option value="SM">SM - San Marino</option>
+                                    <option value="SN">SN - Senegal</option>
+                                    <option value="SO">SO - Somália</option>
+                                    <option value="SR">SR - Suriname</option>
+                                    <option value="ST">ST - São Tomé e Príncipe</option>
+                                    <option value="SV">SV - El Salvador</option>
+                                    <option value="SY">SY - Síria</option>
+                                    <option value="SZ">SZ - Suazilândia</option>
+                                    <option value="TC">TC - Ilhas Turks e Caicos</option>
+                                    <option value="TD">TD - Chade</option>
+                                    <option value="TF">TF - Territórios do Sul da França</option>
+                                    <option value="TG">TG - Togo</option>
+                                    <option value="TH">TH - Tailândia</option>
+                                    <option value="TJ">TJ - Tadjiquistão</option>
+                                    <option value="TK">TK - Ilhas Tokelau</option>
+                                    <option value="TL">TL - Timor Leste (Ex-East Timor)</option>
+                                    <option value="TM">TM - Turcomenistão</option>
+                                    <option value="TN">TN - Tunísia</option>
+                                    <option value="TO">TO - Tonga</option>
+                                    <option value="TR">TR - Turquia</option>
+                                    <option value="TT">TT - Trinidad and Tobago</option>
+                                    <option value="TV">TV - Tuvalu</option>
+                                    <option value="TW">TW - Taiwan</option>
+                                    <option value="TZ">TZ - Tanzânia</option>
+                                    <option value="UA">UA - Ucrânia</option>
+                                    <option value="UG">UG - Uganda</option>
+                                    <option value="UM">UM - Ilhas Menores dos Estados Unidos</option>
+                                    <option value="US">US - Estados Unidos</option>
+                                    <option value="UY">UY - Uruguai</option>
+                                    <option value="UZ">UZ - Uzbequistão</option>
+                                    <option value="VA">VA - Vaticano</option>
+                                    <option value="VC">VC - Saint Vincente e Granadinas</option>
+                                    <option value="VE">VE - Venezuela</option>
+                                    <option value="VG">VG - Ilhas Virgens (Inglaterra)</option>
+                                    <option value="VI">VI - Ilhas Virgens (Estados Unidos)</option>
+                                    <option value="VN">VN - Vietnam</option>
+                                    <option value="VU">VU - Vanuatu</option>
+                                    <option value="WF">WF - Ilhas Wallis e Futuna</option>
+                                    <option value="WS">WS - Samoa Ocidental</option>
+                                    <option value="YE">YE - Iêmen</option>
+                                    <option value="YT">YT - Mayotte</option>
+                                    <option value="ZA">ZA - África do Sul</option>
+                                    <option value="ZM">ZM - Zâmbia</option>
+                                    <option value="ZW">ZW - Zimbábue</option>
+                                </select>
                             </td>
                             <td class="campo">
-                                <input type="text" id="NRCEPPAC" name="NRCEPPAC" required maxlength="8" size="8"
-                                    class="texto" title="Informe o CEP"><br>
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="SGUFSPAC" name="SGUFSPAC" required maxlength="2" size="2"
-                                    class="texto" title="Informe a UF"><br>
+                                <select id="SGUFSPAC" name="SGUFSPAC" class="texto" title="Selecione a UF">
+                                    <option value="" selected="selected">[Selecione...]</option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AM">AM</option>
+                                    <option value="AP">AP</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MG">MG</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MT">MT</option>
+                                    <option value="NI">NI</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="PR">PR</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="RS">RS</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SE">SE</option>
+                                    <option value="SP">SP</option>
+                                    <option value="TO">TO</option>
+                                </select>
                             </td>
                             <td class="campo">
                                 <input type="text" id="DCCIDPAC" name="DCCIDPAC" required maxlength="40" size="20"
@@ -277,15 +569,17 @@
                         <tr>
                             <td class="campo">
                                 <input type="text" id="NRTELRSDPAC" name="NRTELRSDPAC" required maxlength="15" size="15"
-                                    class="texto" title="Informe o Telefone Paciente"><br>
+                                OnKeyPress="formatar('(##) #####-####',this)"
+                                class="texto" title="Informe o Telefone Paciente"><br>
                             </td>
                             <td class="campo">
                                 <input type="text" id="NRTELCOMPAC" name="NRTELCOMPAC" required maxlength="15" size="15"
-                                    class="texto" title="Informe o Telefone Acompanhante"><br>
+                                OnKeyPress="formatar('(##) #####-####',this)"
+                                class="texto" title="Informe o Telefone Acompanhante"><br>
                             </td>
                             <td class="campo">
                                 <input type="text" id="DCEMLPAC" name="DCEMLPAC" required maxlength="45" size="40"
-                                    class="texto" title="Informe o Email"><br>
+                                class="texto" title="Informe o Email"><br>
                             </td>
                         </tr>
                     </tbody>
@@ -297,24 +591,182 @@
                                 <label for="AUUSUULTALT" class="titulo">Usuário</label>
                             </td>
                             <td>
-                                <label for="DCHOS" class="titulo">Data de Alteração</label>
+                                <label for="AUDATULTALT" class="titulo">Data de Alteração</label>
                             </td>
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="10"
-                                    class="texto" title="Informe o Usuário"><br>
-
+                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="15" 
+                                class="texto" title="Informe o Usuário" readonly><br>
                             </td>
                             <td class="campo">
-                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
+                                <input type="datetime" id="AUDATULTALT" name="AUDATULTALT" required class="texto"
+                                title="Informe a Data de Alteração" readonly>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </form>
-        </fieldset>
+           </fieldset>
+        </form>
+        <script>  
+            function formatar(mascara, documento) {
+              let i = documento.value.length;
+              let saida = '#';
+              let texto = mascara.substring(i);
+              while (texto.substring(0, 1) != saida && texto.length ) {
+                documento.value += texto.substring(0, 1);
+                i++;
+                texto = mascara.substring(i);
+              }
+            }
+        </script>
+        <script>
+            function limparCampos() {
+              document.getElementById('IDHOS').value = '';
+              document.getElementById('CDHOS').value = '';
+              document.getElementById('IDENF').value = '';
+              document.getElementById('CDENF').value = '';
+              document.getElementById('NMPAC').value = '';
+              document.getElementById('DTNSCPAC').value = '';
+              document.getElementById('TPSEXPAC').value = '';
+              document.getElementById('NRCPFPAC').value = '';
+              document.getElementById('DTISCPAC').value = '';
+              document.getElementById('NMPAI').value = '';
+              document.getElementById('NMMAE').value = '';
+              document.getElementById('DCLOGPAC').value = '';
+              document.getElementById('NRLOGPAC').value = '';
+              document.getElementById('DCBAIPAC').value = '';
+              document.getElementById('DCCIDPAC').value = '';
+              document.getElementById('CDPSIPAC').value = '';
+              document.getElementById('NRCEPPAC').value = '';
+              document.getElementById('SGUFSPAC').value = '';
+              document.getElementById('NRTELRSDPAC').value = '';
+              document.getElementById('NRTELCOMPAC').value = '';
+              document.getElementById('DCEMLPAC').value = '';
+              document.getElementById('AUUSUULTALT').value = '';
+              document.getElementById('AUDATULTALT').value = '';
+            }
+        </script>
+
+        <script>
+            function excluirPaciente() {
+                const selectedPacienteCode = document.getElementById('NRMATPAC').value;
+                console.log('Selected Paciente Code:', selectedPacienteCode);
+
+
+                if (!selectedPacienteCode) {
+                    alert('Por favor, selecione um paciente antes de excluir.');
+                    return;
+                }
+
+                const confirmation = confirm('Tem certeza que deseja excluir este paciente?');
+
+                if (confirmation) {
+                    fetch(`/api/delete_paciente/${selectedPacienteCode}`, {
+                        method: 'DELETE',
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erro na requisição: ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                alert('Paciente excluído com sucesso!');
+                                limparCampos();
+                            } else {
+                                alert('Erro ao excluir Paciente. Por favor, tente novamente.');
+                            }
+                        })
+                        .catch(error => console.error('Erro na requisição:', error));
+                }
+            }
+        </script>
+
+        <script>
+
+            async function populatePacienteSelect() {
+                const selectElement = document.getElementById('NRMATPAC');
+
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.text = '<Selecione o Paciente do Funcionário>';
+                selectElement.add(defaultOption);
+
+                const response = await fetch('/api/pacientes');
+                const { success, pacientes } = await response.json();
+
+                if (success) {
+                    pacientes.forEach(paciente => {
+                        const option = document.createElement('option');
+                        option.value = paciente.NRMATPAC;
+                        option.text = `${paciente.NRMATPAC}`;
+                        selectElement.add(option);
+                    });
+
+                    document.getElementById('pesquisarButton').addEventListener('click', () => {
+                        const selectedPaciente = pacientes.find(paciente => paciente.NRMATPAC === selectElement.value);
+                        
+                        document.getElementById('IDHOS').value = selectedPaciente.IDHOS || '';
+                        document.getElementById('CDHOS').value = selectedPaciente.CDHOS || '';
+                        document.getElementById('IDENF').value = selectedPaciente.IDENF || '';
+                        document.getElementById('CDENF').value = selectedPaciente.CDENF || '';
+                        document.getElementById('NMPAC').value = selectedPaciente.NMPAC || '';
+
+
+                        const dataFormatada_DTNSCPAC = formatarData(selectedPaciente.DTNSCPAC);
+                        document.getElementById('DTNSCPAC').value = dataFormatada_DTNSCPAC;
+
+                        document.getElementById('TPSEXPAC').value = selectedPaciente.TPSEXPAC || '';
+                        document.getElementById('NRCPFPAC').value = selectedPaciente.NRCPFPAC || '';
+
+
+                        const dataFormatada_DTISCPAC = formatarData(selectedPaciente.DTISCPAC);
+                        document.getElementById('DTISCPAC').value = dataFormatada_DTISCPAC;
+
+                        document.getElementById('NMPAI').value = selectedPaciente.NMPAI || '';
+                        document.getElementById('NMMAE').value = selectedPaciente.NMMAE || '';
+                        document.getElementById('DCLOGPAC').value = selectedPaciente.DCLOGPAC || '';
+                        document.getElementById('NRLOGPAC').value = selectedPaciente.NRLOGPAC || '';
+                        document.getElementById('DCBAIPAC').value = selectedPaciente.DCBAIPAC || '';
+                        document.getElementById('DCCIDPAC').value = selectedPaciente.DCCIDPAC || '';
+                        document.getElementById('CDPSIPAC').value = selectedPaciente.CDPSIPAC || '';
+                        document.getElementById('NRCEPPAC').value = selectedPaciente.NRCEPPAC || '';
+                        document.getElementById('SGUFSPAC').value = selectedPaciente.SGUFSPAC || '';
+                        document.getElementById('NRTELRSDPAC').value = selectedPaciente.NRTELRSDPAC || '';
+                        document.getElementById('NRTELCOMPAC').value = selectedPaciente.NRTELCOMPAC || '';
+                        document.getElementById('DCEMLPAC').value = selectedPaciente.DCEMLPAC || '';
+                        document.getElementById('AUUSUULTALT').value = selectedPaciente.AUUSUULTALT || '';
+  
+                        const dataFormatada = formatarData(selectedPaciente.AUDATULTALT);
+                        document.getElementById('AUDATULTALT').value = dataFormatada;
+                        
+                    });
+                } else {
+                    console.error('Erro ao obter pacientes do servidor');
+                }
+            }
+            function formatarData(dataString) {
+                const data = new Date(dataString);
+                const dia = ('0' + data.getDate()).slice(-2);
+                const mes = ('0' + (data.getMonth() + 1)).slice(-2);
+                const ano = data.getFullYear();
+
+                return `${dia}/${mes}/${ano}`;
+            }
+
+            window.onload = populatePacienteSelect;
+            function mostrarFormulario() {
+                const pacienteForm = document.getElementById('pacienteForm');
+                const resultadoForm = document.getElementById('resultadoForm');
+
+                if (pacienteForm.style.display !== 'none') {
+
+                    resultadoForm.style.display = 'block';
+                }
+            }
+        </script>  
 
         <script>
             async function insertPacienteData() {
@@ -330,7 +782,6 @@
                 const DTISCPAC = document.getElementById('DTISCPAC').value;
                 const NMPAI = document.getElementById('NMPAI').value;
                 const NMMAE = document.getElementById('NMMAE').value;
-                const DTFALPAC = document.getElementById('DTFALPAC').value;
                 const DCLOGPAC = document.getElementById('DCLOGPAC').value;
                 const NRLOGPAC = document.getElementById('NRLOGPAC').value;
                 const DCBAIPAC = document.getElementById('DCBAIPAC').value;
@@ -351,7 +802,7 @@
                     },
                     body: JSON.stringify({
                         IDHOS, CDHOS, IDENF, CDENF, NRMATPAC, NMPAC, DTNSCPAC, TPSEXPAC, NRCPFPAC, DTISCPAC, NMPAI, NMMAE,
-                        DTFALPAC, DCLOGPAC, NRLOGPAC, DCBAIPAC, DCCIDPAC, CDPSIPAC, NRCEPPAC, SGUFSPAC, NRTELRSDPAC,
+                        DCLOGPAC, NRLOGPAC, DCBAIPAC, DCCIDPAC, CDPSIPAC, NRCEPPAC, SGUFSPAC, NRTELRSDPAC,
                         NRTELCOMPAC, DCEMLPAC, AUUSUULTALT, AUDATULTALT
                     })
                 });
@@ -361,32 +812,80 @@
             }
         </script>
         <script>
-            function limparCampos() {
-                document.getElementById('IDHOS').value = '';
-                document.getElementById('CDHOS').value = '';
-                document.getElementById('IDENF').value = '';
-                document.getElementById('CDENF').value = '';
-                document.getElementById('NRMATPAC').value = '';
-                document.getElementById('NMPAC').value = '';
-                document.getElementById('DTNSCPAC').value = '';
-                document.getElementById('TPSEXPAC').value = '';
-                document.getElementById('NRCPFPAC').value = '';
-                document.getElementById('DTISCPAC').value = '';
-                document.getElementById('NMPAI').value = '';
-                document.getElementById('NMMAE').value = '';
-                document.getElementById('DTFALPAC').value = '';
-                document.getElementById('DCLOGPAC').value = '';
-                document.getElementById('NRLOGPAC').value = '';
-                document.getElementById('DCBAIPAC').value = '';
-                document.getElementById('DCCIDPAC').value = '';
-                document.getElementById('CDPSIPAC').value = '';
-                document.getElementById('NRCEPPAC').value = '';
-                document.getElementById('SGUFSPAC').value = '';
-                document.getElementById('NRTELRSDPAC').value = '';
-                document.getElementById('NRTELCOMPAC').value = '';
-                document.getElementById('DCEMLPAC').value = '';
-                document.getElementById('AUUSUULTALT').value = '';
-                document.getElementById('AUDATULTALT').value = '';
+            async function updatePacienteData() {
+                
+
+                    const selectedPacienteCode = document.getElementById('NRMATPAC').value;
+                    console.log('Selected Paciente Code:', selectedPacienteCode);
+
+                    if (!selectedPacienteCode) {
+                        alert('Por favor, selecione um paciente antes de gravar.');
+                        return;
+                    }
+
+                    const data = {
+                        IDHOS: selectedPacienteCode,
+                        CDHOS: document.getElementById('CDHOS').value,
+                        IDENF: document.getElementById('IDENF').value,
+                        CDENF: document.getElementById('CDENF').value,
+                        NRMATPAC: document.getElementById('NRMATPAC').value,
+                        NMPAC: document.getElementById('NMPAC').value,
+                        DTNSCPAC: formatarDataParaEnvio(document.getElementById('DTNSCPAC').value),
+                        TPSEXPAC: document.getElementById('TPSEXPAC').value,
+                        NRCPFPAC: document.getElementById('NRCPFPAC').value,
+                        DTISCPAC: formatarDataParaEnvio(document.getElementById('DTISCPAC').value),
+                        NMPAI: document.getElementById('NMPAI').value,
+                        NMMAE: document.getElementById('NMMAE').value,
+                        DCLOGPAC: document.getElementById('DCLOGPAC').value,
+                        NRLOGPAC: document.getElementById('NRLOGPAC').value,
+                        DCBAIPAC: document.getElementById('DCBAIPAC').value,
+                        DCCIDPAC: document.getElementById('DCCIDPAC').value,
+                        CDPSIPAC: document.getElementById('CDPSIPAC').value,
+                        NRCEPPAC: document.getElementById('NRCEPPAC').value,
+                        SGUFSPAC: document.getElementById('SGUFSPAC').value,
+                        NRTELRSDPAC: document.getElementById('NRTELRSDPAC').value,
+                        NRTELCOMPAC: document.getElementById('NRTELCOMPAC').value,
+                        DCEMLPAC: document.getElementById('DCEMLPAC').value,
+                        AUUSUULTALT: document.getElementById('AUUSUULTALT').value,
+                        AUDATULTALT: formatarDataParaEnvio(document.getElementById('AUDATULTALT').value),
+                    };
+
+                    const confirmation = confirm('Tem certeza que deseja atualizar este paciente?');
+
+                    function formatarDataParaEnvio(dataString) {
+                    const partes = dataString.split('/');
+                        if (partes.length === 3) {
+                            const [dia, mes, ano] = partes;
+                            return `${ano}-${mes}-${dia}`;
+                        }
+                        return dataString;
+                    }
+
+                    if (confirmation) {
+                    try {
+                        const response = await fetch('/api/update_paciente', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data),
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Erro na requisição: ' + response.statusText);
+                        }
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            alert('Paciente atualizado com sucesso!');
+                        } else {
+                            alert('Erro ao atualizar paciente. Por favor, tente novamente.');
+                        }
+                    } catch (error) {
+                        console.error('Erro na requisição:', error);
+                    }
+                }
             }
         </script>
     </div>
