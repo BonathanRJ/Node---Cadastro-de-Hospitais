@@ -81,19 +81,19 @@ async function updateFCO_FUNCIONARIO(updatedFuncionarioData) {
   }
  
 
-  async function deleteFCO_FUNCIONARIO(funcionarioCode) {
-    const conn = await db.connect();
-    const sql = 'DELETE FROM FCO_FUNCIONARIO WHERE NRISC = ?';
+async function deleteFCO_FUNCIONARIO(funcionarioCode) {
+  const conn = await db.connect();
+  const sql = 'DELETE FROM FCO_FUNCIONARIO WHERE NRISC = ?';
 
-    try {
-      const result = await conn.query(sql, [funcionarioCode]);
-      return { success: true, message: 'Funcionário excluído com sucesso.' };
-    } catch (error) {
-      console.error('Erro na exclusão do funcionário:', error);
-      throw new Error('Erro na exclusão do funcionário.');
-    } finally {
-      conn.release();
-    }
+  try {
+    const result = await conn.query(sql, [funcionarioCode]);
+    return { success: true, message: 'Funcionário excluído com sucesso.' };
+  } catch (error) {
+    console.error('Erro na exclusão do funcionário:', error);
+    throw new Error('Erro na exclusão do funcionário.');
+  } finally {
+    conn.release();
+  }
 }
 
 async function insertFCO_FUNCIONARIO(funcionario) {
@@ -102,6 +102,5 @@ async function insertFCO_FUNCIONARIO(funcionario) {
   const values = [funcionario.IDHOS, funcionario.CDHOS, funcionario.NRISC, funcionario.NMFCO, funcionario.DTNSCFCO, funcionario.TPSEXFCO, funcionario.NRCPFFCO, funcionario.DTISCFCO, funcionario.DCLOGFCO, funcionario.NRLOGFCO, funcionario.DCBAIFCO, funcionario.DCCIDFCO, funcionario.CDPSIFCO, funcionario.NRCEPFCO, funcionario.SGUFSFCO, funcionario.NRTELRSDFCO, funcionario.DCEMLFCO, funcionario.NRCGO, funcionario.AUUSUULTALT, funcionario.AUDATULTALT];
   return await conn.query(sql, values);
 }
-
 
 module.exports = { selectFCO_FUNCIONARIO, insertFCO_FUNCIONARIO, getAllFuncionarios, getAllFuncionariosJSON, updateFCO_FUNCIONARIO, deleteFCO_FUNCIONARIO};

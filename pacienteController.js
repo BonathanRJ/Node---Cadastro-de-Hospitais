@@ -30,12 +30,11 @@ async function updatePAC_PACIENTE(updatedPacienteData) {
       CDHOS = ?,
       IDENF = ?,
       CDENF = ?,
-      NRMATPAC = ?,
       NMPAC = ?,
-      DTNSCPAC = ?,
+      DTNSCPAC = STR_TO_DATE(?, '%Y-%m-%d'),
       TPSEXPAC = ?,
       NRCPFPAC = ?,
-      DTISCPAC = ?,
+      DTISCPAC = STR_TO_DATE(?, '%Y-%m-%d'),
       NMPAI = ?,
       NMMAE = ?,
       DCLOGPAC = ?,
@@ -50,7 +49,7 @@ async function updatePAC_PACIENTE(updatedPacienteData) {
       DCEMLPAC = ?,
       AUUSUULTALT = ?,
       AUDATULTALT = STR_TO_DATE(?, '%Y-%m-%d')
-    WHERE IDHOS = ?;
+    WHERE NRMATPAC = ?;
   `;
 
   const values = [
@@ -58,7 +57,6 @@ async function updatePAC_PACIENTE(updatedPacienteData) {
     updatedPacienteData.CDHOS,
     updatedPacienteData.IDENF,
     updatedPacienteData.CDENF,
-    updatedPacienteData.NRMATPAC,
     updatedPacienteData.NMPAC,
     updatedPacienteData.DTNSCPAC,
     updatedPacienteData.TPSEXPAC,
@@ -78,7 +76,7 @@ async function updatePAC_PACIENTE(updatedPacienteData) {
     updatedPacienteData.DCEMLPAC,
     updatedPacienteData.AUUSUULTALT,
     updatedPacienteData.AUDATULTALT,
-    updatedPacienteData.IDHOS,
+    updatedPacienteData.NRMATPAC,
   ];
 
   try {
@@ -92,12 +90,12 @@ async function updatePAC_PACIENTE(updatedPacienteData) {
   }
 }
   
-async function deletePAC_PACIENTE(patientId) {
+async function deletePAC_PACIENTE(pacienteCode) {
   const conn = await db.connect();
-  const sql = 'DELETE FROM PAC_PACIENTE WHERE IDHOS = ?';
+  const sql = 'DELETE FROM PAC_PACIENTE WHERE NRMATPAC = ?';
 
   try {
-    const result = await conn.query(sql, [patientId]);
+    const result = await conn.query(sql, [pacienteCode]);
     return { success: true, message: 'Paciente excluído com sucesso.' };
   } catch (error) {
     console.error('Erro na exclusão do paciente:', error);
@@ -108,15 +106,10 @@ async function deletePAC_PACIENTE(patientId) {
 }
 
 async function insertPAC_PACIENTE(paciente) {
-    const conn = await db.connect();
-    const sql = 'INSERT INTO PAC_PACIENTE (IDHOS, CDHOS, IDENF, CDENF, NRMATPAC, NMPAC, DTNSCPAC, TPSEXPAC, NRCPFPAC, DTISCPAC, NMPAI, NMMAE, DCLOGPAC, NRLOGPAC, DCBAIPAC, DCCIDPAC, CDPSIPAC, NRCEPPAC, SGUFSPAC, NRTELRSDPAC, NRTELCOMPAC, DCEMLPAC, AUUSUULTALT, AUDATULTALT) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
-    const values = [
-        paciente.IDHOS, paciente.CDHOS, paciente.IDENF, paciente.CDENF, paciente.NRMATPAC, paciente.NMPAC, paciente.DTNSCPAC,
-        paciente.TPSEXPAC, paciente.NRCPFPAC, paciente.DTISCPAC, paciente.NMPAI, paciente.NMMAE, 
-        paciente.DCLOGPAC, paciente.NRLOGPAC, paciente.DCBAIPAC, paciente.DCCIDPAC, paciente.CDPSIPAC, paciente.NRCEPPAC,
-        paciente.SGUFSPAC, paciente.NRTELRSDPAC, paciente.NRTELCOMPAC, paciente.DCEMLPAC, paciente.AUUSUULTALT, paciente.AUDATULTALT
-    ];
-    return await conn.query(sql, values);
+  const conn = await db.connect();
+  const sql = 'INSERT INTO PAC_PACIENTE (IDHOS, CDHOS, IDENF, CDENF, NRMATPAC, NMPAC, DTNSCPAC, TPSEXPAC, NRCPFPAC, DTISCPAC, NMPAI, NMMAE, DCLOGPAC, NRLOGPAC, DCBAIPAC, DCCIDPAC, CDPSIPAC, NRCEPPAC, SGUFSPAC, NRTELRSDPAC, NRTELCOMPAC, DCEMLPAC, AUUSUULTALT, AUDATULTALT) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
+  const values = [paciente.IDHOS, paciente.CDHOS, paciente.IDENF, paciente.CDENF, paciente.NRMATPAC, paciente.NMPAC, paciente.DTNSCPAC, paciente.TPSEXPAC, paciente.NRCPFPAC, paciente.DTISCPAC, paciente.NMPAI, paciente.NMMAE, paciente.DCLOGPAC, paciente.NRLOGPAC, paciente.DCBAIPAC, paciente.DCCIDPAC, paciente.CDPSIPAC, paciente.NRCEPPAC, paciente.SGUFSPAC, paciente.NRTELRSDPAC, paciente.NRTELCOMPAC, paciente.DCEMLPAC, paciente.AUUSUULTALT, paciente.AUDATULTALT];
+  return await conn.query(sql, values);
 }
 
 module.exports = { selectPAC_PACIENTE, insertPAC_PACIENTE, getAllPacientes, getAllPacientesJSON, updatePAC_PACIENTE, deletePAC_PACIENTE };

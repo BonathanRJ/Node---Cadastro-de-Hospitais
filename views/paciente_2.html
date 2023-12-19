@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
 </head>
+<style>
+    #resultadoForm {
+        display: none;
+    }
+</style>
 
 <body>
 
@@ -89,7 +94,7 @@
             </fieldset>
         </form>   
 
-        <form id="pacienteForm">
+        <form id="resultadoForm">
             <fieldset>
                 <legend style="color: #325D82;">Resultado</legend>
                 <table>
@@ -128,7 +133,7 @@
 
                             </td>
                             <td class="campo">
-                                <input type="text" id="CDENF" name="CDENF" required maxlength="3" size="16"
+                                <input type="text" id="CDENF" name="CDENF" required maxlength="4" size="16"
                                 class="texto" title="Informe o Código da Enfermaria"><br>
                             </td>
                         </tr> 
@@ -143,7 +148,7 @@
                         </tr>
                         <tr>
                             <td class="campo">
-                                <input type="datetime-local" id="DTISCPAC" name="DTISCPAC" required maxlength="5" size="55" 
+                                <input type="datetime" id="DTISCPAC" name="DTISCPAC" required
                                 class="texto" title="Informe a Data de Inscrição"><br>
                             </td>
                         </tr>
@@ -600,8 +605,8 @@
                                 class="texto" title="Informe o Usuário" readonly><br>
                             </td>
                             <td class="campo">
-                                <input type="datetime" id="AUDATULTALT" name="AUDATULTALT" required class="texto"
-                                title="Informe a Data de Alteração" readonly>
+                                <input type="datetime" id="AUDATULTALT" name="AUDATULTALT" required 
+                                class="texto" title="Informe a Data de Alteração" readonly>
                             </td>
                         </tr>
                     </tbody>
@@ -824,7 +829,8 @@
                     }
 
                     const data = {
-                        IDHOS: selectedPacienteCode,
+                        NRMATPAC: selectedPacienteCode,
+                        IDHOS: document.getElementById('IDHOS').value,
                         CDHOS: document.getElementById('CDHOS').value,
                         IDENF: document.getElementById('IDENF').value,
                         CDENF: document.getElementById('CDENF').value,

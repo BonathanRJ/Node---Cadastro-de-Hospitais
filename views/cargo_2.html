@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
 </head>
+<style>
+    #resultadoForm {
+        display: none;
+    }
+</style>
 
 <body>
     <div id="sidebar">
@@ -95,18 +100,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                <label for="NRCGO" class="titulo">Número do Cargo</label>
-                            </td>
-                            <td>
                                 <label for="DCCGO" class="titulo">Descrição do cargo</label>
                             </td>
                         </tr>
                         <tr>
-                            <td class="campo">
-                                <input type="text" id="NRCGO" name="NRCGO" required maxlength="8" size="13" 
-                                class="texto" title="Informe o Número do Cargo"><br>
-
-                            </td>
                             <td class="campo">
                                 <input type="text" id="DCCGO" name="DCCGO" required maxlength="50" size="45"
                                 class="texto" title="Informe a Descrição do Cargo"><br>

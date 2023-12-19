@@ -231,7 +231,6 @@
                         document.getElementById('pesquisarButton').addEventListener('click', () => {
                             const selectedEnfermaria = enfermarias.find(enfermaria => enfermaria.CDENF === selectElement.value);
 
-                            document.getElementById('CDENF').value = selectedEnfermaria.CDENF || '';
                             document.getElementById('IDHOS').value = selectedEnfermaria.IDHOS || '';
                             document.getElementById('CDHOS').value = selectedEnfermaria.CDHOS || '';
                             document.getElementById('DCBLO').value = selectedEnfermaria.DCBLO || '';

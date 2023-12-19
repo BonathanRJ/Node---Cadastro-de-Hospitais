@@ -178,7 +178,7 @@ app.delete('/api/delete_paciente/:NRMATPAC', async (req, res) => {
   console.log('Rota /api/delete_paciente foi acessada');
   try {
     const pacienteCode = req.params.NRMATPAC;
-    const result = await pacienteController.deleteHOS_ENFERMARIA(pacienteCode);
+    const result = await pacienteController.deletePAC_PACIENTE(pacienteCode);
     res.json({ success: true, result });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -289,6 +289,7 @@ app.post('/insert_cargo', async (req, res) => {
 });
 
 app.post('/insert_paciente', async (req, res) => {
+  console.log('Rota de Insert de Paciente Acessada!');
   try {
     const pacienteData = req.body;
     const result = await pacienteController.insertPAC_PACIENTE(pacienteData);

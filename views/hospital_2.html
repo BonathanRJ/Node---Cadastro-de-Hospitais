@@ -168,6 +168,7 @@
                             <tr>
                                 <td class="campo">
                                     <select id="CDPSIHOS" name="CDPSIHOS" class="texto">
+                                        <option value="">[Selecione...]</option>
                                         <option value="AD">AD - Andorra</option>
                                         <option value="AE">AE - Emirados Árabes Unidos</option>
                                         <option value="AF">AF - Afeganistão</option>
@@ -466,7 +467,8 @@
                             <tr>
                                 <td class="campo">
                                     <input type="text" id="NRTELHOS" name="NRTELHOS" required maxlength="15" size="15"
-                                        class="texto" title="Informe o Telefone"><br>
+                                    OnKeyPress="formatar('(##) #####-####',this)"
+                                    class="texto" title="Informe o Telefone"><br>
 
                                 </td>
                             </tr>
@@ -499,6 +501,18 @@
                 </div>
             </fieldset>
 
+            <script>  
+                function formatar(mascara, documento) {
+                  let i = documento.value.length;
+                  let saida = '#';
+                  let texto = mascara.substring(i);
+                  while (texto.substring(0, 1) != saida && texto.length ) {
+                    documento.value += texto.substring(0, 1);
+                    i++;
+                    texto = mascara.substring(i);
+                  }
+                }
+            </script>
             <script>
                 function limparCampos() {
                     document.getElementById('CDHOS').value = '';

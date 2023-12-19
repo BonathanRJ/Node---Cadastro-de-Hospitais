@@ -98,7 +98,7 @@
 
                             </td>
                             <td class="campo">
-                                <input type="text" id="CDENF" name="CDENF" required maxlength="3" size="16"
+                                <input type="text" id="CDENF" name="CDENF" required maxlength="4" size="16"
                                     class="texto" title="Informe o Código da Enfermaria"><br>
                             </td>
                             
@@ -629,6 +629,15 @@
                 const AUUSUULTALT = document.getElementById('AUUSUULTALT').value;
                 const AUDATULTALT = document.getElementById('AUDATULTALT').value;
 
+                if (!IDHOS || !CDHOS || !IDENF || !CDENF || !NRMATPAC ||
+                !NMPAC || !DTNSCPAC || !TPSEXPAC || !NRCPFPAC || !DTISCPAC ||
+                !NMPAI || !NMMAE || !DCLOGPAC || !NRLOGPAC || !DCBAIPAC ||
+                !DCCIDPAC || !CDPSIPAC || !NRCEPPAC || !SGUFSPAC || !NRTELRSDPAC ||
+                !NRTELCOMPAC || !DCEMLPAC || !AUUSUULTALT || !AUDATULTALT) {
+                alert('Insira os dados necessários para o registro do paciente!');
+                return;
+                }
+
                 const response = await fetch('/insert_paciente', {
                     method: 'POST',
                     headers: {
@@ -642,6 +651,12 @@
                 });
 
                 const result = await response.json();
+                if (result.success) {
+                    alert('O paciente foi cadastrado com sucesso!');
+                } else {
+                    alert('Erro ao inserir o registro. Por favor, tente novamente.');
+                    console.error('Server response:', result);
+                }
                 console.log(result);
             }
         </script>
