@@ -114,3 +114,69 @@ legend {
 input[readonly] {
     background-color: #d7d9db;
 }
+
+.td_lista_b{
+width: 100%;
+-webkit-border-horizontal-spacing: 0px;
+-webkit-border-vertical-spacing: 0px;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+font-family: verdana;
+font-size: 11px;
+font-style: normal;
+font-weight: normal;
+margin-top: 2px;
+border-top: 1px solid #68AAC1;
+border-left: 1px solid #68AAC1;
+border-bottom: 1px solid #68AAC1;
+border-right: 0px solid #68AAC1;
+}
+
+.linha{
+CURSOR: HAND;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+font: 11px/ 13px verdana;
+text-align: left;
+vertical-align: middle;
+padding: 2px 2px 2px 2px;
+color: #333333;
+border-top: 1px solid #68AAC1;
+border-right: 1px solid #68AAC1;
+}
+
+td.linha {
+    color: #333333;
+    border-top: 1px solid #68AAC1;
+    border-right: 1px solid #68AAC1;
+}
+
+table.lista {
+    border-top: 1px solid #68AAC1;
+    border-left: 1px solid #68AAC1;
+    border-bottom: 1px solid #68AAC1;
+    border-right: 0px solid #68AAC1;
+}
+
+table.lista {
+    margin-top: 2px;
+}
+
+td.cabecalho {
+    color: #58717C;
+    border-top: 1px solid #E9F2F5;
+    border-right: 1px solid #86BBCE;
+    border-bottom: 1px solid #86BBCE;
+    border-left: 1px solid #E9F2F5;
+    background: #beccdf;
+}
+td.cabecalho {
+    font: bold 11px/ 13px verdana;
+    padding: 2px 2px 2px 2px;
+    vertical-align: middle;
+    text-align: left;
+    height: 20px;
+}

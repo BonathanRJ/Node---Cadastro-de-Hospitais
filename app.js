@@ -33,6 +33,10 @@ app.get('/views/hospital_2.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/hospital_2.html'));
 });
 
+app.get('/views/hospital_3.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/hospital_2.html'));
+});
+
 app.get('/views/enfermaria.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/enfermaria.html'));
 });
@@ -41,11 +45,19 @@ app.get('/views/enfermaria_2.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/enfermaria_2.html'));
 });
 
+app.get('/views/enfermaria_3.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/enfermaria_3.html'));
+});
+
 app.get('/views/funcionario.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/funcionario.html'));
 });
 
 app.get('/views/funcionario_2.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/funcionario_2.html'));
+});
+
+app.get('/views/funcionario_3.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/funcionario_2.html'));
 });
 
@@ -57,11 +69,19 @@ app.get('/views/cargo_2.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/cargo_2.html'));
 });
 
+app.get('/views/cargo_3.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/cargo_2.html'));
+});
+
 app.get('/views/paciente.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/paciente.html'));
 });
 
 app.get('/views/paciente_2.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/paciente_2.html'));
+});
+
+app.get('/views/paciente_3.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/paciente_2.html'));
 });
 
