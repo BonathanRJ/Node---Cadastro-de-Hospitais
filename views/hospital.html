@@ -40,34 +40,10 @@
     </div>
 
     <div id="content">
-        <table width="100%" margin=15px;>
-            <tr>
-                <td class="secao">
-                    Hospital
-                </td>
-            </tr>
-        </table>
-
-        <div class="container-barra-inicial">
-            <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()" title="Novo">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
-                </button>
-                <button type="button" id="openButton" title="Abrir">
-                    <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
-                </button>
-
-                <button type="button" onclick="insertHospitalData()" title="Gravar">
-                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
-                </button>
-            </div>
-        </div>
-
-
-        <form id="hospitalForm">
-            <fieldset>
-                <legend style="color: #325D82;">Cadastro Hospital</legend>
-                <div>
+        <fieldset>
+            <legend>Cadastro Hospital</legend>
+            <div class="divisao">
+                <form id="hospitalForm">
                     <table>
                         <tbody>
                             <tr>
@@ -476,13 +452,22 @@
                             </tr>
                         </tbody>
                     </table>
+                </form>
 
-
+                <div class="barra-inicial">
+                    <button type="button" onclick="limparCampos()" title="Novo">
+                        <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
+                    </button>
+                    <button type="button" id="openButton" title="Abrir">
+                        <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
+                    </button>
+                    <button type="button" onclick="insertHospitalData()" title="Gravar">
+                        <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                    </button>
                 </div>
-            </fieldset>
-        </form>
-
-
+            </div>
+        </fieldset>
+       
         <script>
             async function insertHospitalData() {
                 const CDHOS = document.getElementById('CDHOS').value;

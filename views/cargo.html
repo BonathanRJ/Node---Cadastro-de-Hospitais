@@ -38,79 +38,70 @@
         </a>
     </div>
     <div id="content">
-        <table width="100%" margin=15px;>
-            <tr>
-                <td class="secao">
-                    Cargo
-                </td>
-            </tr>
-        </table>
-
-        <div class="container-barra-inicial">
-            <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()" title="Novo">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
-                </button>
-                <button type="button" id="openButton" title="Abrir">
-                    <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
-                </button>
-
-                <button type="button" onclick="insertCargoData()" title="Gravar">
-                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
-                </button>
-            </div>
-        </div>
-
         <fieldset>
-            <legend style="color: #325D82;">Cadastro Cargo</legend>
-            <form id="cargoForm">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="NRCGO" class="titulo">Número do Cargo</label>
-                            </td>
-                            <td>
-                                <label for="DCCGO" class="titulo">Descrição do cargo</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="NRCGO" name="NRCGO" required maxlength="8" size="13"
-                                class="texto" title="Informe o Número do Cargo"><br>
+            <legend>Cadastro Cargo</legend>
+            <div class="divisao">
+                <form id="cargoForm">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="NRCGO" class="titulo">Número do Cargo</label>
+                                </td>
+                                <td>
+                                    <label for="DCCGO" class="titulo">Descrição do cargo</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="NRCGO" name="NRCGO" required maxlength="8" size="13"
+                                    class="texto" title="Informe o Número do Cargo"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="DCCGO" name="DCCGO" required maxlength="50" size="45"
-                                class="texto" title="Informe a Descrição do Cargo"><br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="AUUSUULTALT" class="titulo">Usuário</label>
-                            </td>
-                            <td>
-                                <label for="DCHOS" class="titulo">Data de Alteração</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="15"
-                                class="texto" title="Informe o Usuário"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="DCCGO" name="DCCGO" required maxlength="50" size="45"
+                                    class="texto" title="Informe a Descrição do Cargo"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="AUUSUULTALT" class="titulo">Usuário</label>
+                                </td>
+                                <td>
+                                    <label for="DCHOS" class="titulo">Data de Alteração</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="15"
+                                    class="texto" title="Informe o Usuário"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
-                                size="50" class="texto" title="Informe a Data de Alteração"><br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+                                </td>
+                                <td class="campo">
+                                    <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
+                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+                <div class="barra-inicial">
+                    <button type="button" onclick="limparCampos()" title="Novo">
+                        <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
+                    </button>
+                    <button type="button" id="openButton" title="Abrir">
+                        <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
+                    </button>
+                    <button type="button" onclick="insertCargoData()" title="Gravar">
+                        <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                    </button>
+                </div>
+            </div>
         </fieldset>
 
         <script>

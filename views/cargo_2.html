@@ -43,59 +43,51 @@
         </a>
     </div>
     <div id="content">
-        <table width="100%" margin=15px;>
-            <tr>
-                <td class="secao">
-                    Cargo
-                </td>
-            </tr>
-        </table>
-
-        <div class="container-barra-inicial">
-            <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
-                </button>
-                <button type="button" id="excluirButton" onclick="excluirCargo()">
-                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
-                </button>
-
-                <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
-                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
-                </button>
-                <button type="button" onclick="updateCargoData()" title="Gravar">
-                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
-                </button>
-            </div>
-        </div>
-
         <form id="cargoForm">
             <fieldset>
-                <legend style="color: #325D82;">Busca Cargo</legend>
-                <div>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label for="NRCGO" class="titulo">Número do Cargo</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="campo">
-                                    <select id="NRCGO" name="NRCGO" class="texto"
-                                        title="Selecione o Cargo do Funcionário"></select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <legend>Busca Cargo</legend>
+                <div class="divisao">
+                    <div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="NRCGO" class="titulo">Número do Cargo</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="campo">
+                                        <select id="NRCGO" name="NRCGO" class="texto"
+                                            title="Selecione o Código do Cargo"></select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="barra-inicial">
+                        <button type="button" onclick="limparCampos()">
+                            <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
+                        </button>
+                        <button type="button" id="excluirButton" onclick="excluirCargo()">
+                            <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
+                        </button>
+        
+                        <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
+                            <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                        </button>
+                        <button type="button" onclick="updateCargoData()" title="Gravar">
+                            <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                        </button>
+                    </div>
                 </div>
             </fieldset>
+            
         </form>
-
 
         <form id="resultadoForm">
             <fieldset>
-                <legend style="color: #325D82;">Resultado</legend>
+                <legend>Resultado</legend>
                 <table>
                     <tbody>
                         <tr>
@@ -135,6 +127,7 @@
                 </table>
             </fieldset>
         </form>
+        
         <script>
             function limparCampos() {
                 document.getElementById('NRCGO').value = '';
@@ -187,7 +180,7 @@
 
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
-                defaultOption.text = '<Selecione o Cargo do Funcionário>';
+                defaultOption.text = '<Selecione o Código do Cargo>';
                 selectElement.add(defaultOption);
 
                 const response = await fetch('/api/cargos');

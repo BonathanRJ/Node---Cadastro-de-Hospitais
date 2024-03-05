@@ -44,78 +44,50 @@
     </div>
 
     <div id="content">
-        <table width="100%" margin=15px;>
-            <tr>
-                <td class="secao">
-                    Enfermaria
-                </td>
-            </tr>
-        </table>
-        <div class="container-barra-inicial">
-            <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
-                </button>
-                <button type="button" id="excluirButton" onclick="excluirEnfermaria()">
-                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
-                </button>
-
-                <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
-                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
-                </button>
-                <button type="button" onclick="updateEnfermariaData()" title="Gravar">
-                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
-                </button>
-            </div>
-        </div>
-
-
         <form id="enfermariaForm">
             <fieldset>
-                <legend style="color: #325D82;">Busca Enfermaria</legend>
-                <div>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label for="CDHOS" class="titulo">Código do Hospital</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="campo">
-                                    <select id="CDHOS" name="CDHOS" class="texto"
-                                        title="Selecione o Código do Hospital"></select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <legend>Busca Enfermaria</legend>
+                <div class="divisao">
+                    <div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="CDENF" class="titulo">Código da Enfermaria</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="campo">
+                                        <select id="CDENF" name="CDENF" class="texto"
+                                            title="Selecione o Código da Enfermaria"></select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="barra-inicial">
+                        <button type="button" onclick="limparCampos()">
+                            <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
+                        </button>
+                        <button type="button" id="excluirButton" onclick="excluirEnfermaria()">
+                            <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
+                        </button>
+        
+                        <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
+                            <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                        </button>
+                        <button type="button" onclick="updateEnfermariaData()" title="Gravar">
+                            <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                        </button>
+                    </div>
                 </div>
             </fieldset>
         </form>
 
         <form id="resultadoForm">
             <fieldset>
-                <legend style="color: #325D82;">Resultado</legend>
-                <table width="100%" cellspacing="0" cellpadding="0" class="lista">
-                    <tbody>
-                        <tr>
-                            <td class="cabecalho">CDHOS</td>
-                            <td class="cabecalho">DCHOS</td>
-                        </tr>	
-                        <tr class="td_lista_b">
-                             <td class="linha">
-                                <div style="width:100%" onclick="DST('patrocinadorman.do?evento=Editar&amp;chPlc=2')" onmouseover="CCA(this,1)" onmouseout="CCA(this,0)">
-                                    001
-                                </div>
-                            </td>
-                            <td class="linha">
-                                <div style="width:100%" onclick="DST('patrocinadorman.do?evento=Editar&amp;chPlc=2')" onmouseover="CCA(this,1)" onmouseout="CCA(this,0)">
-                                    QUINTA DOR
-                                </div>
-                            </td>
-                       </tr>
-                    </tbody>
-                </table>
+                <legend>Resultado</legend>
+                
                 <div>
                     <table>
                         <tbody>

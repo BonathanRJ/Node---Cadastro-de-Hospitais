@@ -45,59 +45,50 @@
     </div>
 
     <div id="content">
-        <table width="100%" margin=15px;>
-            <tr>
-                <td class="secao">
-                    Hospital
-                </td>
-            </tr>
-        </table>
-
-        <div class="container-barra-inicial">
-            <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
-                </button>
-                <button type="button" id="excluirButton" onclick="excluirHospital()">
-                    <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
-                </button>
-
-                <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
-                    <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
-                </button>
-                <button type="button" onclick="atualizarHospital()" title="Gravar">
-                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
-                </button>
-            </div>
-        </div>
-
-
         <form id="hospitalForm">
             <fieldset>
-                <legend style="color: #325D82;">Busca Hospital</legend>
-                <div>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label for="CDHOS" class="titulo">Código do Hospital</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="campo">
-                                    <select id="CDHOS" name="CDHOS" class="texto"
-                                        title="Selecione o Código do Hospital"></select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <legend>Busca Hospital</legend>
+                <div class="divisao">
+                    <div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="CDHOS" class="titulo">Código do Hospital</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="campo">
+                                        <select id="CDHOS" name="CDHOS" class="texto"
+                                            title="Selecione o Código do Hospital"></select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="barra-inicial">
+                        <button type="button" onclick="limparCampos()">
+                            <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;" title="Novo"></i>
+                        </button>
+                        <button type="button" id="excluirButton" onclick="excluirHospital()">
+                            <i class="fa-solid fa-folder-minus custom-icon" style="color: #c25b32;" title="Excluir"></i>
+                        </button>
+        
+                        <button type="button" id="pesquisarButton" onclick="mostrarFormulario()">
+                            <i class="fa-solid fa-magnifying-glass custom-icon" title="Pesquisar"></i>
+                        </button>
+                        <button type="button" onclick="atualizarHospital()" title="Gravar">
+                            <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                        </button>
+                    </div>
                 </div>
             </fieldset>
         </form>
         
         <form id="resultadoForm">
             <fieldset>
-                <legend style="color: #325D82;">Resultado</legend>
+                <legend>Resultado</legend>
                 <div>
                     <table>
                         <tbody>

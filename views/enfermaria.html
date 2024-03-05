@@ -38,112 +38,104 @@
         </a>
     </div>
     <div id="content">
-        <table width="100%" margin=15px;>
-            <tr>
-                <td class="secao">
-                    Enfermaria
-                </td>
-            </tr>
-        </table>
-
-        <div class="container-barra-inicial">
-            <div class="barra-inicial">
-                <button type="button" onclick="limparCampos()" title="Novo">
-                    <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
-                </button>
-                <button type="button" id="openButton" title="Abrir">
-                    <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
-                </button>   
-
-                <button type="button" onclick="insertEnfermariaData()" title="Gravar">
-                    <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
-                </button>
-            </div>
-        </div>
-
         <fieldset>
-            <legend style="color: #325D82;">Cadastro Enfermaria</legend>
-            <form id="enfermariaForm">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="CDENF" class="titulo">Código da Enfermaria</label>
-                            </td>
+            <legend>Cadastro Enfermaria</legend>
+            <div class="divisao">
+                <form id="enfermariaForm">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="CDENF" class="titulo">Código da Enfermaria</label>
+                                </td>
 
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="CDENF" name="CDENF" required maxlength="3" size="16"
-                                    class="texto" title="Informe o Código da Enfermaria"><br>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="CDENF" name="CDENF" required maxlength="3" size="16"
+                                        class="texto" title="Informe o Código da Enfermaria"><br>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="IDHOS" class="titulo">Identificador do Hospital</label>
-                            </td>
-                            <td>
-                                <label for="CDHOS" class="titulo">Código do Hospital</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="18"
-                                    class="texto" title="Informe o Identificador"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="IDHOS" class="titulo">Identificador do Hospital</label>
+                                </td>
+                                <td>
+                                    <label for="CDHOS" class="titulo">Código do Hospital</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="IDHOS" name="IDHOS" required maxlength="3" size="18"
+                                        class="texto" title="Informe o Identificador"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="13"
-                                    class="texto" title="Informe o Código do Hospital"><br>
+                                </td>
+                                <td class="campo">
+                                    <input type="text" id="CDHOS" name="CDHOS" required maxlength="3" size="13"
+                                        class="texto" title="Informe o Código do Hospital"><br>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="DCBLO" class="titulo">Bloco</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="DCBLO" name="DCBLO" required maxlength="1" size="1" class="texto"
-                                    title="Informe o Bloco"><br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="AUUSUULTALT" class="titulo">Usuário</label>
-                            </td>
-                            <td>
-                                <label for="DCHOS" class="titulo">Data de Alteração</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="campo">
-                                <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="15"
-                                    class="texto" title="Informe o Usuário"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="DCBLO" class="titulo">Bloco</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="DCBLO" name="DCBLO" required maxlength="1" size="1" class="texto"
+                                        title="Informe o Bloco"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="AUUSUULTALT" class="titulo">Usuário</label>
+                                </td>
+                                <td>
+                                    <label for="DCHOS" class="titulo">Data de Alteração</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo">
+                                    <input type="text" id="AUUSUULTALT" name="AUUSUULTALT" required maxlength="30" size="15"
+                                        class="texto" title="Informe o Usuário"><br>
 
-                            </td>
-                            <td class="campo">
-                                <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
-                                    size="50" class="texto" title="Informe a Data de Alteração"><br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+                                </td>
+                                <td class="campo">
+                                    <input type="datetime-local" id="AUDATULTALT" name="AUDATULTALT" required maxlength="5"
+                                        size="50" class="texto" title="Informe a Data de Alteração"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            
+                <div class="barra-inicial">
+                    <button type="button" onclick="limparCampos()" title="Novo">
+                        <i class="fa-solid fa-folder-plus custom-icon" style="color: #0d54a0;"></i>
+                    </button>
+                    <button type="button" id="openButton" title="Abrir">
+                        <i class="fa-regular fa-folder-open custom-icon" style="color: #bdbf3f;"></i>
+                    </button>   
+    
+                    <button type="button" onclick="insertEnfermariaData()" title="Gravar">
+                        <i class="fa-solid fa-folder custom-icon" style="color: #3fc45a;"></i>
+                    </button>
+                </div>
+            </div>
         </fieldset>
         <script>
             async function insertEnfermariaData() {
