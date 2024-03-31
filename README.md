@@ -15,5 +15,4 @@ https://github.com/BonathanRJ/APS---157---DESENVOLVIMENTO-DE-APLICA--ES-COM-BANC
 
 
 ## Melhoria visual 
-![Screenshot_1](https://github.com/BonathanRJ/Projeto-Node--CRUD--Cadastro-de-Hospitais/assets/97456370/8e89bef0-79df-4b4c-825b-fe61a053cff5)
 ![Screenshot_3](https://github.com/BonathanRJ/Projeto-Node--CRUD--Cadastro-de-Hospitais/assets/97456370/cd0b400c-aa65-4283-aae5-1d69796d03be)
