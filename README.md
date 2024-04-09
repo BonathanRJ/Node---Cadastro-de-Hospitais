@@ -9,8 +9,8 @@ Trabalho da matéria de Desenvolvimento de Aplicações com Banco de Dados
 - Node.js
 - MySQL Workbench
 
-  ## Ferramentas utilizadas:
-- Jonathan Barbosa
+# Contribuidores
+- [Jonathan Barbosa](https://github.com/BonathanRJ)
 
 ### Apresentação
 
