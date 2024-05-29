@@ -1,5 +1,0 @@
-##Anotações
-
-1 - Alterar a tela "enfermaria_2.html" para que traga somente o Formulário
-2 - Alterar a tela "enfermaria_3.html" para que traga somente o Resultado 
-3 - Fazer com que a tela "enfermaria_3.html" traga o Resultado com todas as enfermarias com base no Formulário selecionada na "enfermaria_2.html"
